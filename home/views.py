@@ -5,3 +5,6 @@ from django.shortcuts import render
 
 def home(request):
     return render(request, 'Sign_in.html')
+
+def register(request):
+    return render(request, 'Sign_in.html')
