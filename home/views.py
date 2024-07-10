@@ -7,4 +7,4 @@ def home(request):
     return render(request, 'Sign_in.html')
 
 def register(request):
-    return render(request, 'Sign_in.html')
+    return render(request, 'register.html')
