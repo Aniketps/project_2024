@@ -11,7 +11,13 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
+FFMPEG_PATH = r'D:\ffmpeg-2024-07-10-git-1a86a7a48d-full_build\bin\ffmpeg.exe'
+FFPROBE_PATH = r'D:\ffmpeg-2024-07-10-git-1a86a7a48d-full_build\bin\ffprobe.exe'
+
+os.environ['FFMPEG_PATH'] = FFMPEG_PATH
+os.environ['FFPROBE_PATH'] = FFPROBE_PATH
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,7 +32,8 @@ SECRET_KEY = 'django-insecure-#^4^i_7ii7pz0h$fxf13zhek394hn=#_a5(x4t(5!ig&+v*z*(
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Application definition
 
