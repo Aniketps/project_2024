@@ -44,10 +44,10 @@ def uploadaudio(request):
             audio_file = request.FILES['audio_file']
 
             y, sr = librosa.load(audio_file.temporary_file_path() if hasattr(audio_file, 'temporary_file_path') else audio_file)
-            output_file = os.path.join(settings.BASE_DIR, 'home', 'static', 'uploads', f'{audio_file.name.split(".")[0]}_converted.wav')
+            output_file = os.path.join(settings.BASE_DIR, 'home', 'static', 'uploads', f'{audio_file.name.split(".")[0]}.wav')
             sf.write(output_file, y, sr)
             
-            ready = mimiking(output_file, 1, 0)
+            ready = mimiking(output_file, 0, 1)
             mimicked_output_file = os.path.join(settings.BASE_DIR, 'home', 'static', 'uploads', f'{output_file.split(".")[0]}_mimicked.wav')
             sf.write(mimicked_output_file, ready, sr)
             
@@ -61,18 +61,6 @@ def uploadaudio(request):
         form = AudioUploadForm()
 
     return render(request, 'features_testing.html', {'form': form})
-
-
-
-def download_wav(request, filename):
-    wav_file_path = os.path.join(settings.BASE_DIR, 'home', 'static', 'uploads', filename)
-    if os.path.exists(wav_file_path):
-        with open(wav_file_path, 'rb') as wav_file:
-            response = HttpResponse(wav_file.read(), content_type='audio/wav')
-            response['Content-Disposition'] = f'attachment; filename="{filename}"'
-            return response
-    else:
-        return HttpResponse("WAV file not found.", status=404)
     
     
 def mimiking(voice, gender, convert_to):
@@ -84,9 +72,9 @@ def mimiking(voice, gender, convert_to):
         elif convert_to==2: # 2 for child
             dub_voice = train_voice(y, sr, 5.89) # 5.89 for man to child
     else:
-        # woman_pitch = woman_voice(y, sr)
+        # woman_pitch = woman_voice(y, sr) 
         if convert_to==1: # 1 for man
-            dub_voice = train_voice(y, sr, -0.014) # -0.014 for woman to man
+            dub_voice = train_voice(y, sr, -4) # -0.014 for woman to man
         elif convert_to==2: # 2 for child
             dub_voice = train_voice(y, sr, 5.89) # 5.89 for woman to child
         
@@ -95,14 +83,8 @@ def mimiking(voice, gender, convert_to):
     
     
 def train_voice(y1, sr1, n_step):
-    new_voice = librosa.effects.pitch_shift(y1, n_steps= n_step, sr=sr1)
+    new_voice = librosa.effects.pitch_shift(y1, n_steps= n_step, sr=sr1*1.2)
 
-    new_voice = new_voice * 0.8
-    nyquist = 0.5 * sr1
-    cutoff_freq = 5000
-    normal_cutoff = cutoff_freq / nyquist
-    b, a = scipy.signal.butter(5, normal_cutoff, btype='low', analog=False)
-    
-    new_voice = scipy.signal.lfilter(b, a, new_voice)
+    new_voice = new_voice * 3.5 
     
     return new_voice

@@ -13,11 +13,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 
-FFMPEG_PATH = r'D:\ffmpeg-2024-07-10-git-1a86a7a48d-full_build\bin\ffmpeg.exe'
-FFPROBE_PATH = r'D:\ffmpeg-2024-07-10-git-1a86a7a48d-full_build\bin\ffprobe.exe'
-
-os.environ['FFMPEG_PATH'] = FFMPEG_PATH
-os.environ['FFPROBE_PATH'] = FFPROBE_PATH
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
