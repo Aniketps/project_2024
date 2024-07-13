@@ -16,13 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from home.views import home, register, uploadaudio
+from home.views import home, register, mimicking_page, tune_page
 from django.conf.urls.static import static
-from django.conf import settings
+from django.conf import settings 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home),
     path('register/', register),
-    path('upload/', uploadaudio, name='upload_audio'),
+    path('mimicking_page/', mimicking_page, name='mimicking_page'),
+    path('tune_page/', tune_page, name='tune_page'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

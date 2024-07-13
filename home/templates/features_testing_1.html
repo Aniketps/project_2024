@@ -16,29 +16,41 @@
 
         // Function to display popup notification
         function showPopup(message) {
-            alert(message);  // Replace with a more sophisticated popup or notification library as needed
+            alert(message);
         }
 
-        // Function to show the download button
-        function showDownloadButton(url) {
-            const downloadButton = document.getElementById('download-btn');
-            downloadButton.href = url;
-            downloadButton.style.display = 'inline-block';  // Show the download button
+        // Function to show the download buttons
+        function showDownloadButtons(urls) {
+            const downloadContainer = document.getElementById('download-buttons-container');
+            downloadContainer.innerHTML = '';  // Clear existing buttons
+
+            urls.forEach(url => {
+                const downloadButton = document.createElement('a');
+                downloadButton.href = url;
+                downloadButton.textContent = 'Download File';
+                downloadButton.download = '';  // Optionally set the download attribute
+                downloadContainer.appendChild(downloadButton);
+                downloadContainer.appendChild(document.createElement('br'));  // Optional: Add line breaks for better spacing
+            });
+
+            downloadContainer.style.display = 'block';  // Show the download buttons container
         }
     </script>
 </head>
 <body>
     <div class="container">
-        <div class="signin-form" enctype="multipart/form-data">
+        <div class="signin-form">
             <h2>Testing</h2>
-            <form id="upload-form" method="post" action="{% url 'mimicking_page' %}" enctype="multipart/form-data">
+            <form id="upload-form" method="post" action="{% url 'tune_page' %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 <label for="audio_file">Choose an audio file:</label>
                 <input type="file" id="audio_file" name="audio_file" onchange="showFileName(event)" accept=".mp3,.m4a">
                 <span id="file-label">No file selected</span>
                 <br><br>
                 <button id="upload-btn" type="submit" disabled>Upload</button>
-                <a id="download-btn" href="#" style="display: none;" download="converted_audio.wav">Download Converted File</a>
+                <div id="download-buttons-container" style="display: none;">
+                    <!-- Download buttons will be added dynamically here -->
+                </div>
             </form>
         </div>
     </div>
@@ -64,14 +76,16 @@
                     const jsonResponse = await response.json();
                     showPopup(jsonResponse.message);
 
-                    // Show the download button
-                    const downloadUrl = jsonResponse.download_url;
-                    showDownloadButton(downloadUrl);
+                    // Show the download buttons
+                    const downloadUrls = jsonResponse.download_urls;
+                    if (downloadUrls && downloadUrls.length > 0) {
+                        showDownloadButtons(downloadUrls);
+                    }
 
                     uploadForm.reset();
                 } catch (error) {
                     console.error('Error:', error);
-                    showPopup('File upload failed. Please try again.');
+                    showPopup('File upload failed. Please try again.' + error.message);  // Fixed typo here
                 }
             });
         });
