@@ -33,6 +33,9 @@ def home(request):
 def register(request):
     return render(request, 'register.html')
 
+def frontend(request):
+    return render(request, 'frontend.html')
+
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.conf import settings
