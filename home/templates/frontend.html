@@ -1,71 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
-    <title>Music Website</title>
+    <title>Rose</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/mainfrontend.css' %}">
 </head>
-
 <body>
-    <!-- <header>
-        <div >
-            <div class="menu_side"></div>
-            <div ></div>
-            <div></div>
-            <div></div>
-
-
-        </div>
-        <div class="song_side"></div>
-        <div class="master_play"></div> -->
-
-    
-
-    <div class="main_div">
-        
-        <div class="search_bar"></div>
-
-
-        <div class="main_screen">
-            
-            <div class="navbar"></div>
-
-            <div class="upper_section">
-                <div class="trending"></div>
-                <div class="old_songs"></div>
-                <div class="features">
-                    <div class="first_feature"></div>
-                    <div class="secoend_feature"></div>
-                    <div class="third_feature"></div>
-                    <div class="fourth_feature"></div>
-
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">Rose</div>
+            <div class="nav-links">
+                <div class="nav-link-token">
+                    <a href="#">Home</a>
+                </div>
+                <div class="nav-link-token">
+                    <a href="#">Profile</a>
+                </div>
+                <div class="nav-link-token">
+                    <a href="#">Log in</a>
                 </div>
             </div>
-            <div class="lower_section">
-
-                <div class="reccmondation"></div>
-                <div class="player"></div>
-
-            </div>
-
-
-
-
-
-
-
         </div>
 
+        <div class="main_div">
 
+            <div class="search_bar">
+                <div class="search_bar_1">
+                    <div class="search_bar_2">
+                        <label for="search">🔎︎</label>
+                        <input type="text" id="search" name="search" placeholder="Search">
+                        <button type="submit">Search</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="main_screen">
+                <div class="upper_section">
+                    <div class="trending">
+                        <div class="trending_1">
+                            
+                        </div>
+                    </div>
+
+                    <div class="old_songs">
+                        <div class="old_songs_1">
+
+                        </div>
+                    </div>
+
+                    <div class="features">
+                        <div class="features_1">
+                            <div class="first_feature">
+                                <div class="first_feature_1">
+                                    <a href="{% url 'mimicking_page' %}">Voice Mimicking</a>
+                                </div>
+                            </div>
+                            <div class="second_feature">
+                                <div class="second_feature_1">
+                                    <a href="{% url 'tune_page' %}">Change Tune</a>
+                                </div>
+                            </div>
+                            <div class="third_feature">
+                                <div class="third_feature_1">
+
+                                </div>
+                            </div>
+                            <div class="fourth_feature">
+                                <div class="fourth_feature_1">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lower_section">
+                    <div class="recommendation">
+                        <div class="recommendation_1">
+
+                        </div>
+                    </div>
+                    <div class="player">
+                        <div class="player_1">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-
-    </header>
-    <script src="app.js"></script>
-
 </body>
-
 </html>
