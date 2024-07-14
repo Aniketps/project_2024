@@ -28,7 +28,7 @@ from IPython.display import Audio
 # Create your views here.
 
 def home(request):
-    return render(request, 'Sign_in.html')
+    return render(request, 'home.html')
 
 def register(request):
     return render(request, 'register.html')

@@ -1,0 +1,122 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.main_body_section{
+    padding: 10px;
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.search_section {
+    height: 100%;
+    width: 335px;
+    border: 1px solid #170707;
+    border-radius: 5px;
+    display:grid;
+    place-items: center;
+    height: 100vh;
+}
+
+.music_tasking {
+    display: flexbox;
+    width: 100%;
+    border: 1px solid #170707;
+    border-radius: 5px;
+}
+
+.search_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid #62069b; */
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    padding: 5px 10px;
+    width: 80%;
+    max-width: 400px;
+    
+    background-color: #A020F0;
+    box-shadow: 0 2px 4px rgb(48, 161, 4);
+}
+
+.search-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.search-button:focus {
+    outline: none;
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    padding: 10px;
+    flex: 1;
+    font-size: 14px;
+    border-radius: 20px;
+}
+
+.search {
+    border: 1px solid #170707;
+    border-radius: 5px;
+}
+
+.submit_search_contents {
+    border: 1px solid #170707;
+    border-radius: 5px;
+}
+
+.tasking_section {
+    width: 150px;
+    border: 1px solid #170707;
+    border-radius: 5px;
+}
+
+.feature_section {
+    width: 150px;
+    border: 1px solid #170707;
+    border-radius: 5px;
+}
+
+.old_section {
+    width: 150px;
+    border: 1px solid #170707;
+    border-radius: 5px;
+}
+
+.music_section {
+    border: 1px solid #170707;
+    border-radius: 5px;
+}
+
+.hot_section {
+    border: 1px solid #170707;
+    border-radius: 5px;
+}
+
+.feature {
+    border: 1px solid #170707;
+    border-radius: 5px;
+}
+
+.recomm_section {
+    border: 1px solid #170707;
+    border-radius: 5px;
+}
