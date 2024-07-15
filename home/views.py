@@ -52,7 +52,7 @@ def mimicking_page(request):
 
             y, sr = librosa.load(audio_file.temporary_file_path() if hasattr(audio_file, 'temporary_file_path') else audio_file)
             output_file = os.path.join(settings.BASE_DIR, 'home', 'static', 'uploads', 'mikicking', f'{audio_file.name.split(".")[0]}.wav')
-            sf.write(output_file, y, sr)
+            sf.write(output_file, y, sr) 
              
             ready = mimiking(output_file, 0, 1)
             mimicked_output_file = os.path.join(settings.BASE_DIR, 'home', 'static', 'uploads', 'mikicking', f'{output_file.split(".")[0]}_mimicked.wav')
@@ -67,7 +67,7 @@ def mimicking_page(request):
     else:
         form = AudioUploadForm()
 
-    return render(request, 'features_testing.html', {'form': form})
+    return render(request, 'mimicking.html', {'form': form})
 
 def tune_page(request):
     if request.method == 'POST':
