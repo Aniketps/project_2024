@@ -36,6 +36,11 @@ def register(request):
 def frontend(request):
     return render(request, 'frontend.html')
 
+
+def recommendation(request):
+    return render(request, 'recommendation.html')
+
+
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.conf import settings
