@@ -40,7 +40,7 @@ def frontend(request):
 def recommendation(request):
     return render(request, 'recommendation.html')
 
-
+ 
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.conf import settings
