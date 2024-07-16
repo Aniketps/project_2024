@@ -1,0 +1,42 @@
+
+
+body{
+    font-family: 'Poppins',sans-serif;
+    width: 100%;
+   background: #121213;
+   place-items: center;
+}
+
+.navbar{
+    height: 10vh;
+    width: 100%;
+    border: 1px solid #fff;
+}
+.main_div{
+    height: 90vh;
+    width: 100%;
+   display: flex;
+}
+
+.search_bar{
+
+    width: 20%;
+    height: 100vh;
+    border: 1px solid #fff;
+ }
+.main_screen{
+    width: 79%;
+    height: 100vh;
+    border: 1px solid #fff;
+}
+
+.upper_section{
+    width: 100%;
+    height: 70vh;
+    border: 1px solid #fff;
+    display: flex;
+
+ 
+
+}
+
