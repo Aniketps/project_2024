@@ -40,7 +40,7 @@ def frontend(request):
 def recommendation(request):
     return render(request, 'recommendation.html')
 
-
+ 
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.conf import settings
@@ -54,19 +54,31 @@ def mimicking_page(request):
         form = AudioUploadForm(request.POST, request.FILES)
         if form.is_valid():
             audio_file = request.FILES['audio_file']
+            conversion_type = request.POST.get('conversion_type')
 
             y, sr = librosa.load(audio_file.temporary_file_path() if hasattr(audio_file, 'temporary_file_path') else audio_file)
             output_file = os.path.join(settings.BASE_DIR, 'home', 'static', 'uploads', 'mikicking', f'{audio_file.name.split(".")[0]}.wav')
-            sf.write(output_file, y, sr) 
-             
-            ready = mimiking(output_file, 0, 1)
+            sf.write(output_file, y, sr)
+     
+            # ready = mimiking(output_file, 0, 1)
+              
+            if conversion_type == 'male_to_female':
+                ready = mimiking(output_file, 1, 0)
+            elif conversion_type == 'male_to_child':
+                ready = mimiking(output_file, 1, 2)
+            elif conversion_type == 'female_to_male':
+                ready = mimiking(output_file, 0, 1)
+            elif conversion_type == 'female_to_child':
+                ready = mimiking(output_file, 0, 2)  
+            else:
+                return JsonResponse({'message': 'Invalid conversion type'}, status=400)
+ 
             mimicked_output_file = os.path.join(settings.BASE_DIR, 'home', 'static', 'uploads', 'mikicking', f'{output_file.split(".")[0]}_mimicked.wav')
             sf.write(mimicked_output_file, ready, sr)
+                        
+            download_url = f'/static/uploads/mimicking/{os.path.basename(mimicked_output_file)}'
             
-            # Prepare the download URL 
-            download_url = f'/static/uploads/mikicking/{os.path.basename(mimicked_output_file)}'
-           
-            return JsonResponse({'message': 'File uploaded successfully', 'download_url': download_url})
+            return JsonResponse({'download_url': download_url})
         else:
             return JsonResponse({'message': 'Form is not valid', 'error': f'{form.errors}'}, status=400)
     else:
@@ -108,4 +120,4 @@ def tune_page(request):
     else:
         form = AudioUploadForm()
     
-    return render(request, 'features_testing_1.html', {'form': form})
+    return render(request, 'tunes.html', {'form': form})

@@ -24,9 +24,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', frontend),
     path('', recommendation),
-    path('register/', register),
+    path('register/', register), 
     path('frontend/', frontend),
-    path('recommendation/', recommendation),
+    path('recommendation/', recommendation, name='recommendation'),
     path('mimicking_page/', mimicking_page, name='mimicking_page'),
     path('tune_page/', tune_page, name='tune_page'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
