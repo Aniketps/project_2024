@@ -209,13 +209,17 @@ body {
 .upload_bar {
     margin-left: 5%;
     margin-top: 20px;
-    background-color: #f5eded;
+    background-color: violet;
     padding: 5px;
     border-radius: 21px;
     padding-bottom: 25px;
     display: flex;
     align-items: center;
     /* width: 60%; */
+}
+
+.upload_bar:hover {
+    background-color: rgb(249, 195, 249);
 }
 
 .upload_bar label {
@@ -306,13 +310,17 @@ body {
     display: none;
     margin-left: 5%;
     margin-top: 20px;
-    background-color: #f5eded;
+    background-color: violet;
     padding: 5px;
     border-radius: 21px;
     padding-bottom: 25px;
     width: 100%;
     margin-right: 10px;
     flex-direction: column;
+}
+
+.conversion-options:hover{
+    background-color: rgb(249, 195, 249);
 }
 
 .conversion-options button {
@@ -347,4 +355,23 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.player_for_converted{
+    height: 40%;
+    margin: 10px;
+}
+
+.player_for_converted_1{
+    /* border: 1px solid #010000; */
+    margin: 25px;
+    height: 90%;
+    width: 87.7%;
+    background-color: violet;
+    border-radius: 21px;
+    
+}
+
+.player_for_converted_1:hover {
+    background-color: rgb(249, 195, 249);
 }
