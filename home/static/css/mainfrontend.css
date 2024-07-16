@@ -373,6 +373,24 @@ body {
     
 }
 
+.image_edite {
+    display: flex;
+    flex-wrap: wrap; /* Allows images to wrap to the next line if needed */
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+}
 
- 
-
+/* .image_edite:hover{
+    transform: scale(1.1);
+} */
+.image_edite img {
+    height: 24vh; /* 18% of the viewport height */
+    width: 24vh; /* 15% of the parent container width */
+    /* margin-left: 20px; Space between each image */
+    /* padding: 5px; Padding inside the image container */
+    margin-top: 15px; /* Space above each image */
+    border-radius: 12px; /* Rounded corners */
+    margin: 7px;
+    box-shadow: 1px 3px 1px #010000;
+}
