@@ -92,3 +92,6 @@ body {
 .signup-link a:hover {
     text-decoration: underline;
 }
+img{
+    border-radius: 20px;
+}
