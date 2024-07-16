@@ -78,7 +78,7 @@ def mimicking_page(request):
                         
             download_url = f'/static/uploads/mimicking/{os.path.basename(mimicked_output_file)}'
             
-            return JsonResponse({'message': 'File uploaded successfully', 'download_url': download_url})
+            return JsonResponse({'download_url': download_url})
         else:
             return JsonResponse({'message': 'Form is not valid', 'error': f'{form.errors}'}, status=400)
     else:

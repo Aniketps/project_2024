@@ -143,16 +143,16 @@
                 const message = jsonResponse.message;
 
                 // Show popup message
-                showPopup(message);
+                {% comment %} showPopup(message); {% endcomment %}
 
                 // Show the download button
                 const downloadUrl = jsonResponse.download_url;
-                showDownloadButton(downloadUrl);
+                {% comment %} showDownloadButton(downloadUrl); {% endcomment %}
 
                 event.target.reset(); // Reset the form after successful submission
             } catch (error) {
                 console.error('Error:', error);
-                showPopup('File upload failed. Please try again.');
+                {% comment %} showPopup('File upload failed. Please try again.'); {% endcomment %}
             }
         });
 
