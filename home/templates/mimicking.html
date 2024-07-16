@@ -6,15 +6,35 @@
     <title>Rose</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/mimicking.css' %}">
+    <script>
+        function showFileName(event) {
+            const input = event.target;
+            const fileName = input.files[0].name;
+            document.getElementById('file-label').textContent = `Selected file: ${fileName}`;
+            document.getElementById('upload-btn').disabled = false;  // Enable upload button
+        }
+
+        function selectConversion(type) {
+            document.getElementById('conversion-type').value = type;
+            document.getElementById('upload-form').submit();
+        }
+
+        function showPopup(message) {
+            alert(message);
+        }
+
+        function showDownloadButton(url) {
+            const downloadButton = document.getElementById('download-btn');
+            downloadButton.href = url;
+            downloadButton.style.display = 'inline-block';  // Show the download button
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <div class="navbar">
             <div class="logo">Rose</div>
             <div class="nav-links">
-                <div class="nav-link-token">
-                    <a href="#">Log in</a>
-                </div>
                 <div class="nav-link-token-profile">
                     <a href="#">PL</a>
                 </div>
@@ -22,7 +42,6 @@
         </div>
 
         <div class="main_div">
-
             <div class="search_bar">
                 <div class="search_bar_1">
                     <div class="search_bar_2">
@@ -34,7 +53,57 @@
             </div>
             
             <div class="main_screen">
-                <div class="upper_section"></div>
+                <div class="upper_section">
+                    <div class="editing_section">
+                        <h1 class="heading_first">Mimicking Voice</h1>
+                        <div class="editing_section_1">
+                            <form class="upload_convert_container" id="upload-form" method="post" enctype="multipart/form-data"> 
+                                {% csrf_token %}
+                                <div class="upload_bar">                                        
+                                    <div class="upload_bar_1">
+                                        <h1 class="heading_second">Which voice do you want to convert</h1>
+                                        <input type="file" name="audio_file" id="uploadfile" accept=".mp3,.m4a,.wav" onchange="showFileName(event)">
+                                        <br><br>
+                                    </div>
+                                    <div>
+                                        <button class="button1" id="maleBtn" type="button">Male</button>
+                                        <button class="button2" id="femaleBtn" type="button">Female</button>
+                                    </div>
+                                </div>                
+                                <input type="hidden" name="conversion_type" id="conversion-type" value="">
+                            </form>
+                            <div id="conversion-options">
+                                <div id="maleOptions" class="conversion-options">
+                                    <div class="conversion-options_1">
+                                        <h1 class="heading_second">Male to Female</h1>
+                                        <button type="button" onclick="selectConversion('male_to_female')">Convert</button>
+                                        <a id="download-btn" href="#" style="display: none;" download="converted_audio.wav">Download</a>
+                                    </div>
+                                    <div class="conversion-options_1">
+                                        <h1 class="heading_second">Male to Child</h1>
+                                        <button type="button" onclick="selectConversion('male_to_child')">Convert</button>
+                                        <a id="download-btn" href="#" style="display: none;" download="converted_audio.wav">Download</a>
+                                    </div>
+                                </div>
+                                <div id="femaleOptions" class="conversion-options">
+                                    <div class="conversion-options_1">
+                                        <h1 class="heading_second">Female to Male</h1>
+                                        <button type="button" onclick="selectConversion('female_to_male')">Convert</button>
+                                        <a id="download-btn" href="#" style="display: none;" download="converted_audio.wav">Download</a>
+                                    </div>
+                                    <div class="conversion-options_1">
+                                        <h1 class="heading_second">Female to Child</h1>
+                                        <button type="button" onclick="selectConversion('female_to_child')">Convert</button>
+                                        <a id="download-btn" href="#" style="display: none;" download="converted_audio.wav">Download</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div >
+
+                        </div>
+                    </div>
+                </div>
                 <div class="lower_section">
                     <div class="player">
                         <div class="player_1"></div>
@@ -43,5 +112,50 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('maleBtn').addEventListener('click', function() {
+            document.getElementById('maleOptions').style.display = 'block';
+            document.getElementById('femaleOptions').style.display = 'none';
+        });
+
+        document.getElementById('femaleBtn').addEventListener('click', function() {
+            document.getElementById('femaleOptions').style.display = 'block';
+            document.getElementById('maleOptions').style.display = 'none';
+        });
+
+        document.getElementById('upload-form').addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent default form submission
+
+            const formData = new FormData(event.target);
+
+            try {
+                const response = await fetch(event.target.action, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const jsonResponse = await response.json();
+                const message = jsonResponse.message;
+
+                // Show popup message
+                showPopup(message);
+
+                // Show the download button
+                const downloadUrl = jsonResponse.download_url;
+                showDownloadButton(downloadUrl);
+
+                event.target.reset(); // Reset the form after successful submission
+            } catch (error) {
+                console.error('Error:', error);
+                showPopup('File upload failed. Please try again.');
+            }
+        });
+
+    </script>
 </body>
 </html>
