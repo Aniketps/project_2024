@@ -7,27 +7,23 @@
     <title>Rose</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/mimicking.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script>
         function showFileName(event) {
             const input = event.target;
             const fileName = input.files[0].name;
             document.getElementById('file-label').textContent = `Selected file: ${fileName}`;
-            document.getElementById('upload-btn').disabled = false;  // Enable upload button
+            document.getElementById('upload-btn').disabled = false;
         }
 
-        function selectConversion(type) {
-            document.getElementById('conversion-type').value = type;
-            document.getElementById('upload-form').submit();
-        }
-
-        function showPopup(message) {
-            alert(message);
-        }
+    
 
         function showDownloadButton(url) {
             const downloadButton = document.getElementById('download-btn');
+            const audiobutton = document.getElementById('audio');
+            audiobutton.src = url;
             downloadButton.href = url;
-            downloadButton.style.display = 'inline-block';  // Show the download button
+            downloadButton.style.display = 'inline-block';
         }
     </script>
 </head>
@@ -58,15 +54,15 @@
                 <div class="upper_section">
                     <div class="editing_section">
                         <h1 class="heading_first">Mimicking Voice</h1>
-                        <div class="editing_section_1">
-                            <form class="upload_convert_container" id="upload-form" method="post"
-                                enctype="multipart/form-data">
-                                {% csrf_token %}
+                        <form class="editing_section_1" id="upload-form" method="post" action="{% url 'mimicking_page' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <!-- {{ form.as_p }} -->
+                            <div class="upload_convert_container">
                                 <div class="upload_bar">
                                     <div class="upload_bar_1">
                                         <h1 class="heading_second">Which voice do you want to convert</h1>
                                         <input type="file" name="audio_file" id="uploadfile" accept=".mp3,.m4a,.wav"
-                                            onchange="showFileName(event)">
+                                            onchange="showFileName(event)" required>
                                         <br><br>
                                     </div>
                                     <div>
@@ -74,63 +70,55 @@
                                         <button class="button2" id="femaleBtn" type="button">Female</button>
                                     </div>
                                 </div>
-                                <input type="hidden" name="conversion_type" id="conversion-type" value="">
-                            </form>
+                                <input type="hidden" id="conversion-type" name="conversion_type" value="">
+
+                            </div>
                             <div id="conversion-options">
                                 <div id="maleOptions" class="conversion-options">
                                     <div class="conversion-options_1">
-                                        <h1 class="heading_second">Male to Female</h1>
-                                        <button type="button"
-                                            onclick="selectConversion('male_to_female')">Convert</button>
-                                        <!-- <a id="download-btn" href="#" style="display: none;" download="converted_audio.wav">Download</a> -->
+                                        <h1 class="heading_second" style="color: black;">Male to Female</h1>
+                                        <button type="button" id="male_to_female">Convert</button>
                                     </div>
                                     <div class="conversion-options_1">
-                                        <h1 class="heading_second">Male to Child</h1>
-                                        <button type="button"
-                                            onclick="selectConversion('male_to_child')">Convert</button>
-                                        <!-- <a id="download-btn" href="#" style="display: none;" download="converted_audio.wav">Download</a> -->
+                                        <h1 class="heading_second" style="color: black;">Male to Child</h1>
+                                        <button type="button" id="male_to_child">Convert</button>
                                     </div>
                                 </div>
                                 <div id="femaleOptions" class="conversion-options">
                                     <div class="conversion-options_1">
-                                        <h1 class="heading_second">Female to Male</h1>
-                                        <button type="button"
-                                            onclick="selectConversion('female_to_male')">Convert</button>
-                                        <!-- <a id="download-btn" href="#" style="display: none;" download="converted_audio.wav">Download</a> -->
+                                        <h1 class="heading_second" style="color: black;">Female to Male</h1>
+                                        <button type="button" female_to_male>Convert</button>
                                     </div>
                                     <div class="conversion-options_1">
-                                        <h1 class="heading_second">Female to Child</h1>
-                                        <button type="button"
-                                            onclick="selectConversion('female_to_child')">Convert</button>
-                                        <!-- <a id="download-btn" href="#" style="display: none;" download="converted_audio.wav">Download</a> -->
+                                        <h1 class="heading_second" style="color: black;">Female to Child</h1>
+                                        <button type="button" id="female_to_child">Convert</button>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            <button type="submit" id="all_done">Uplaod</button>
+                        </form>
                         <div class="player_for_converted">
                             <div class="player_for_converted_1">
-                                <h1>Download Section</h1>
+                                <h1 style="color: white;">Download Section</h1>
                                 <div class="player_and_download">
                                     <div class="music-player">
                                         <div class="controls">
-                                            <h2 class="title">Song Title</h2>
-                                            <button class="prev">⏮</button>
-                                            <button class="play">▶️</button>
-                                            <button class="pause">⏸</button>
-                                            <button class="next">⏭</button>
+                                            <h2 class="title" style="color: white">Song Title</h2>
+                                            <button class="prev"><i class="fas fa-backward"></i></button>
+                                            <button class="play"><i class="fas fa-play"></i></button>
+                                            <button class="pause" style="display: none;"><i
+                                                    class="fas fa-pause"></i></button>
+                                            <button class="next"><i class="fas fa-forward"></i></button>
                                         </div>
                                         <div class="progress-container">
                                             <div class="progress-bar"></div>
                                         </div>
-                                        <audio id="audio"
-                                            src="{% static 'uploads/mikicking/Hindi song without instruments [TubeRipper_mimicked_mimicked.wav' %}"></audio>
+                                        <audio id="audio" src="#"></audio>
                                     </div>
                                     <div class="download_button">
-                                        <a id="download-btn"
-                                            href="{% static 'uploads/mikicking/Hindi song without instruments [TubeRipper_mimicked_mimicked.wav' %}"
-                                            style="display: block;" download="converted_audio.wav">Download</a>
+                                        <a id="download-btn" href="#" style="display: none;" download="converted_audio.wav">Download</a>
                                     </div>
-                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -143,7 +131,12 @@
             </div>
         </div>
     </div>
-
+    <div id="popupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <p id="popupMessage"></p>
+        </div>
+    </div>
     <script>
         document.getElementById('maleBtn').addEventListener('click', function () {
             document.getElementById('maleOptions').style.display = 'block';
@@ -155,36 +148,70 @@
             document.getElementById('maleOptions').style.display = 'none';
         });
 
-        document.getElementById('upload-form').addEventListener('submit', async (event) => {
-            event.preventDefault(); // Prevent default form submission
 
-            const formData = new FormData(event.target);
+        document.addEventListener('DOMContentLoaded', function(){
+            const conversion_type = document.getElementById('conversion-type');
+            const uploadForm = document.getElementById('all_done');
+            const male_to_female_button = document.getElementById('male_to_female');
+            const male_to_child_button = document.getElementById('male_to_child');
+            const female_to_male_button = document.getElementById('female_to_male');
+            const female_to_child_button = document.getElementById('female_to_child');
 
-            try {
-                const response = await fetch(event.target.action, {
-                    method: 'POST',
-                    body: formData
-                });
+            male_to_female_button.addEventListener('click', function(){
+                conversion_type.value = 'male_to_female';
+                male_to_female_button.style.backgroundColor = 'blue';
+                male_to_child_button.style.backgroundColor = '';
+            });
+            
+            male_to_child_button.addEventListener('click', function(){
+                conversion_type.value = 'male_to_child';
+                male_to_child_button.style.backgroundColor = 'blue';
+                male_to_female_button.style.backgroundColor = '';
+            });
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
+            female_to_male_button.addEventListener('click', function(){
+                conversion_type.value = 'female_to_male';
+                female_to_male_button.style.backgroundColor = 'blue';
+                female_to_child_button.style.backgroundColor = '';
+            });
+
+            female_to_child_button.addEventListener('click', function(){
+                conversion_type.value = 'female_to_child';
+                female_to_child_button.style.backgroundColor = 'blue';
+                female_to_male_button.style.backgroundColor = '';
+            });
+
+
+            uploadForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const formData = new FormData(uploadForm);
+
+                try {
+                    const response = await fetch(uploadForm.action, {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+
+                    const jsonResponse = await response.jsonResponse();
+                    showPopup(jsonResponse.message);
+
+                    // Show the download button
+                    const downloadUrl = jsonResponse.download_url;
+                    showDownloadButton(downloadUrl);
+
+                    uploadForm.reset();
+                } catch (error) {
+                    console.error('Error:', error);
+                    showPopup('File upload failed. Please try again.');
                 }
-
-                const jsonResponse = await response.json();
-                const message = jsonResponse.message;
-
-                // Show popup message
-                showPopup(message);
-                // Show the download button
-                const downloadUrl = jsonResponse.download_url;
-                showDownloadButton(downloadUrl);
-
-                event.target.reset(); // Reset the form after successful submission
-            } catch (error) {
-                console.error('Error:', error);
-                showPopup('File upload failed. Please try again.');
-            }
-        });
+            });
+        });        
+        
         const audio = document.getElementById('audio');
         const playButton = document.querySelector('.play');
         const pauseButton = document.querySelector('.pause');
@@ -215,6 +242,18 @@
 
             audio.currentTime = (clickX / width) * duration;
         });
+
+        function showPopup(message) {
+            const modal = document.getElementById("popupModal");
+            const popupMessage = document.getElementById("popupMessage");
+            popupMessage.textContent = message;
+            modal.style.display = "block";
+        }
+
+        function closePopup() {
+            const modal = document.getElementById("popupModal");
+            modal.style.display = "none";
+        }
     </script>
 </body>
 

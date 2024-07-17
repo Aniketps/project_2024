@@ -54,12 +54,13 @@ def mimicking_page(request):
         form = AudioUploadForm(request.POST, request.FILES)
         if form.is_valid():
             audio_file = request.FILES['audio_file']
-            conversion_type = request.POST.get('conversion_type')
+            conversion_type = form.cleaned_data.get('conversion_type', None)
 
             y, sr = librosa.load(audio_file.temporary_file_path() if hasattr(audio_file, 'temporary_file_path') else audio_file)
             output_file = os.path.join(settings.BASE_DIR, 'home', 'static', 'uploads', 'mikicking', f'{audio_file.name.split(".")[0]}.wav')
             sf.write(output_file, y, sr)
-     
+
+            
             # ready = mimiking(output_file, 0, 1)
               
             if conversion_type == 'male_to_female':
@@ -71,6 +72,7 @@ def mimicking_page(request):
             elif conversion_type == 'female_to_child':
                 ready = mimiking(output_file, 0, 2)  
             else:
+                 
                 return JsonResponse({'message': 'Invalid conversion type'}, status=400)
  
             mimicked_output_file = os.path.join(settings.BASE_DIR, 'home', 'static', 'uploads', 'mikicking', f'{output_file.split(".")[0]}_mimicked.wav')
