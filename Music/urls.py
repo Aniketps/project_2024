@@ -16,17 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from home.views import home, register, mimicking_page, tune_page, frontend, recommendation
+from home.views import home, register, mimicking_page, tune_page, frontend, recommendation, listen2gether
 from django.conf.urls.static import static
 from django.conf import settings 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', frontend),
-    path('', recommendation),
+    # path('', recommendation),
     path('register/', register), 
     path('frontend/', frontend),
     path('recommendation/', recommendation, name='recommendation'),
     path('mimicking_page/', mimicking_page, name='mimicking_page'),
     path('tune_page/', tune_page, name='tune_page'),
+    path('listen2gether/', listen2gether, name='listen2gether'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

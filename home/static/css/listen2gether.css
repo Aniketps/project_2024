@@ -1,0 +1,217 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #C0C0C0;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.navbar {
+    height: 10%;
+    width: 100%;
+    box-shadow: 1px 2px 4px 2px rgb(254, 254, 254);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    background-color: rgba(235, 54, 235, 0.909)
+}
+
+.navbar .logo {
+    font-size: 1.5em;
+    color: #fff;
+    margin-left: 20px;
+}
+
+.navbar .nav-links {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.navbar .nav-links a {
+    color: #010000;
+    text-decoration: none;
+    margin-left: 10px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.navbar .nav-links a:hover {
+    text-decoration: underline;
+}
+
+.nav-link-token {
+    width: 65px;
+    border: 1px solid #fff;
+    padding: 15px;
+    margin: 15px;
+    background-color: #ffffff;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.nav-link-token-profile a {
+    padding-right: 12px;
+}
+
+.nav-link-token-profile {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #fff;
+    padding: 15px;
+    margin: 15px;
+    background-color: #ffffff;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.main_div {
+    flex: 1;
+    display: flex;
+}
+
+.search_bar {
+    width: 18%;
+    height: 100%;
+    border-radius: 10px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.search_bar_1 {
+    background-image: linear-gradient(violet, silver);
+    height: 100%;
+    width: 100%;
+    box-shadow: 1px 1px 5px rgb(10, 8, 8);
+    border-radius: 10px;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+.main_screen {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.upper_section {
+    height: 80%;
+    flex: 2;
+    display: flex;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+
+.editing_section {
+    height: 100%;
+    position: relative;
+    width: 100%;
+    border: 1px solid #45a049;
+    margin: 5px;
+    background-image: url(https://images.unsplash.com/photo-1644145876127-c189b84fc70f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 1px 1px 5px rgb(10, 8, 8);
+}
+
+.editing_section::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(238, 130, 238, 0.189);
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+
+.lower_section {
+    height: 20%;
+    /* flex: 0.50; */
+    display: flex;
+    flex-direction: column;
+}
+
+.player {
+    height: 100%;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.player_1 {
+    background-image: linear-gradient(violet, silver);
+    height: 100%;
+    width: 100%;
+    box-shadow: 1px 1px 5px rgb(10, 8, 8);
+    border-radius: 10px;
+}
+
+.search_bar_2 {
+    background-color: #f5eded;
+    padding: 5px;
+    border-radius: 21px;
+    display: flex;
+    align-items: center;
+}
+
+.search_bar_2 label {
+    width: 5%;
+    margin: 0 8px;
+    font-size: 16px;
+}
+
+.search_bar_2 input[type="text"] {
+    width: 65%;
+    flex: 1;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 16px;
+}
+
+.search_bar_2 input[type="text"]::placeholder {
+    color: #666;
+}
+
+.search_bar_2 button {
+    width: 30%;
+    padding: 8px 16px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border-radius: 22px;
+    cursor: pointer;
+    margin-left: 8px;
+    padding-right: 60px;
+}
+
+.search_bar_2 button:hover {
+    background-color: #45a049;
+}
