@@ -147,7 +147,9 @@ body {
 
 .trending_1 {
     /* background-color: #ee4c2be2; */
-    background-image: linear-gradient(violet, silver);
+    background-image: url("https://st.depositphotos.com/1001877/4912/i/450/depositphotos_49123195-stock-photo-vintage-microphone-on-green-background.jpg");
+    background-position: center;
+    background-size: cover;
     height: 100%;
     width: 100%;
     box-shadow: 1px 1px 5px rgb(10, 8, 8);
@@ -156,11 +158,38 @@ body {
 
 .old_songs_1{
     /* background-color: #ee4c2be2; */
-    background-image: linear-gradient(violet, silver);
+    background-image: url("https://i.etsystatic.com/23358955/r/il/35a091/2934089131/il_570xN.2934089131_ozgg.jpg");
     height: 100%;
+    background-position: center;
+    background-size: cover;
     width: 100%;
     box-shadow: 1px 1px 5px rgb(10, 8, 8);
     border-radius: 10px;
+}
+
+.centered{
+
+    position: absolute; 
+    top:17%;
+    left:900px;
+    transform:translate(-50%,-50%);
+    color:black;
+    font-size:40px;
+    font-weight:bold;
+    font-family: 'Roboto';
+    font-style:italic;
+}
+.centered1{
+
+    position:absolute;
+    top:48%;
+    transform:translate(-50%,-50%);
+    color:black;
+    font-size:40px;
+    font-weight:bold;
+    font-family: 'Roboto';
+    font-style:italic;
+    left:700px
 }
 
 
@@ -177,6 +206,7 @@ body {
 
 .recommendation_1 {
     background-image: linear-gradient(violet, silver);
+    
     /* background-color: #ee4c2be2; */
     height: 100%;
     width: 100%;
@@ -394,3 +424,9 @@ body {
     margin: 7px;
     box-shadow: 1px 3px 1px #010000;
 }
+
+
+
+/* .trending_1 img:hover {
+    transform: scale(1.1);
+}  */
