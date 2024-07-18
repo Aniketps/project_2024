@@ -29,8 +29,9 @@ body {
     align-items: center;
     /* padding: 0 20px; */
     border-radius: 10px;
-    /* background-color: #EE4B2B; */
-    background-color: rgba(235, 54, 235, 0.909)
+     /* background-color: #EE4B2B; */ 
+     background-color:violet;
+   
 }
 
 .navbar .logo {
@@ -91,6 +92,7 @@ body {
 .main_div {
     flex: 1;
     display: flex;
+
 }
 
 .search_bar {
@@ -103,7 +105,7 @@ body {
 
 .search_bar_1{
     /* background-color: #ee4c2be2; */
-    background-image: linear-gradient(violet, silver);
+    background-image: linear-gradient(#ee82ee, silver);
     height: 100%;
     width: 100%;
     box-shadow: 1px 1px 5px rgb(10, 8, 8);
@@ -117,6 +119,7 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
+    background-color: #C0C0C0;
 }
 
 .upper_section {
