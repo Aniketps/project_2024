@@ -32,10 +32,14 @@ body {
     border: #170cab;
 }
 
-.navbar .logo {
-    font-size: 1.5em;
-    color: #fff;
-    margin-left: 20px;
+.logo {
+
+    margin: auto;
+    text-align: center;
+    font-family: 'Great Vibes', cursive;
+    font-size: 46px;
+    color: #000000;
+    text-shadow: 2px 2px 5px rgba(255, 209, 6, 0.3);
 }
 
 .navbar .nav-links {
@@ -271,9 +275,9 @@ body {
 }
 
 .player {
-    height: 41%;
+    height: 58%;
     padding: 5px;
-    margin-top: 6.5%;
+    margin-top: 4.5%;
 }
 
 .player_1 {
