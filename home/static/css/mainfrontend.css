@@ -8,7 +8,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #110101;
+    background: #000000;
 }
 
 .container {
@@ -21,25 +21,28 @@ body {
 
 .navbar {
     height: 10%;
-    width: 100%;
+    width: 99.9%;
     /* border-bottom: 1px solid #fff; */
-    box-shadow: 1px 2px 4px 2px rgb(0, 0, 0);
+    box-shadow: 1px 2px 4px 2px rgb(114, 106, 106);
     display: flex;
     justify-content: space-between;
     align-items: center;
     /* padding: 0 20px; */
-    border-radius: 2px;
-    background-image: url('https://getwallpapers.com/wallpaper/full/7/3/1/1398987-large-red-fire-wallpaper-3840x2160-for-ipad.jpg');
-    background-size: cover;
-    border: #170cab;
+    border-radius: 40px;
+    background: conic-gradient(rgb(0, 0, 0), rgb(70, 66, 66));
 
 
 }
 
-.navbar .logo {
-    font-size: 1.5em;
-    color: #fff;
-    margin-left: 20px;
+.logo {
+
+    margin: auto;
+    margin-left: 10%;
+    text-align: center;
+    font-family: 'Great Vibes', cursive;
+    font-size: 46px;
+    color: #000000;
+    text-shadow: 2px 2px 5px rgb(243, 0, 0);
 }
 
 .navbar .nav-links {
@@ -49,7 +52,7 @@ body {
 }
 
 .navbar .nav-links a {
-    color: #010000;
+    color: #fa0000;
     text-decoration: none;
     margin-left: 10px;
     font-size: 15px;
@@ -65,7 +68,7 @@ body {
     border: 1px solid #fff;
     padding: 15px;
     margin: 15px;
-    background-color: #ffffff;
+    background-color: #5d5a5a;
 
     border-radius: 25px;
     display: flex;
@@ -84,7 +87,7 @@ body {
     border: 1px solid #fff;
     padding: 15px;
     margin: 15px;
-    background-color: #ffffff;
+    background-color: #706f6f;
     border-radius: 100%;
     display: flex;
     justify-content: center;
@@ -96,7 +99,8 @@ body {
 .main_div {
     flex: 1;
     display: flex;
-    background-color: #130301;
+    background-color: #c81010da;
+    border-radius: 2%;
 
 }
 
@@ -110,8 +114,7 @@ body {
 
 .search_bar_1 {
     /* background-color: #ee4c2be2; */
-    background-image: url('https://getwallpapers.com/wallpaper/full/7/3/1/1398987-large-red-fire-wallpaper-3840x2160-for-ipad.jpg');
-    background-size: cover;
+    background-color: #000000;
     height: 100%;
     width: 100%;
     box-shadow: 1px 1px 5px rgb(10, 8, 8);
@@ -121,14 +124,14 @@ body {
 }
 
 .main_screen {
-    width: 80%;
+    width: 81.8%;
     height: 100%;
     display: flex;
     flex-direction: column;
     background-color: #C0C0C0;
     margin-top: 0.5%;
-    background-image: url('https://getwallpapers.com/wallpaper/full/7/3/1/1398987-large-red-fire-wallpaper-3840x2160-for-ipad.jpg');
-    background-size: cover;
+    background-color: rgb(167, 17, 17);
+    border-radius: 30px;
 
 }
 
@@ -188,9 +191,10 @@ body {
 .centered {
 
     position: absolute;
-    top: 17%;
-    left: 900px;
-    transform: translate(-50%, -50%);
+    
+    top: 39%;
+    left: 700px;
+    transform: translate(-40%, -50%);
     color: black;
     font-size: 40px;
     font-weight: bold;
@@ -198,18 +202,7 @@ body {
     font-style: italic;
 }
 
-.centered1 {
-
-    position: absolute;
-    top: 48%;
-    transform: translate(-50%, -50%);
-    color: black;
-    font-size: 40px;
-    font-weight: bold;
-    font-family: 'Roboto';
-    font-style: italic;
-    left: 700px
-}
+ 
 
 
 .recommendation {
@@ -224,9 +217,8 @@ body {
 }
 
 .recommendation_1 {
-    background-image: linear-gradient(violet, silver);
+    background-image: radial-gradient(rgba(223, 9, 9, 0.775), rgb(0, 0, 0));
 
-    /* background-color: #ee4c2be2; */
     height: 100%;
     width: 100%;
     box-shadow: 1px 1px 5px rgb(10, 8, 8);
@@ -259,29 +251,22 @@ body {
 } */
 
 
-
-
-
-
-
-
-
-
-
-
 .player_1 {
     /* background-color: #ee4c2be2;
      */
-     background: radial-gradient(circle, rgb(196, 94, 187), rgb(50, 1, 1));
-     height: 100%;
+    background: linear-gradient( rgb(51, 23, 4), #0c0906);
+    height: 100%;
     width: 100%;
-    box-shadow: 1px 1px 5px rgb(10, 8, 8);
-    border-radius: 10px;
+    box-shadow: 2px 2px 7px rgb(10, 8, 8);
+    border-radius: 30px;
 }
 
 .features_1 {
     /* background-color: #ee4c2be2; */
-    background-image: linear-gradient(rgb(62, 0, 0), silver);
+    background-image: linear-gradient(rgb(88, 88, 88), rgb(86, 36, 14));
+    /* background-image: url('https://getwallpapers.com/wallpaper/full/7/3/1/1398987-large-red-fire-wallpaper-3840x2160-for-ipad.jpg');
+    background-size: contain; */
+
     height: 100%;
     width: 100%;
     box-shadow: 1px 1px 5px rgb(10, 8, 8);
@@ -289,6 +274,7 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
+
 }
 
 .first_feature {
@@ -313,16 +299,18 @@ body {
 }
 
 .first_feature_1 {
+    margin-left: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
     width: 80%;
-    box-shadow: 0px 1px 10px rgb(0, 0, 0);
+    /* box-shadow: 0px 1px 10px rgb(0, 0, 0); */
+    background: radial-gradient(circle, rgb(215, 0, 0), rgb(0, 0, 0));
     border-radius: 8px;
 }
 
-.fourth_feature{
+.fourth_feature {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -413,7 +401,7 @@ body {
     width: 30%;
     padding: 8px 16px;
     border: none;
-    background-color: #4CAF50;
+    background-color: red;
     color: white;
     font-size: 16px;
     border-radius: 22px;
@@ -434,42 +422,52 @@ body {
 
 .image_edite {
     display: flex;
-    flex-wrap: wrap;
+     
     /* Allows images to wrap to the next line if needed */
-    margin: 10px;
+    margin: 9px;
     justify-content: center;
     align-items: center;
+    background-size: cover;
 }
 
 /* .image_edite:hover{
     transform: scale(1.1);
 } */
 .image_edite img {
+    background-size: contain;
     height: 24vh;
     /* 18% of the viewport height */
-    width: 24vh;
+    width: 33vh;
     /* 15% of the parent container width */
     /* margin-left: 20px; Space between each image */
     /* padding: 5px; Padding inside the image container */
-    margin-top: 15px;
+    margin-top: -2px;
     /* Space above each image */
     border-radius: 12px;
     /* Rounded corners */
-    margin: 7px;
+    margin: 6px;
     box-shadow: 1px 3px 1px #010000;
 }
 
+.recommendation_txt a{
+    margin: auto;
+    text-align: center;
+    font-family: 'Great Vibes', cursive;
+    font-size: 46px;
+    color: #000000;
+    text-shadow: 2px 2px 5px rgba(255, 209, 6, 0.3);
+}
 
-.first_feature_1{
+.first_feature_1 {
     background-color: #430303;
 }
 
-.fourth_feature_1{
+.fourth_feature_1 {
     text-align: center;
-    background-color:#430303;
+    background-color: #430303;
 }
 
-.fourth_feature a{
+.fourth_feature a {
     color: #ffffff;
     text-decoration: none;
     margin-left: 10px;
