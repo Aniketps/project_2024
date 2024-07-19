@@ -28,10 +28,12 @@ body {
     justify-content: space-between;
     align-items: center;
     /* padding: 0 20px; */
-    border-radius: 10px;
-     /* background-color: #EE4B2B; */ 
-     background-color:violet;
-   
+    border-radius: 2px;
+    background-image: url('https://getwallpapers.com/wallpaper/full/7/3/1/1398987-large-red-fire-wallpaper-3840x2160-for-ipad.jpg');
+    background-size: cover;
+    border: #170cab;
+
+
 }
 
 .navbar .logo {
@@ -64,7 +66,7 @@ body {
     padding: 15px;
     margin: 15px;
     background-color: #ffffff;
-    
+
     border-radius: 25px;
     display: flex;
     justify-content: center;
@@ -72,11 +74,11 @@ body {
     text-align: center;
 }
 
-.nav-link-token-profile a{
+.nav-link-token-profile a {
     padding-right: 12px;
 }
 
-.nav-link-token-profile{
+.nav-link-token-profile {
     width: 20px;
     height: 20px;
     border: 1px solid #fff;
@@ -86,12 +88,15 @@ body {
     border-radius: 100%;
     display: flex;
     justify-content: center;
-    align-items: center; /* Vertically center the text */
+    align-items: center;
+    /* Vertically center the text */
     text-align: center;
 }
+
 .main_div {
     flex: 1;
     display: flex;
+    background-color: #130301;
 
 }
 
@@ -103,9 +108,10 @@ body {
     box-sizing: border-box;
 }
 
-.search_bar_1{
+.search_bar_1 {
     /* background-color: #ee4c2be2; */
-    background-image: linear-gradient(#ee82ee, silver);
+    background-image: url('https://getwallpapers.com/wallpaper/full/7/3/1/1398987-large-red-fire-wallpaper-3840x2160-for-ipad.jpg');
+    background-size: cover;
     height: 100%;
     width: 100%;
     box-shadow: 1px 1px 5px rgb(10, 8, 8);
@@ -120,14 +126,23 @@ body {
     display: flex;
     flex-direction: column;
     background-color: #C0C0C0;
+    margin-top: 0.5%;
+    background-image: url('https://getwallpapers.com/wallpaper/full/7/3/1/1398987-large-red-fire-wallpaper-3840x2160-for-ipad.jpg');
+    background-size: cover;
+
 }
 
 .upper_section {
-    flex: 1;
+    height: 40.2%;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    /* flex: 1; */
     display: flex;
 }
 
 .lower_section {
+    height: 20%;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -159,7 +174,7 @@ body {
     border-radius: 10px;
 }
 
-.old_songs_1{
+.old_songs_1 {
     /* background-color: #ee4c2be2; */
     background-image: url("https://i.etsystatic.com/23358955/r/il/35a091/2934089131/il_570xN.2934089131_ozgg.jpg");
     height: 100%;
@@ -170,29 +185,30 @@ body {
     border-radius: 10px;
 }
 
-.centered{
+.centered {
 
-    position: absolute; 
-    top:17%;
-    left:900px;
-    transform:translate(-50%,-50%);
-    color:black;
-    font-size:40px;
-    font-weight:bold;
+    position: absolute;
+    top: 17%;
+    left: 900px;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-size: 40px;
+    font-weight: bold;
     font-family: 'Roboto';
-    font-style:italic;
+    font-style: italic;
 }
-.centered1{
 
-    position:absolute;
-    top:48%;
-    transform:translate(-50%,-50%);
-    color:black;
-    font-size:40px;
-    font-weight:bold;
+.centered1 {
+
+    position: absolute;
+    top: 48%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-size: 40px;
+    font-weight: bold;
     font-family: 'Roboto';
-    font-style:italic;
-    left:700px
+    font-style: italic;
+    left: 700px
 }
 
 
@@ -209,7 +225,7 @@ body {
 
 .recommendation_1 {
     background-image: linear-gradient(violet, silver);
-    
+
     /* background-color: #ee4c2be2; */
     height: 100%;
     width: 100%;
@@ -244,9 +260,9 @@ body {
 
 
 
- 
 
- 
+
+
 
 
 
@@ -256,47 +272,47 @@ body {
 .player_1 {
     /* background-color: #ee4c2be2;
      */
-    background-image: linear-gradient(violet, silver);
-    height: 100%;
+     background: radial-gradient(circle, rgb(196, 94, 187), rgb(50, 1, 1));
+     height: 100%;
     width: 100%;
     box-shadow: 1px 1px 5px rgb(10, 8, 8);
     border-radius: 10px;
 }
 
-.features_1{
+.features_1 {
     /* background-color: #ee4c2be2; */
-    background-image: linear-gradient(violet, silver);
+    background-image: linear-gradient(rgb(239, 91, 192), silver);
     height: 100%;
     width: 100%;
-    box-shadow: 1px 1px 5px rgb(10, 8, 8);  
+    box-shadow: 1px 1px 5px rgb(10, 8, 8);
     border-radius: 10px;
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-.first_feature{
+.first_feature {
     margin: 10px;
     height: 25%;
 
 }
 
-.second_feature{
+.second_feature {
     margin: 10px;
     height: 25%;
 }
 
-.third_feature{
+.third_feature {
     margin: 10px;
     height: 25%;
 }
 
-.fourth_feature{
+.fourth_feature {
     margin: 10px;
     height: 25%;
 }
 
-.first_feature_1{
+.first_feature_1 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -306,7 +322,7 @@ body {
     border-radius: 5px;
 }
 
-.first_feature_1 a{
+.first_feature_1 a {
     color: #ffffff;
     text-decoration: none;
     margin-left: 10px;
@@ -315,11 +331,11 @@ body {
     font-weight: bold;
 }
 
-.first_feature_1 a.hover{
+.first_feature_1 a.hover {
     text-decoration: underline;
 }
 
-.second_feature_1{
+.second_feature_1 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -329,7 +345,7 @@ body {
     border-radius: 5px;
 }
 
-.second_feature_1 a{
+.second_feature_1 a {
     color: #ffffff;
     text-decoration: none;
     margin-left: 10px;
@@ -337,18 +353,18 @@ body {
     font-weight: bold;
 }
 
-.second_feature_1 a.hover{
+.second_feature_1 a.hover {
     text-decoration: underline;
 }
 
-.third_feature_1{
+.third_feature_1 {
     height: 100%;
     width: 100%;
     box-shadow: 0px 1px 10px rgb(0, 0, 0);
     border-radius: 5px;
 }
 
-.fourth_feature_1{
+.fourth_feature_1 {
     height: 100%;
     width: 100%;
     box-shadow: 0px 1px 10px rgb(0, 0, 0);
@@ -390,7 +406,7 @@ body {
     background-color: #4CAF50;
     color: white;
     font-size: 16px;
-    border-radius:22px;
+    border-radius: 22px;
     cursor: pointer;
     margin-left: 8px;
     padding-right: 60px;
@@ -400,15 +416,16 @@ body {
     background-color: #45a049;
 }
 
-.recommendation_1 img:hover{
+.recommendation_1 img:hover {
 
     transform: scale(1.1);
-    
+
 }
 
 .image_edite {
     display: flex;
-    flex-wrap: wrap; /* Allows images to wrap to the next line if needed */
+    flex-wrap: wrap;
+    /* Allows images to wrap to the next line if needed */
     margin: 10px;
     justify-content: center;
     align-items: center;
@@ -418,18 +435,35 @@ body {
     transform: scale(1.1);
 } */
 .image_edite img {
-    height: 24vh; /* 18% of the viewport height */
-    width: 24vh; /* 15% of the parent container width */
+    height: 24vh;
+    /* 18% of the viewport height */
+    width: 24vh;
+    /* 15% of the parent container width */
     /* margin-left: 20px; Space between each image */
     /* padding: 5px; Padding inside the image container */
-    margin-top: 15px; /* Space above each image */
-    border-radius: 12px; /* Rounded corners */
+    margin-top: 15px;
+    /* Space above each image */
+    border-radius: 12px;
+    /* Rounded corners */
     margin: 7px;
     box-shadow: 1px 3px 1px #010000;
 }
 
 
+.first_feature_1{
+    background-color: #430303;
+}
 
-/* .trending_1 img:hover {
-    transform: scale(1.1);
-}  */
+.fourth_feature_1{
+    text-align: center;
+    background-color:#430303;
+}
+
+.fourth_feature a{
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 10px;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+}
