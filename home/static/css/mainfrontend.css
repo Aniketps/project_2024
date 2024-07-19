@@ -8,7 +8,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #C0C0C0;
+    background: #110101;
 }
 
 .container {
@@ -23,7 +23,7 @@ body {
     height: 10%;
     width: 100%;
     /* border-bottom: 1px solid #fff; */
-    box-shadow: 1px 2px 4px 2px rgb(254, 254, 254);
+    box-shadow: 1px 2px 4px 2px rgb(0, 0, 0);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -281,7 +281,7 @@ body {
 
 .features_1 {
     /* background-color: #ee4c2be2; */
-    background-image: linear-gradient(rgb(239, 91, 192), silver);
+    background-image: linear-gradient(rgb(62, 0, 0), silver);
     height: 100%;
     width: 100%;
     box-shadow: 1px 1px 5px rgb(10, 8, 8);
@@ -308,7 +308,7 @@ body {
 }
 
 .fourth_feature {
-    margin: 10px;
+    margin: 2px;
     height: 25%;
 }
 
@@ -317,9 +317,19 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
-    width: 100%;
+    width: 80%;
     box-shadow: 0px 1px 10px rgb(0, 0, 0);
-    border-radius: 5px;
+    border-radius: 8px;
+}
+
+.fourth_feature{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 80%;
+    box-shadow: 0px 1px 10px rgb(0, 0, 0);
+    border-radius: 8px;
 }
 
 .first_feature_1 a {
