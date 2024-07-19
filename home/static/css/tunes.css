@@ -22,15 +22,14 @@ body {
 .navbar {
     height: 10%;
     width: 100%;
-    /* border-bottom: 1px solid #fff; */
     box-shadow: 1px 2px 4px 2px rgb(254, 254, 254);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* padding: 0 20px; */
-    border-radius: 10px;
-    /* background-color: #EE4B2B; */
-    background-color: rgba(235, 54, 235, 0.909)
+    border-radius: 2px;
+    background-image: url('https://getwallpapers.com/wallpaper/full/7/3/1/1398987-large-red-fire-wallpaper-3840x2160-for-ipad.jpg');
+    background-size: cover;
+    border: #170cab;
 }
 
 .navbar .logo {
@@ -63,7 +62,6 @@ body {
     padding: 15px;
     margin: 15px;
     background-color: #ffffff;
-    
     border-radius: 25px;
     display: flex;
     justify-content: center;
@@ -71,11 +69,11 @@ body {
     text-align: center;
 }
 
-.nav-link-token-profile a{
+.nav-link-token-profile a {
     padding-right: 12px;
 }
 
-.nav-link-token-profile{
+.nav-link-token-profile {
     width: 20px;
     height: 20px;
     border: 1px solid #fff;
@@ -85,12 +83,14 @@ body {
     border-radius: 100%;
     display: flex;
     justify-content: center;
-    align-items: center; /* Vertically center the text */
+    align-items: center;
     text-align: center;
 }
+
 .main_div {
     flex: 1;
     display: flex;
+    background-color: #130301;
 }
 
 .search_bar {
@@ -99,11 +99,13 @@ body {
     border-radius: 10px;
     padding: 5px;
     box-sizing: border-box;
+
 }
 
-.search_bar_1{
-    /* background-color: #ee4c2be2; */
-    background-image: linear-gradient(violet, silver);
+.search_bar_1 {
+    background-image: url('https://getwallpapers.com/wallpaper/full/7/3/1/1398987-large-red-fire-wallpaper-3840x2160-for-ipad.jpg');
+    background-size: cover;
+    /* background-image: linear-gradient(#ee81ee,rgb(5, 11, 122)); */
     height: 100%;
     width: 100%;
     box-shadow: 1px 1px 5px rgb(10, 8, 8);
@@ -111,7 +113,6 @@ body {
     padding: 25px;
     box-sizing: border-box;
 }
-
 
 .search_bar_2 {
     background-color: #f5eded;
@@ -144,10 +145,10 @@ body {
     width: 30%;
     padding: 8px 16px;
     border: none;
-    background-color: #4CAF50;
+    background-color: #ea80e2;
     color: white;
     font-size: 16px;
-    border-radius:22px;
+    border-radius: 22px;
     cursor: pointer;
     margin-left: 8px;
     padding-right: 60px;
@@ -162,176 +163,149 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
+    margin-top: 0.5%;
+    /* Center the main_screen horizontally */
+    background-image: url('https://getwallpapers.com/wallpaper/full/7/3/1/1398987-large-red-fire-wallpaper-3840x2160-for-ipad.jpg');
+    background-size: cover;
 }
 
 .upper_section {
-    flex: 2;
+    flex: 1;
     display: flex;
     flex-direction: column;
+    padding: 10px;
 }
+
 
 .lower_section {
-    flex: 0.5;
+
+    flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-.features {
+.guitar {
     width: 33.33%;
-    padding: 5px;
+    padding: 2px;
 }
 
-.trending {
-    height: 50px; /* Adjust the height as needed */
-    width: 60%; /* Adjust the width as needed */
-    margin: 20px auto; /* Centers the element and adds margin from the top */
-    padding: 20px; /* Adds padding inside the element */
-    border-radius: 15px; /* Rounds the corners slightly */
-    display: flex;
-    flex-direction: column; /* Arrange children elements vertically */
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    background: linear-gradient(rgb(238, 130, 238), silver); /* Adds a linear gradient background */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
-    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transform and shadow transitions */
-    color: white; /* Sets text color to white */
-    font-family: 'Arial', sans-serif; /* Sets a clean font */
-    position: relative; /* Allows for absolute positioning of pseudo-elements */
-    overflow: hidden; /* Ensures content doesn't overflow the borders */
-}
-
-.trending:hover {
-    transform: translateY(-10px); /* Moves the element up slightly on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhances the shadow on hover */
-}
-
-.trending::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+.paino,
+.violen,
+.guitar {
+    height: 50px;
+    width: 60%;
+    margin: 20px auto;
+    padding: 20px;
     border-radius: 15px;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.trending:hover::before {
-    opacity: 1;
-}
-
- 
-
-
-.old_songs {
-    height: 50px; /* Adjust the height as needed */
-    width: 60%; /* Adjust the width as needed */
-    margin: 18% ;
-    margin-top: 0.2%; /* Centers the element and adds margin from the top */
-    padding: 20px; /* Adds padding inside the element */
-    border-radius: 15px; /* Rounds the corners slightly */
+    /* Rounds the corners slightly */
     display: flex;
-    flex-direction: column; /* Arrange children elements vertically */
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    background: linear-gradient(rgb(238, 130, 238), silver); /* Adds a linear gradient background */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
-    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transform and shadow transitions */
-    color: white; /* Sets text color to white */
-    font-family: 'Arial', sans-serif; /* Sets a clean font */
-    position: relative; /* Allows for absolute positioning of pseudo-elements */
-    overflow: hidden; /* Ensures content doesn't overflow the borders */
-
-}
-
-.old_songs:hover {
-    transform: translateY(-10px); /* Moves the element up slightly on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhance the shadow on hover */
-}
-
-.old_songs::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
-    border-radius: 15px;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.old_songs:hover::before {
-    transform: scale(1);
-}
-
-
-.player {
-    height: 100%;
-    margin-bottom: 20px;
-    padding: 5px;
-}
-
-
-.features {
-    height: 50px; /* Adjust the height as needed */
-    width: 60%; /* Adjust the width as needed */
-    margin: 18%;
-    margin-top: -15%; /* Centers the element and adds margin from the top */
-    padding: 20px; /* Adds padding inside the element */
-    border-radius: 15px; /* Rounds the corners slightly */
-    display: flex;
-    flex-direction: column; /* Arrange children elements vertically */
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    background: linear-gradient(rgb(238, 130, 238), silver); /* Adds a linear gradient background */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
-    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transform and shadow transitions */
-    color: white; /* Sets text color to white */
-    font-family: 'Arial', sans-serif; /* Sets a clean font */
-    position: relative; /* Allows for absolute positioning of pseudo-elements */
+    flex-direction: column;
+    /* Arrange children elements vertically */
+    justify-content: center;
+    /* Center content vertically */
+    align-items: center;
+    /* Center content horizontally */
+    background: linear-gradient(rgb(238, 130, 238), silver);
+    /* Adds a linear gradient background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Adds a subtle shadow */
+    transition: transform 0.3s, box-shadow 0.3s;
+    /* Smooth transform and shadow transitions */
+    color: white;
+    /* Sets text color to white */
+    font-family: 'Arial', sans-serif;
+    /* Sets a clean font */
+    position: relative;
+    /* Allows for absolute positioning of pseudo-elements */
     overflow: hidden;
+    /* Ensures content doesn't overflow the borders */
 }
 
-.features:hover {
-    transform: translateY(-10px); /* Moves the element up slightly on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhances the shadow on hover */
+.guitar {
+    background-image: url('https://as2.ftcdn.net/v2/jpg/06/59/09/37/1000_F_659093721_8He8S3E4KXx9zTIn7iVuLi0kQqb2CzB6.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
-.features::before {
+.paino {
+    background-image: url('https://as2.ftcdn.net/v2/jpg/02/65/49/51/1000_F_265495110_IvOyT8txHdEHsPCY1Os5Hdl2HJuhWECe.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.violen {
+    background-image: url('https://c.wallhere.com/photos/31/a5/landscape_music_violin-661366.jpg!d');
+    background-size: cover;
+    background-position: center;
+}
+
+.paino:hover,
+.violen:hover,
+.guitar:hover {
+    transform: translateY(-10px);
+    /* Moves the element up slightly on hover */
+    box-shadow: 0 8px 16px rgb(238, 130, 238);
+    /* Enhances the shadow on hover */
+}
+
+.paino::before,
+.violen::before,
+.guitar::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
     border-radius: 15px;
     opacity: 0;
     transition: opacity 0.3s;
 }
 
-.features:hover::before {
+.paino:hover::before,
+.violen:hover::before,
+.guitar:hover::before {
     opacity: 1;
 }
 
 .player {
-    height: 100%;
-    /* margin-bottom: 2px; */
-    padding: 1px;
+    height: 41%;
+    padding: 5px;
+    margin-top: 6.5%;
 }
-
-
 
 .player_1 {
-    /* background-color: #ee4c2be2;
-     */
-    background-image: linear-gradient(violet, silver);
+    background: radial-gradient(circle, rgb(196, 94, 187), rgb(50, 1, 1));
+    /* background-image: linear-gradient(rgb(234, 128, 226), rgb(83, 2, 2)); */
     height: 100%;
     width: 100%;
     box-shadow: 1px 1px 5px rgb(10, 8, 8);
     border-radius: 10px;
+}
+
+.violen_1 {
+    margin-left: 60%;
+    font-family: 'Great Vibes', cursive;
+    font-size: 46px;
+    color: #552c00;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+
+.paino_1 {
+    margin-left: -60%;
+    font-family: 'Great Vibes', cursive;
+    font-size: 46px;
+    color: #000000;
+    text-shadow: 2px 2px 5px rgba(255, 209, 6, 0.3);
+}
+
+.guitar_1 {
+    margin-left: -60%;
+    font-family: 'Great Vibes', cursive;
+    font-size: 46px;
+    color: #ffcc00;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
