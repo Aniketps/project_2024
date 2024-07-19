@@ -7,8 +7,11 @@ from .forms import AudioUploadForm
 import soundfile as sf
 from .mimiking import mimiking
 from .tune import tune
-
-
+import requests
+headers = {
+    "x-rapidapi-key": "5a931560e9msh075ca51c686e784p133e22jsnb853f9f482a6",
+    "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com"
+}
 
 # mimiking imports
 import numpy as np
@@ -38,10 +41,19 @@ def frontend(request):
 
 
 def recommendation(request): 
-    return render(request, 'recommendation.html')
+    return render(request, 'recommendation.html') 
 
 def listen2gether(request):
-    return render(request, "listen2gether.html")
+    query = 'tuh hi ho'
+
+    url = f"https://spotify23.p.rapidapi.com/search/?q={query}&type=track"
+    response = requests.get(url, headers=headers) 
+
+            
+     
+    return render(request, "listen2gether.html")  
+ 
+    
 
 def mimicking_page(request):
     if request.method == 'POST':

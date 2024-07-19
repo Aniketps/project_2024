@@ -8,7 +8,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/listen2gether.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -36,7 +36,73 @@
             <div class="main_screen">
                 <div class="upper_section">
                     <div class="editing_section">
-                        
+                        <div class="collaborative_player_container">
+                            <div class="collaborative_player_container_search_header">
+                                <h2>Play list</h2>
+                                <div class="search_bar_for_playlist">
+                                    <input type="text" id="collaboration_search_bar" placeholder="Search" name="collaboration_search_bar">
+                                    <button type="button" id="search_query">Search</button>
+                                </div>
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Title</th>
+                                        <th>Album</th>
+                                        <th>Data Added</th>
+                                        <th>Duration</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in tracks %}
+                                    <tr>
+                                        <td>
+                                            <button class="play" data-id="{{ forloop.counter0 }}">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                            <button class="pause" data-id="{{ forloop.counter0 }}" style="display: none;">
+                                                <i class="fas fa-pause"></i>
+                                            </button>
+                                        </td>
+                                        <td><a href="#">{{ i.title }}</a></td>
+                                        <td><a href="#">{{ i.album.title }}</a></td>
+                                        <td>{{ i.date_added }}</td>
+                                        <td>{{ i.duration }}</td>
+                                        <audio id="audio-{{ forloop.counter0 }}" src="{{ i.preview }}"></audio>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="collaborative_member_container">
+                            <div class="member_options">
+                                <h2>Listeners</h2>
+                                <div class="member_options_part">
+                                    <button type="button" class="add">+</button>
+                                    <button type="button" class="share"></button>
+                                    <button type="button" class="exit"></button>
+                                </div>
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</a></th>
+                                        <th>Username</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in listeners %}
+                                    <tr>
+                                        <td></td>
+                                        <td><a href="#">{{ i.name }}</a></td>
+                                        <td>{{ i.username }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="lower_section">
@@ -48,5 +114,46 @@
         </div>
     </div>
 </body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let currentAudio = null;
+
+        const playButtons = document.querySelectorAll('.play');
+        const pauseButtons = document.querySelectorAll('.pause');
+
+        playButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const id = button.getAttribute('data-id');
+                const audio = document.getElementById(`audio-${id}`);
+                
+                if (currentAudio && currentAudio !== audio) {
+                    currentAudio.pause();
+                    const currentPlayButton = document.querySelector(`.play[data-id="${currentAudio.getAttribute('data-id')}"]`);
+                    const currentPauseButton = document.querySelector(`.pause[data-id="${currentAudio.getAttribute('data-id')}"]`);
+                    currentPlayButton.style.display = 'inline-block';
+                    currentPauseButton.style.display = 'none';
+                }
+
+                audio.play();
+                currentAudio = audio;
+
+                button.style.display = 'none';
+                document.querySelector(`.pause[data-id="${id}"]`).style.display = 'inline-block';
+            });
+        });
+
+        pauseButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const id = button.getAttribute('data-id');
+                const audio = document.getElementById(`audio-${id}`);
+                audio.pause();
+                button.style.display = 'none';
+                document.querySelector(`.play[data-id="${id}"]`).style.display = 'inline-block';
+            });
+        });
+    });
+
+    </script>
 
 </html>

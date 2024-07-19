@@ -30,4 +30,5 @@ urlpatterns = [
     path('mimicking_page/', mimicking_page, name='mimicking_page'),
     path('tune_page/', tune_page, name='tune_page'),
     path('listen2gether/', listen2gether, name='listen2gether'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
