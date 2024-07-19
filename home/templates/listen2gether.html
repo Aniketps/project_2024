@@ -55,7 +55,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for i in tracks %}
+                                    {% for i in songs %}
                                     <tr>
                                         <td>
                                             <button class="play" data-id="{{ forloop.counter0 }}">
@@ -66,7 +66,7 @@
                                             </button>
                                         </td>
                                         <td><a href="#">{{ i.title }}</a></td>
-                                        <td><a href="#">{{ i.album.title }}</a></td>
+                                        <td><a href="#">{{ i.artist.title }}</a></td>
                                         <td>{{ i.date_added }}</td>
                                         <td>{{ i.duration }}</td>
                                         <audio id="audio-{{ forloop.counter0 }}" src="{{ i.preview }}"></audio>
@@ -107,7 +107,31 @@
                 </div>
                 <div class="lower_section">
                     <div class="player">
-                        <div class="player_1"></div>
+                        <div class="player_1">
+                            <div class="song_info">
+                                <div class="title_artist">
+                                    <h1>Tum Hi Ho</h1>
+                                    <h2>Artist name</h2>
+                                </div>
+                                <div class="progress-container1">
+                                    <div class="progress-bar1"></div>
+                                </div>
+                                <div class="controls">
+                                    <button type="button" class="shuffle"></button>
+                                    <button type="button" class="backward"></button>
+                                    <button type="button" class="play1"></button>
+                                    <button type="button" class="pause1" style="display: none;"></button>
+                                    <button type="button" class="forward"></button>
+                                    <button type="button" class="repeat"></button>
+                                </div>
+                                <audio id="audio1" src="{% static 'Perfect.mp4' %}"></audio>
+                            </div>
+                            <div class="aditional_options">
+                                <button type="button" class="like"></button>
+                                <button type="button" class="share"></button>
+                                <button type="button" class="lyrics"></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -153,6 +177,37 @@
             });
         });
     });
+        const audio = document.getElementById('audio1');
+        const playButton = document.querySelector('.play1');
+        const pauseButton = document.querySelector('.pause1');
+        const progressBar = document.querySelector('.progress-bar1');
+        const progressContainer = document.querySelector('.progress-container1');
+
+        playButton.addEventListener('click', () => {
+            audio.play();
+            playButton.style.display = 'none';
+            pauseButton.style.display = 'inline-block';
+        });
+
+        pauseButton.addEventListener('click', () => {
+            audio.pause();
+            pauseButton.style.display = 'none';
+            playButton.style.display = 'inline-block';
+        });
+
+        audio.addEventListener('timeupdate', () => {
+            const progressPercent = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+        });
+
+        progressContainer.addEventListener('click', (e) => {
+            const width = progressContainer.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audio.duration;
+
+            audio.currentTime = (clickX / width) * duration;
+        });
+
 
     </script>
 

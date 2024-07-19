@@ -44,14 +44,31 @@ def recommendation(request):
     return render(request, 'recommendation.html') 
 
 def listen2gether(request):
-    query = 'tuh hi ho'
+    # query = 'tuh hi ho'
 
-    url = f"https://spotify23.p.rapidapi.com/search/?q={query}&type=track"
-    response = requests.get(url, headers=headers) 
+    # url = f"https://spotify23.p.rapidapi.com/search/?q={query}&type=track"
+    # response = requests.get(url, headers=headers) 
 
+    
+    contents = {
+    'songs': [
+        {'title': 'Song Title 1', 'artist': 'Artist 1'},
+        {'title': 'Song Title 2', 'artist': 'Artist 2'},
+        {'title': 'Song Title 3', 'artist': 'Artist 3'},
+        {'title': 'Song Title 2', 'artist': 'Artist 2'},
+        {'title': 'Song Title 1', 'artist': 'Artist 1'},
+        {'title': 'Song Title 2', 'artist': 'Artist 2'},
+        {'title': 'Song Title 1', 'artist': 'Artist 1'},
+        {'title': 'Song Title 2', 'artist': 'Artist 2'},
+        {'title': 'Song Title 1', 'artist': 'Artist 1'},
+        {'title': 'Song Title 2', 'artist': 'Artist 2'},
+        {'title': 'Song Title 1', 'artist': 'Artist 1'},
+        {'title': 'Song Title 2', 'artist': 'Artist 2'}, 
+    ]
+}
             
      
-    return render(request, "listen2gether.html")  
+    return render(request, "listen2gether.html", contents)  
  
     
 
