@@ -182,13 +182,6 @@ body {
 }
 
 
-.lower_section {
-
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
 .guitar {
     width: 33.33%;
     padding: 2px;
@@ -253,7 +246,25 @@ body {
     /* Enhances the shadow on hover */
 }
 
-.paino::before,
+
+.paino a{
+    border: none;
+    text-decoration: none;
+    color: black;
+}
+
+.violen a{
+    border: none;
+    text-decoration: none;
+    color: white;
+}
+
+.guitar a{
+    border: none;
+    text-decoration: none;
+    color: yellow;
+}
+/* .paino::before,
 .violen::before,
 .guitar::before {
     content: "";
@@ -272,39 +283,182 @@ body {
 .violen:hover::before,
 .guitar:hover::before {
     opacity: 1;
+} */
+
+.lower_section {
+    height: 20%;
+    display: flex;
+    flex-direction: column;
 }
 
 .player {
-    height: 58%;
+    height: 100%;
+    margin-bottom: 5px;
     padding: 5px;
-    margin-top: 4.5%;
 }
 
 .player_1 {
-    background: radial-gradient(circle, rgb(196, 94, 187), rgb(50, 1, 1));
-    /* background-image: linear-gradient(rgb(234, 128, 226), rgb(83, 2, 2)); */
+    background-image: linear-gradient(black, black);
     height: 100%;
     width: 100%;
     box-shadow: 1px 1px 5px rgb(10, 8, 8);
     border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+}
+.song_info{
+    width: 90%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
 }
 
-.violen_1 {
-    margin-left: 60%;
-    font-family: 'Great Vibes', cursive;
-    font-size: 46px;
-    color: #552c00;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+
+.song_info h1{
+    font-size: 20px;
+    font-family: Georgia;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.song_info .title_artist{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    align-items: center;    
+}
+
+.song_info .title_artist > * {
+    margin: 1px;
+}
+
+.song_info h2{
+    color: white;
+    font-size: 10px;
+    font-family: Georgia;
+    margin: 0;
+    padding: 0;
+}
+.progress-container1 {
+    width: 60%;
+    height: 5px;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 5px;
+    padding: 0;
+}
+
+.progress-bar1 {
+    background-color: #4caf50;
+    width: 0;
+    transition: width 0.2s;
+}
+
+.controls{
+    height: 20%;
+}
+
+.controls button{
+    box-shadow: 0 0 10px red;
+    border: none;
+    border-radius: 50%;
+    height: 35px;
+    background: transparent;
+    width: 35px;
+    margin: 0px 20px 0px 20px;
+}
+
+.controls button:hover{
+    transform: scale(1.1);
+    box-shadow: 0 0 10px white;
+}
+
+.controls .shuffle{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/4340/4340450.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.controls .backward{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/4340/4340238.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.controls .forward{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/4340/4340228.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.controls .pause1{
+    background-image: url("https://cdn-icons-png.flaticon.com/128/4340/4340118.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.controls .play1{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/4340/4340106.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.controls .repeat{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/4340/4340446.png");
+    background-position: center;
+    background-size: cover;
 }
 
 
-.paino_1 {
-    margin-left: -60%;
-    font-family: 'Great Vibes', cursive;
-    font-size: 46px;
-    color: #000000;
-    text-shadow: 2px 2px 5px rgba(255, 209, 6, 0.3);
+.aditional_options button{
+    box-shadow: 0 0 10px red;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    margin: 2px
 }
+
+.aditional_options button:hover{
+    transform: scale(1.1);
+    box-shadow: 0 0 10px white;
+}
+
+.aditional_options .share{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/4340/4340337.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.aditional_options .lyrics{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/4340/4340388.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.aditional_options .like{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/4340/4340207.png");
+    background-position: center;
+    background-size: cover;
+}
+.aditional_options{
+    width: 10%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    flex-direction:column;
+}
+
 
 .guitar_1 {
     margin-left: -60%;
