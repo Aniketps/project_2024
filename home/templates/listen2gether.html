@@ -1,38 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rose</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/listen2gether.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
+{% block extra_css %}
 
-<body>
-    <div class="container">
-        <div class="navbar">
-            <div class="logo">Rose</div>
-            <div class="nav-links">
-                <div class="nav-link-token-profile">
-                    <a href="#">PL</a>
-                </div>
-            </div>
-        </div>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/listen2gether.css' %}">
 
-        <div class="main_div">
-            <div class="search_bar">
-                <div class="search_bar_1">
-                    <div class="search_bar_2">
-                        <label for="search">🔎︎</label>
-                        <input type="text" id="search" name="search" placeholder="Search">
-                        <button type="submit">Search</button>
-                    </div>
-                </div>
-            </div>
+{% endblock %}
 
+
+{% block content%}
             <div class="main_screen">
                 <div class="upper_section">
                     <div class="editing_section">
@@ -105,110 +81,4 @@
                         </div>
                     </div>
                 </div>
-                <div class="lower_section">
-                    <div class="player">
-                        <div class="player_1">
-                            <div class="song_info">
-                                <div class="title_artist">
-                                    <h1>Tum Hi Ho</h1>
-                                    <h2>Artist name</h2>
-                                </div>
-                                <div class="progress-container1">
-                                    <div class="progress-bar1"></div>
-                                </div>
-                                <div class="controls">
-                                    <button type="button" class="shuffle"></button>
-                                    <button type="button" class="backward"></button>
-                                    <button type="button" class="play1"></button>
-                                    <button type="button" class="pause1" style="display: none;"></button>
-                                    <button type="button" class="forward"></button>
-                                    <button type="button" class="repeat"></button>
-                                </div>
-                                <audio id="audio1" src="{% static 'Perfect.mp4' %}"></audio>
-                            </div>
-                            <div class="aditional_options">
-                                <button type="button" class="like"></button>
-                                <button type="button" class="share"></button>
-                                <button type="button" class="lyrics"></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        let currentAudio = null;
-
-        const playButtons = document.querySelectorAll('.play');
-        const pauseButtons = document.querySelectorAll('.pause');
-
-        playButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const id = button.getAttribute('data-id');
-                const audio = document.getElementById(`audio-${id}`);
-                
-                if (currentAudio && currentAudio !== audio) {
-                    currentAudio.pause();
-                    const currentPlayButton = document.querySelector(`.play[data-id="${currentAudio.getAttribute('data-id')}"]`);
-                    const currentPauseButton = document.querySelector(`.pause[data-id="${currentAudio.getAttribute('data-id')}"]`);
-                    currentPlayButton.style.display = 'inline-block';
-                    currentPauseButton.style.display = 'none';
-                }
-
-                audio.play();
-                currentAudio = audio;
-
-                button.style.display = 'none';
-                document.querySelector(`.pause[data-id="${id}"]`).style.display = 'inline-block';
-            });
-        });
-
-        pauseButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const id = button.getAttribute('data-id');
-                const audio = document.getElementById(`audio-${id}`);
-                audio.pause();
-                button.style.display = 'none';
-                document.querySelector(`.play[data-id="${id}"]`).style.display = 'inline-block';
-            });
-        });
-    });
-        const audio = document.getElementById('audio1');
-        const playButton = document.querySelector('.play1');
-        const pauseButton = document.querySelector('.pause1');
-        const progressBar = document.querySelector('.progress-bar1');
-        const progressContainer = document.querySelector('.progress-container1');
-
-        playButton.addEventListener('click', () => {
-            audio.play();
-            playButton.style.display = 'none';
-            pauseButton.style.display = 'inline-block';
-        });
-
-        pauseButton.addEventListener('click', () => {
-            audio.pause();
-            pauseButton.style.display = 'none';
-            playButton.style.display = 'inline-block';
-        });
-
-        audio.addEventListener('timeupdate', () => {
-            const progressPercent = (audio.currentTime / audio.duration) * 100;
-            progressBar.style.width = `${progressPercent}%`;
-        });
-
-        progressContainer.addEventListener('click', (e) => {
-            const width = progressContainer.clientWidth;
-            const clickX = e.offsetX;
-            const duration = audio.duration;
-
-            audio.currentTime = (clickX / width) * duration;
-        });
-
-
-    </script>
-
-</html>
+                {% endblock %}

@@ -41,7 +41,16 @@ def frontend(request):
 
 
 def recommendation(request): 
-    return render(request, 'recommendation.html') 
+    return render(request, 'recommendation.html')
+
+def piano(request):  
+    return render(request, 'piano.html') 
+
+def guitar(request): 
+    return render(request, 'guitar.html')
+
+def violien(request): 
+    return render(request, 'violien.html') 
 
 def listen2gether(request):
     # query = 'tuh hi ho'
