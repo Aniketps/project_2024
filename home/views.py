@@ -131,7 +131,7 @@ def fetch_songs(query, limit=50):
 def frontend(request):
 
     trending_songs = fetch_songs("marathi", limit=50) 
-    nineties_songs = fetch_songs("year:1990-1999", limit=50)
+    nineties_songs = fetch_songs("1990s hindi", limit=50) 
     for song in trending_songs:
         print(song) 
     todays_special_songs = fetch_songs("arijit singh", limit=50)  
