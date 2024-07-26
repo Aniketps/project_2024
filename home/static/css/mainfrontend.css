@@ -574,13 +574,13 @@ body {
     background-size: cover;
 }
 
-.controls .pause1{
+.controls .pause{
     background-image: url("https://cdn-icons-png.flaticon.com/128/4340/4340118.png");
     background-position: center;
     background-size: cover;
 }
 
-.controls .play1{
+.controls .play{
     background-image: url("https://cdn-icons-png.flaticon.com/512/4340/4340106.png");
     background-position: center;
     background-size: cover;
@@ -789,6 +789,14 @@ body {
     text-overflow: ellipsis;
 }
 
+
+.collaborative_player_container1 tbody button{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%
+}
+
+
 .collaborative_player_container1 a {
     text-decoration: none;
     color: aqua;
@@ -919,6 +927,13 @@ body {
     background: transparent;
     font-size: 30px;
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+
+.collaborative_player_container2 tbody button{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%
 }
 
 .collaborative_player_container2 table {
@@ -1120,7 +1135,7 @@ body {
     background-size: cover;
 }
 
-.play2{
+.play8{
     background-image: url("https://cdn-icons-png.flaticon.com/512/4340/4340106.png");
     background-position: center;
     background-size: cover;
@@ -1138,6 +1153,12 @@ body {
     position: relative;
 }
 
+
+.collaborative_player_container3 tbody button{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%
+}
 
 .collaborative_player_container3 table {
     width: 100%;
@@ -1272,12 +1293,47 @@ body {
 
 /*  Reccomenction section css ends */
 
+.play5{
+    background-image: url('https://cdn-icons-png.flaticon.com/512/4340/4340106.png');
+    background-position: center;
+    background-size: cover;
+}
 
+.play6{
+    background-image: url('https://cdn-icons-png.flaticon.com/512/4340/4340106.png');
+    background-position: center;
+    background-size: cover;
+}
+
+.play7{
+    background-image: url('https://cdn-icons-png.flaticon.com/512/4340/4340106.png');
+    background-position: center;
+    background-size: cover;
+}
+
+.pause5{
+    background-image: url('https://cdn-icons-png.flaticon.com/128/4340/4340118.png');
+    background-position: center;
+    background-size: cover;
+}
+
+.pause6{
+    background-image: url('https://cdn-icons-png.flaticon.com/128/4340/4340118.png');
+    background-position: center;
+    background-size: cover;
+}
+
+.pause7{
+    background-image: url('https://cdn-icons-png.flaticon.com/128/4340/4340118.png');
+    background-position: center;
+    background-size: cover;
+}
 .reco_song{
     margin: 0 10px;
     height: 170px;
     width: 150px;
-    background-image: url('https://lastfm.freetls.fastly.net/i/u/avatar170s/02446111645cd948b3bd8c1c07f76f70');
+    background-position: center;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     border-radius: 25px;

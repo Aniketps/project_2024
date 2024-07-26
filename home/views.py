@@ -28,6 +28,7 @@ import base64
 
 def get_access_token(client_id, client_secret):
     url = "https://accounts.spotify.com/api/token"
+    
     headers = {
         "Authorization": "Basic " + base64.b64encode(f"{client_id}:{client_secret}".encode()).decode(),
         "Content-Type": "application/x-www-form-urlencoded"
@@ -78,6 +79,7 @@ def login_page(request):
 
 def fetch_songs(query, limit=50):
     url = "https://api.spotify.com/v1/search"
+    
     headers = {
         "Authorization": f"Bearer {access_token}",
         "Content-Type": "application/json"
@@ -100,14 +102,14 @@ def fetch_songs(query, limit=50):
             artist = track.get('artists', [{}])[0].get('name', 'Unknown')
             album = track.get('album', {}).get('name', 'Unknown')
             duration_ms = track.get('duration_ms', 0)
-            added_at = track.get('added_at', 'Unknown')  # Date added may not be available in search results
+            added_at = track.get('added_at', 'Unknown')
 
-            # Convert duration from milliseconds to minutes and seconds
             duration_min = duration_ms // 60000
             duration_sec = (duration_ms % 60000) // 1000
             duration = f"{duration_min}m {duration_sec}s"
-            url = track.get('external_urls', {}).get('spotify', 'No URL')
-
+            url = track.get('preview_url', 'No preview available')
+            album_images = track.get('album', {}).get('images', [])
+            image_url = album_images[1].get('url') if album_images else 'No image available'
             
             songs.append({
                 "name": name,
@@ -115,7 +117,8 @@ def fetch_songs(query, limit=50):
                 "album": album,
                 "duration": duration,
                 "added_at": added_at,
-                "url": url
+                "url": url,
+                "img_url": image_url
             })
             
         return songs
@@ -126,19 +129,20 @@ def fetch_songs(query, limit=50):
 
 
 def frontend(request):
-    
-    trending_songs = fetch_songs("year:2023-2024", limit=50)
-    nineties_songs = fetch_songs("year:1990-1999", limit=10)
-    todays_special_songs = fetch_songs("y", limit=10)
-        
+
+    trending_songs = fetch_songs("marathi", limit=50) 
+    nineties_songs = fetch_songs("year:1990-1999", limit=50)
+    for song in trending_songs:
+        print(song) 
+    todays_special_songs = fetch_songs("arijit singh", limit=50)  
     return render(request, 'frontend.html', {"trending_song_list": trending_songs,
                                              "s1990_song_list": nineties_songs,
                                              "special_song_list": todays_special_songs})
-
+ 
 
 def recommendation(request): 
     return render(request, 'recommendation.html')
-
+ 
 def trending(request):  
     return render(request, 'trending.html') 
 

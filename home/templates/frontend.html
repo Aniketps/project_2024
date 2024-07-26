@@ -79,18 +79,17 @@
                                     {% for i in trending_song_list %}
                                     <tr>
                                         <td>
-                                            <button class="play1" data-url="{{ i.url }}">
-                                                <i class="fas fa-play"></i>
+                                            <button class="play5" data-url="{{ i.url }}" data-title="{{ i.name }}" data-artist="{{ i.artist }}">
+                                                 
                                             </button>
-                                            <button class="pause1" data-url="{{ i.url }}" style="display: none;">
-                                                <i class="fas fa-pause"></i>
+                                            <button class="pause5" data-url="{{ i.url }}" style="display: none;">
+                                                 
                                             </button>
                                         </td>
                                         <td><a href="#">{{ i.name }}</a></td>
                                         <td><a href="#">{{ i.album }}</a></td>
                                         <td>{{ i.artist }}</td>
                                         <td>{{ i.duration }}</td>
-                                        <audio id="audio-{{ i.url | urlencode }}" src="{{ i.url }}"></audio>
                                     </tr>
                                     {% endfor %}
 
@@ -126,18 +125,17 @@
                                     {% for i in s1990_song_list %}
                                     <tr>
                                         <td>
-                                            <button class="play1" data-url="{{ i.url }}">
-                                                <i class="fas fa-play"></i>
+                                            <button class="play6" data-url="{{ i.url }}" data-title="{{ i.name }}" data-artist="{{ i.artist }}">
+                                                 
                                             </button>
-                                            <button class="pause1" data-url="{{ i.url }}" style="display: none;">
-                                                <i class="fas fa-pause"></i>
+                                            <button class="pause6" data-url="{{ i.url }}" style="display: none;">
+                                                 
                                             </button>
                                         </td>
                                         <td><a href="#">{{ i.name }}</a></td>
                                         <td><a href="#">{{ i.album }}</a></td>
                                         <td>{{ i.artist }}</td>
                                         <td>{{ i.duration }}</td>
-                                        <audio id="audio-{{ i.url | urlencode }}" src="{{ i.url }}"></audio>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
@@ -172,18 +170,17 @@
                                     {% for i in special_song_list %}
                                     <tr>
                                         <td>
-                                            <button class="play1" data-url="{{ i.url }}">
-                                                <i class="fas fa-play"></i>
+                                            <button class="play7" data-url="{{ i.url }}" data-title="{{ i.name }}" data-artist="{{ i.artist }}">
+                                                 
                                             </button>
-                                            <button class="pause1" data-url="{{ i.url }}" style="display: none;">
-                                                <i class="fas fa-pause"></i>
+                                            <button class="pause7" data-url="{{ i.url }}" style="display: none;">
+                                                 
                                             </button>
                                         </td>
                                         <td><a href="#">{{ i.name }}</a></td>
                                         <td><a href="#">{{ i.album }}</a></td>
                                         <td>{{ i.artist }}</td>
                                         <td>{{ i.duration }}</td>
-                                        <audio id="audio-{{ i.url | urlencode }}" src="{{ i.url }}"></audio>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
@@ -244,156 +241,17 @@
                                     it</button>
                             </div>
                             <div class="image_edite">
-
                                 {% for i in special_song_list %}
-
-                                <div class="reco_song">
+                                <div class="reco_song" style="background-image: url('{{ i.img_url }}');">
                                     <div class="reco_song1">
                                         <dt><a href="#">{{ i.name }}</a></dt>
                                         <dt><a href="#">{{ i.album }}</a></dt>
                                         <dt><a href="#">{{ i.artist }}</a></dt>
                                     </div>
-                                    <button class="play2" type="button"></button>
-                                    <button class="pause2" type="button" style="display: none;"></button>
+                                    <button class="play8" type="button" data-url="{{ i.url }}" data-title="{{ i.name }}" data-artist="{{ i.artist }}"></button>
+                                    <button class="pause8" type="button" data-url="{{ i.url }}" style="display: none;"></button>
                                 </div>
-
                                 {% endfor %}
-
-                                <div class="reco_song">
-                                    <div class="reco_song1">
-                                        <a href="#">Song title</a>
-                                        <a href="#">Artist</a>
-                                        <a href="#">Album</a>
-                                    </div>
-                                    <button class="play2" type="button"></button>
-                                    <button class="pause2" type="button" style="display: none;"></button>
-                                </div>
-                                <div class="reco_song">
-                                    <div class="reco_song1">
-                                        <a href="#">Song title</a>
-                                        <a href="#">Artist</a>
-                                        <a href="#">Album</a>
-                                    </div>
-                                    <button type="button" class="play2"></button>
-                                    <button class="pause2" type="button" style="display: none;"></button>
-                                </div>
-                                <div class="reco_song">
-                                    <div class="reco_song1">
-                                        <a href="#">Song title</a>
-                                        <a href="#">Artist</a>
-                                        <a href="#">Album</a>
-                                    </div>
-                                    <button type="button" class="play2"></button>
-                                    <button class="pause2" type="button" style="display: none;"></button>
-                                </div>
-                                <div class="reco_song">
-                                    <div class="reco_song1">
-                                        <a href="#">Song title</a>
-                                        <a href="#">Artist</a>
-                                        <a href="#">Album</a>
-                                    </div>
-                                    <button type="button" class="play2"></button>
-                                    <button class="pause2" type="button" style="display: none;"></button>
-                                </div>
-                                <div class="reco_song">
-                                    <div class="reco_song1">
-                                        <a href="#">Song title</a>
-                                        <a href="#">Artist</a>
-                                        <a href="#">Album</a>
-                                    </div>
-                                    <button class="play2" type="button"></button>
-                                    <button class="pause2" type="button" style="display: none;"></button>
-                                </div>
-                                <div class="reco_song">
-                                    <div class="reco_song1">
-                                        <a href="#">Song title</a>
-                                        <a href="#">Artist</a>
-                                        <a href="#">Album</a>
-                                    </div>
-                                    <button type="button" class="play2"></button>
-                                    <button class="pause2" type="button" style="display: none;"></button>
-                                </div>
-                                <div class="reco_song">
-                                    <div class="reco_song1">
-                                        <a href="#">Song title</a>
-                                        <a href="#">Artist</a>
-                                        <a href="#">Album</a>
-                                    </div>
-                                    <button type="button" class="play2"></button>
-                                    <button class="pause2" type="button" style="display: none;"></button>
-                                </div>
-                                <div class="reco_song">
-                                    <div class="reco_song1">
-                                        <a href="#">Song title</a>
-                                        <a href="#">Artist</a>
-                                        <a href="#">Album</a>
-                                    </div>
-                                    <button type="button" class="play2"></button>
-                                    <button class="pause2" type="button" style="display: none;"></button>
-                                </div>
-                                <div class="reco_song">
-                                    <div class="reco_song1">
-                                        <a href="#">Song title</a>
-                                        <a href="#">Artist</a>
-                                        <a href="#">Album</a>
-                                    </div>
-                                    <button type="button" class="play2"></button>
-                                    <button class="pause2" type="button" style="display: none;"></button>
-                                </div>
-                                <div class="reco_song">
-                                    <div class="reco_song1">
-                                        <a href="#">Song title</a>
-                                        <a href="#">Artist</a>
-                                        <a href="#">Album</a>
-                                    </div>
-                                    <button type="button" class="play2"></button>
-                                    <button class="pause2" type="button" style="display: none;"></button>
-                                </div>
-                                <div class="reco_song">
-                                    <div class="reco_song1">
-                                        <a href="#">Song title</a>
-                                        <a href="#">Artist</a>
-                                        <a href="#">Album</a>
-                                    </div>
-                                    <button type="button" class="play2"></button>
-                                    <button class="pause2" type="button" style="display: none;"></button>
-                                </div>
-                                <div class="reco_song">
-                                    <div class="reco_song1">
-                                        <a href="#">Song title</a>
-                                        <a href="#">Artist</a>
-                                        <a href="#">Album</a>
-                                    </div>
-                                    <button type="button" class="play2"></button>
-                                    <button class="pause2" type="button" style="display: none;"></button>
-                                </div>
-                                <div class="reco_song">
-                                    <div class="reco_song1">
-                                        <a href="#">Song title</a>
-                                        <a href="#">Artist</a>
-                                        <a href="#">Album</a>
-                                    </div>
-                                    <button type="button" class="play2"></button>
-                                    <button class="pause2" type="button" style="display: none;"></button>
-                                </div>
-                                <div class="reco_song">
-                                    <div class="reco_song1">
-                                        <a href="#">Song title</a>
-                                        <a href="#">Artist</a>
-                                        <a href="#">Album</a>
-                                    </div>
-                                    <button type="button" class="play2"></button>
-                                    <button class="pause2" type="button" style="display: none;"></button>
-                                </div>
-                                <div class="reco_song">
-                                    <div class="reco_song1">
-                                        <a href="#">Song title</a>
-                                        <a href="#">Artist</a>
-                                        <a href="#">Album</a>
-                                    </div>
-                                    <button type="button" class="play2"></button>
-                                    <button class="pause2" type="button" style="display: none;"></button>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -403,8 +261,8 @@
                         <div class="player_1">
                             <div class="song_info">
                                 <div class="title_artist">
-                                    <h1>Tum Hi Ho</h1>
-                                    <h2>Artist name</h2>
+                                    <h1 class="title"></h1>
+                                    <h2 class="artist"></h2>
                                 </div>
                                 <div class="progress-container1">
                                     <div class="progress-bar1"></div>
@@ -412,12 +270,12 @@
                                 <div class="controls">
                                     <button type="button" class="shuffle"></button>
                                     <button type="button" class="backward"></button>
-                                    <button type="button" class="play1"></button>
-                                    <button type="button" class="pause1" style="display: none;"></button>
+                                    <button type="button" class="play"></button>
+                                    <button type="button" class="pause" style="display: none;"></button>
                                     <button type="button" class="forward"></button>
                                     <button type="button" class="repeat"></button>
                                 </div>
-                                <audio id="audio1" src="{% static 'Perfect.mp3' %}"></audio>
+                                <audio id="audio" src=""></audio>
                             </div>
                             <div class="aditional_options">
                                 <button type="button" class="like"></button>
@@ -440,49 +298,65 @@
 </body>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    
 
-        window.addEventListener('popstate', function (event) {
-            if (event.state && event.state.url) {
-                loadPage(event.state.url);
-            }
+    document.addEventListener('DOMContentLoaded', function () {
+        const audio = document.getElementById('audio');
+        const playButton = document.querySelector('.play');
+        const pauseButton = document.querySelector('.pause');
+        const progressBar = document.querySelector('.progress-bar1');
+        const progressContainer = document.querySelector('.progress-container1');
+        const title = document.querySelector('.title');
+        const artist = document.querySelector('.artist');
+
+        let isPlaying = false;
+
+        function handleButtonClick(event) {
+            const url = event.target.getAttribute('data-url');
+            const Title = event.target.getAttribute('data-title');
+            const Artist = event.target.getAttribute('data-artist');
+            audio.src = url;
+            title.textContent = Title;
+            artist.textContent = Artist;
+            audio.play();
+            playButton.style.display = 'none';
+            pauseButton.style.display = 'inline-block';
+            isPlaying = true;
+        }
+
+        
+        document.querySelectorAll('.play5, .play6, .play7, .play8').forEach(button => {
+            button.addEventListener('click', handleButtonClick);
+            
         });
-    });
-
-    document.addEventListener('DOMContentLoaded', function () {
-        let currentAudio = null;
-        const audio = document.getElementById('audio1');
-        const playButton = document.querySelector('.play1');
-        const pauseButton = document.querySelector('.pause1');
-        const progressBar = document.querySelector('.progress-bar');
-        const progressContainer = document.querySelector('.progress-container');
-
         playButton.addEventListener('click', () => {
             audio.play();
             playButton.style.display = 'none';
             pauseButton.style.display = 'inline-block';
+            isPlaying = true;
         });
 
         pauseButton.addEventListener('click', () => {
             audio.pause();
             pauseButton.style.display = 'none';
             playButton.style.display = 'inline-block';
+            isPlaying = false;
         });
 
+        // Update progress bar as audio plays
         audio.addEventListener('timeupdate', () => {
             const progressPercent = (audio.currentTime / audio.duration) * 100;
             progressBar.style.width = `${progressPercent}%`;
         });
 
+        // Seek through audio when clicking on the progress container
         progressContainer.addEventListener('click', (e) => {
             const width = progressContainer.clientWidth;
             const clickX = e.offsetX;
             const duration = audio.duration;
-
             audio.currentTime = (clickX / width) * duration;
         });
     });
-
     function debounce(func, delay) {
         return function (...args) {
             clearTimeout(debounceTimer);
@@ -491,8 +365,8 @@
     }
 
     const handlePlayPause = debounce(function () {
-        const playButton = document.querySelector('.play1');
-        const pauseButton = document.querySelector('.pause1');
+        const playButton = document.querySelector('.play');
+        const pauseButton = document.querySelector('.pause');
         const audio = document.getElementById('audio1');
 
         if (isPlaying) {
@@ -507,8 +381,8 @@
         isPlaying = !isPlaying;
     }, 300);
 
-    document.querySelector('.play1').addEventListener('click', handlePlayPause);
-    document.querySelector('.pause1').addEventListener('click', handlePlayPause);
+    document.querySelector('.play').addEventListener('click', handlePlayPause);
+    document.querySelector('.pause').addEventListener('click', handlePlayPause);
 
     document.addEventListener('DOMContentLoaded', function () {
         const trendingButton = document.getElementById('trending_section');
@@ -669,53 +543,6 @@
     });
 
 
-
-
-
-    document.addEventListener('DOMContentLoaded', function() {
-        // Get all play and pause buttons
-        const playButtons = document.querySelectorAll('.play1');
-        const pauseButtons = document.querySelectorAll('.pause1');
-
-        // Event listener for play buttons
-        playButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const url = this.getAttribute('data-url');
-                const audio = document.getElementById(`audio-${encodeURIComponent(url)}`);
-                const pauseButton = document.querySelector(`.pause1[data-url="${url}"]`);
-
-                // Pause all other audio elements
-                document.querySelectorAll('audio').forEach(a => {
-                    if (a.src !== audio.src) {
-                        a.pause();
-                        const btn = document.querySelector(`.pause1[data-url="${a.src}"]`);
-                        if (btn) btn.style.display = 'none';
-                        const playBtn = document.querySelector(`.play1[data-url="${a.src}"]`);
-                        if (playBtn) playBtn.style.display = 'inline-block';
-                    }
-                });
-
-                // Play the selected audio
-                audio.play();
-                this.style.display = 'none';
-                pauseButton.style.display = 'inline-block';
-            });
-        });
-
-        // Event listener for pause buttons
-        pauseButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const url = this.getAttribute('data-url');
-                const audio = document.getElementById(`audio-${encodeURIComponent(url)}`);
-                const playButton = document.querySelector(`.play1[data-url="${url}"]`);
-
-                // Pause the audio
-                audio.pause();
-                this.style.display = 'none';
-                playButton.style.display = 'inline-block';
-            });
-        });
-    });
 </script>
 
 </html>
