@@ -127,9 +127,9 @@ def fetch_songs(query, limit=50):
 
 def frontend(request):
     
-    trending_songs = fetch_songs("popular]", limit=50)
+    trending_songs = fetch_songs("year:2023-2024", limit=50)
     nineties_songs = fetch_songs("year:1990-1999", limit=10)
-    todays_special_songs = fetch_songs("special", limit=10)
+    todays_special_songs = fetch_songs("y", limit=10)
         
     return render(request, 'frontend.html', {"trending_song_list": trending_songs,
                                              "s1990_song_list": nineties_songs,

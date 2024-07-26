@@ -782,11 +782,26 @@ body {
 .collaborative_player_container1 tbody td {
     padding: 15px;
     text-align: left;
+    color: aqua;
     font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
+.collaborative_player_container1 a {
+    text-decoration: none;
+    color: aqua;
+    display: inline-block;
+    max-width: 100%;    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+}
+
+
 .collaborative_player_container1 tbody tr:hover {
-    background-color: rgba(248, 173, 248, 0.63);
+    background-color: rgba(0, 0, 0, 0.63);
     cursor: pointer;
     border-radius: 10px;
     box-shadow: 1px 1px 5px #333;
@@ -959,8 +974,24 @@ body {
 .collaborative_player_container2 tbody td {
     padding: 15px;
     text-align: left;
+    color: aqua;
     font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
+.collaborative_player_container2 a {
+    text-decoration: none;
+    color: aqua;
+    display: inline-block;
+    max-width: 100%;    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+}
+
+
 
 .collaborative_player_container2 tbody tr:hover {
     background-color: rgba(248, 173, 248, 0.63);
@@ -1161,9 +1192,22 @@ body {
 .collaborative_player_container3 tbody td {
     padding: 15px;
     text-align: left;
+    color: aqua;
     font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
+.collaborative_player_container3 a {
+    text-decoration: none;
+    color: aqua;
+    display: inline-block;
+    max-width: 100%;    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+}
 .collaborative_player_container3 tbody tr:hover {
     background-color: rgba(248, 173, 248, 0.63);
     cursor: pointer;
@@ -1259,12 +1303,26 @@ body {
     margin-left: 5px;
     justify-content: center;
 }
+ 
+.reco_song1 td {
+    padding: 15px;
+    text-align: left;
+    color: aqua;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
-.reco_song1 a{
+.reco_song1 a {
     text-decoration: none;
     color: white;
-    text-shadow: 1px 1px 2px rgb(0, 0, 0);
-    font-weight: bold;
+    text-shadow: 1px 1px 1px #000;
+    display: inline-block;
+    max-width: 100%;    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
 }
 
 .libraries_history{
