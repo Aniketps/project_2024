@@ -397,29 +397,42 @@ body {
 
 .image_edite {
     overflow-x: auto;
-    overflow-y: auto;
-    justify-content: flex-start;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-
+    overflow-y: hidden;
     display: flex;
-    margin: 9px;
-    justify-content: center;
     align-items: center;
+    margin: 9px;
+    padding: 10px;
     background-size: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    scrollbar-width: thin;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
-/* .image_edite:hover{
-    transform: scale(1.1);
-} */
+.image_edite::-webkit-scrollbar {
+    width: 8px;
+}
+
+.image_edite::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.image_edite::-webkit-scrollbar-track {
+    background: #f4f4f4;
+}
+
 .image_edite img {
-    background-size: contain;
     height: 24vh;
     width: 33vh;
-    margin-top: -2px;
-    border-radius: 12px;
+    background-image: url('https://lastfm.freetls.fastly.net/i/u/avatar170s/02446111645cd948b3bd8c1c07f76f70');
     margin: 6px;
+    border-radius: 12px;
     box-shadow: 1px 1px 5px #333;
+}
+
+.image_edite img:hover {
+    transform: scale(1.05);
 }
 
 .recommendation_txt a{
@@ -794,6 +807,7 @@ body {
     font-size: 25px;
     font-family: Georgia, serif;
     white-space: nowrap;
+    color: aqua;
     margin-right: 10px;
 }
 
@@ -970,6 +984,7 @@ body {
 .collaborative_player_container_search_header2 h2{
     font-size: 25px;
     font-family: Georgia, serif;
+    color: aqua;
     white-space: nowrap;
     margin-right: 10px;
 }
@@ -1061,10 +1076,23 @@ body {
     border: none;
     color: aqua;
     background: transparent;
-    font-size: 25px;
-    margin-left: 40%;
-    font-family:Georgia;
+    font-size: 20px;
+    margin-left: 10px;
+    margin-top: 10px;
+    font-family: elastic strock;
     font-weight: bold;
+}
+
+.pause2{
+    background-image: url("https://cdn-icons-png.flaticon.com/128/4340/4340118.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.play2{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/4340/4340106.png");
+    background-position: center;
+    background-size: cover;
 }
 
 .collaborative_player_container3 {
@@ -1158,6 +1186,7 @@ body {
 .collaborative_player_container_search_header3 h2{
     font-size: 25px;
     font-family: Georgia, serif;
+    color: aqua;
     white-space: nowrap;
     margin-right: 10px;
 }
@@ -1204,6 +1233,7 @@ body {
     margin: 0 10px;
     height: 170px;
     width: 150px;
+    background-image: url('https://lastfm.freetls.fastly.net/i/u/avatar170s/02446111645cd948b3bd8c1c07f76f70');
     display: flex;
     flex-direction: column;
     border-radius: 25px;
@@ -1232,7 +1262,8 @@ body {
 
 .reco_song1 a{
     text-decoration: none;
-    color: aqua;
+    color: white;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0);
     font-weight: bold;
 }
 

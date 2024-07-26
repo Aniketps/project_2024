@@ -58,7 +58,7 @@
                         <div class="collaborative_player_container1">
                             <button class="back_trending" id="back1" type="button" >Back</button>
                             <div class="collaborative_player_container_search_header1">
-                                <h2>Play list</h2>
+                                <h2>Popular Musics</h2>
                                 <div class="search_bar_for_playlist1">
                                     <input type="text" id="collaboration_search_bar1" placeholder="Search" name="collaboration_search_bar1">
                                     <button type="button" id="search_query1">Search</button>
@@ -75,7 +75,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for i in songs %}
+                                    {% for i in trending_song_list %}
                                     <tr>
                                         <td>
                                             <button class="play1" data-id="{{ forloop.counter0 }}">
@@ -85,9 +85,9 @@
                                                 <i class="fas fa-pause"></i>
                                             </button>
                                         </td>
-                                        <td><a href="#">{{ i.title }}</a></td>
-                                        <td><a href="#">{{ i.artist.title }}</a></td>
-                                        <td>{{ i.date_added }}</td>
+                                        <td><a href="#">{{ i.name }}</a></td>
+                                        <td><a href="#">{{ i.album }}</a></td>
+                                        <td>{{ i.added_at }}</td>
                                         <td>{{ i.duration }}</td>
                                         <audio id="audio-{{ forloop.counter0 }}" src="{{ i.preview }}"></audio>
                                     </tr>
@@ -103,7 +103,7 @@
                         <div class="collaborative_player_container2">
                             <button class="back_s1990" id="back2" type="button">Back</button>
                             <div class="collaborative_player_container_search_header2">
-                                <h2>Play list</h2>
+                                <h2>Back to old century Music</h2>
                                 <div class="search_bar_for_playlist2">
                                     <input type="text" id="collaboration_search_bar2" placeholder="Search" name="collaboration_search_bar2">
                                     <button type="button" id="search_query2">Search</button>
@@ -148,7 +148,7 @@
                         <div class="collaborative_player_container3">
                             <button class="back_reco" id="back3" type="button">Back</button>
                             <div class="collaborative_player_container_search_header3">
-                                <h2>Play list</h2>
+                                <h2>Recommended for You</h2>
                                 <div class="search_bar_for_playlist3">
                                     <input type="text" id="collaboration_search_bar3" placeholder="Search" name="collaboration_search_bar3">
                                     <button type="button" id="search_query3">Search</button>
@@ -235,7 +235,7 @@
                     <div class="recommendation_1">
                         <div>
                             <div class="recommendation_txt">
-                                <button class="button_for_reco" id="reccomention_section" type="button">Reccomendations</button>
+                                <button class="button_for_reco" id="reccomention_section" type="button">Hope you love it</button>
                             </div>
                             <div class="image_edite">
                                 <div class="reco_song">
@@ -244,7 +244,8 @@
                                         <a href="#">Artist</a>
                                         <a href="#">Album</a>
                                     </div>
-                                    <button type="button">P</button>
+                                    <button class="play2" type="button"></button>
+                                    <button class="pause2" type="button" style="display: none;"></button>
                                 </div>
                                 <div class="reco_song">
                                     <div class="reco_song1">
@@ -252,7 +253,8 @@
                                         <a href="#">Artist</a>
                                         <a href="#">Album</a>
                                     </div>
-                                    <button type="button">P</button>
+                                    <button class="play2" type="button"></button>
+                                    <button class="pause2" type="button" style="display: none;"></button>
                                 </div>
                                 <div class="reco_song">
                                     <div class="reco_song1">
@@ -260,7 +262,8 @@
                                         <a href="#">Artist</a>
                                         <a href="#">Album</a>
                                     </div>
-                                    <button type="button">P</button>
+                                    <button type="button" class="play2"></button>
+                                    <button class="pause2" type="button" style="display: none;"></button>
                                 </div>
                                 <div class="reco_song">
                                     <div class="reco_song1">
@@ -268,7 +271,8 @@
                                         <a href="#">Artist</a>
                                         <a href="#">Album</a>
                                     </div>
-                                    <button type="button">P</button>
+                                    <button type="button" class="play2"></button>
+                                    <button class="pause2" type="button" style="display: none;"></button>
                                 </div>
                                 <div class="reco_song">
                                     <div class="reco_song1">
@@ -276,7 +280,8 @@
                                         <a href="#">Artist</a>
                                         <a href="#">Album</a>
                                     </div>
-                                    <button type="button">P</button>
+                                    <button type="button" class="play2"></button>
+                                    <button class="pause2" type="button" style="display: none;"></button>
                                 </div>
                                 <div class="reco_song">
                                     <div class="reco_song1">
@@ -284,7 +289,8 @@
                                         <a href="#">Artist</a>
                                         <a href="#">Album</a>
                                     </div>
-                                    <button type="button">P</button>
+                                    <button class="play2" type="button"></button>
+                                    <button class="pause2" type="button" style="display: none;"></button>
                                 </div>
                                 <div class="reco_song">
                                     <div class="reco_song1">
@@ -292,7 +298,8 @@
                                         <a href="#">Artist</a>
                                         <a href="#">Album</a>
                                     </div>
-                                    <button type="button">P</button>
+                                    <button type="button" class="play2"></button>
+                                    <button class="pause2" type="button" style="display: none;"></button>
                                 </div>
                                 <div class="reco_song">
                                     <div class="reco_song1">
@@ -300,7 +307,8 @@
                                         <a href="#">Artist</a>
                                         <a href="#">Album</a>
                                     </div>
-                                    <button type="button">P</button>
+                                    <button type="button" class="play2"></button>
+                                    <button class="pause2" type="button" style="display: none;"></button>
                                 </div>
                                 <div class="reco_song">
                                     <div class="reco_song1">
@@ -308,7 +316,8 @@
                                         <a href="#">Artist</a>
                                         <a href="#">Album</a>
                                     </div>
-                                    <button type="button">P</button>
+                                    <button type="button" class="play2"></button>
+                                    <button class="pause2" type="button" style="display: none;"></button>
                                 </div>
                                 <div class="reco_song">
                                     <div class="reco_song1">
@@ -316,7 +325,8 @@
                                         <a href="#">Artist</a>
                                         <a href="#">Album</a>
                                     </div>
-                                    <button type="button">P</button>
+                                    <button type="button" class="play2"></button>
+                                    <button class="pause2" type="button" style="display: none;"></button>
                                 </div>
                                 <div class="reco_song">
                                     <div class="reco_song1">
@@ -324,7 +334,8 @@
                                         <a href="#">Artist</a>
                                         <a href="#">Album</a>
                                     </div>
-                                    <button type="button">P</button>
+                                    <button type="button" class="play2"></button>
+                                    <button class="pause2" type="button" style="display: none;"></button>
                                 </div>
                                 <div class="reco_song">
                                     <div class="reco_song1">
@@ -332,7 +343,8 @@
                                         <a href="#">Artist</a>
                                         <a href="#">Album</a>
                                     </div>
-                                    <button type="button">P</button>
+                                    <button type="button" class="play2"></button>
+                                    <button class="pause2" type="button" style="display: none;"></button>
                                 </div>
                                 <div class="reco_song">
                                     <div class="reco_song1">
@@ -340,7 +352,8 @@
                                         <a href="#">Artist</a>
                                         <a href="#">Album</a>
                                     </div>
-                                    <button type="button">P</button>
+                                    <button type="button" class="play2"></button>
+                                    <button class="pause2" type="button" style="display: none;"></button>
                                 </div>
                                 <div class="reco_song">
                                     <div class="reco_song1">
@@ -348,7 +361,8 @@
                                         <a href="#">Artist</a>
                                         <a href="#">Album</a>
                                     </div>
-                                    <button type="button">P</button>
+                                    <button type="button" class="play2"></button>
+                                    <button class="pause2" type="button" style="display: none;"></button>
                                 </div>
                                 <div class="reco_song">
                                     <div class="reco_song1">
@@ -356,7 +370,8 @@
                                         <a href="#">Artist</a>
                                         <a href="#">Album</a>
                                     </div>
-                                    <button type="button">P</button>
+                                    <button type="button" class="play2"></button>
+                                    <button class="pause2" type="button" style="display: none;"></button>
                                 </div>
                                 <div class="reco_song">
                                     <div class="reco_song1">
@@ -364,10 +379,10 @@
                                         <a href="#">Artist</a>
                                         <a href="#">Album</a>
                                     </div>
-                                    <button type="button">P</button>
+                                    <button type="button" class="play2"></button>
+                                    <button class="pause2" type="button" style="display: none;"></button>
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
                 </div>

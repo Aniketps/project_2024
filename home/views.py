@@ -11,12 +11,6 @@ from .tune import tune
 import requests
 
 
-
-headers = {
-    "x-rapidapi-key": "5a931560e9msh075ca51c686e784p133e22jsnb853f9f482a6",
-    "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com"
-}
-
 # mimiking imports
 import numpy as np
 import pandas as pd
@@ -29,8 +23,29 @@ import scipy
 from glob import glob
 import IPython.display as ipd
 from IPython.display import Audio
+import base64
 # end mimiking import
 
+def get_access_token(client_id, client_secret):
+    url = "https://accounts.spotify.com/api/token"
+    headers = {
+        "Authorization": "Basic " + base64.b64encode(f"{client_id}:{client_secret}".encode()).decode(),
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    data = {
+        "grant_type": "client_credentials"
+    }
+
+    response = requests.post(url, headers=headers, data=data)
+    response.raise_for_status()
+    token_info = response.json()
+    return token_info["access_token"]
+
+# Replace with your actual credentials
+CLIENT_ID = "be56693209714f688464c121d530d221"
+CLIENT_SECRET = "fab2e9893dc54b96abcb390f39d950bc"
+
+access_token = get_access_token(CLIENT_ID, CLIENT_SECRET)
 
 # Create your views here.
 
@@ -61,8 +76,64 @@ def register(request):
 def login_page(request):
     return render(request, 'login_page.html')
 
+def fetch_songs(query, limit=50):
+    url = "https://api.spotify.com/v1/search"
+    headers = {
+        "Authorization": f"Bearer {access_token}",
+        "Content-Type": "application/json"
+    }
+    params = {
+        "q": query,
+        "type": "track",
+        "limit": limit
+    }
+
+    try:
+        response = requests.get(url, headers=headers, params=params)
+        response.raise_for_status()  # Raise an exception for HTTP errors
+        data = response.json()
+
+        songs = []
+        tracks = data.get('tracks', {}).get('items', [])
+        for track in tracks:
+            name = track.get('name', 'Unknown')
+            artist = track.get('artists', [{}])[0].get('name', 'Unknown')
+            album = track.get('album', {}).get('name', 'Unknown')
+            duration_ms = track.get('duration_ms', 0)
+            added_at = track.get('added_at', 'Unknown')  # Date added may not be available in search results
+
+            # Convert duration from milliseconds to minutes and seconds
+            duration_min = duration_ms // 60000
+            duration_sec = (duration_ms % 60000) // 1000
+            duration = f"{duration_min}m {duration_sec}s"
+            url = track.get('external_urls', {}).get('spotify', 'No URL')
+
+            
+            songs.append({
+                "name": name,
+                "artist": artist,
+                "album": album,
+                "duration": duration,
+                "added_at": added_at,
+                "url": url
+            })
+            
+        return songs
+
+    except requests.RequestException as e:
+        print(f"Error fetching data: {e}")
+        return []
+
+
 def frontend(request):
-    return render(request, 'frontend.html')
+    
+    trending_songs = fetch_songs("popular]", limit=50)
+    nineties_songs = fetch_songs("year:1990-1999", limit=10)
+    todays_special_songs = fetch_songs("special", limit=10)
+        
+    return render(request, 'frontend.html', {"trending_song_list": trending_songs,
+                                             "s1990_song_list": nineties_songs,
+                                             "special_song_list": todays_special_songs})
 
 
 def recommendation(request): 
