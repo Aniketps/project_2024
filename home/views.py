@@ -1,13 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 import os # temp
 from django.conf import settings # temp
 from django.core.files.storage import FileSystemStorage # temp
-from .forms import AudioUploadForm
+from .forms import AudioUploadForm, user_login, user_login1
+from .models import user_table
 import soundfile as sf
 from .mimiking import mimiking
 from .tune import tune
 import requests
+
+
+
 headers = {
     "x-rapidapi-key": "5a931560e9msh075ca51c686e784p133e22jsnb853f9f482a6",
     "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com"
@@ -34,7 +38,28 @@ def home(request):
     return render(request, 'home.html')
 
 def register(request):
-    return render(request, 'register.html')
+    form = user_login1()
+    if request.method == 'POST':
+        form = user_login1(request.POST)
+        if form.is_valid:
+
+            # cleaned_data = super().clean()
+            
+            # first_name = request.POST.get('first_name')
+            # last_name = request.POST.get('last_name')
+            # email = request.POST.get('email')
+            # username = cleaned_data.get('username')
+            # password1 = cleaned_data.get('password1')
+            # password2 = cleaned_data.get('password2')
+            
+            # user1 = user_table(first_name=first_name, last_name=last_name, email=email, username=username, password=password2, song_id=0, song_album='None', song_time=0)
+            
+            form.save()
+            return redirect('login')
+    return render(request, 'register.html', {'form':form})
+
+def login_page(request):
+    return render(request, 'login_page.html')
 
 def frontend(request):
     return render(request, 'frontend.html')
@@ -42,6 +67,12 @@ def frontend(request):
 
 def recommendation(request): 
     return render(request, 'recommendation.html')
+
+def trending(request):  
+    return render(request, 'trending.html') 
+
+def s1990(request):  
+    return render(request, 's1990.html') 
 
 def piano(request):  
     return render(request, 'piano.html') 

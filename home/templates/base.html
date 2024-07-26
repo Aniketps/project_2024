@@ -59,7 +59,7 @@
                                 <button type="button" class="forward"></button>
                                 <button type="button" class="repeat"></button>
                             </div>
-                            <audio id="audio1" src="{% static 'Perfect.mp4' %}"></audio>
+                            <audio id="audio1" src="{% static 'Perfect.mp3' %}"></audio>
                         </div>
                         <div class="aditional_options">
                             <button type="button" class="like"></button>
@@ -82,6 +82,16 @@
 </body>
 
 <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        
+        window.addEventListener('popstate', function (event) {
+            if (event.state && event.state.url) {
+                loadPage(event.state.url);
+            }
+        });
+    });
+    
+    
 document.addEventListener('DOMContentLoaded', function () {
     let currentAudio = null;
 
@@ -271,6 +281,36 @@ const audio = document.getElementById('audio');
 
             audio.currentTime = (clickX / width) * duration;
         });
+        let isPlaying = false;
+let debounceTimer;
+
+function debounce(func, delay) {
+    return function (...args) {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => func.apply(this, args), delay);
+    };
+}
+
+const handlePlayPause = debounce(function () {
+    const playButton = document.querySelector('.play1');
+    const pauseButton = document.querySelector('.pause1');
+    const audio = document.getElementById('audio1');
+
+    if (isPlaying) {
+        audio.pause();
+        playButton.style.display = 'inline-block';
+        pauseButton.style.display = 'none';
+    } else {
+        audio.play();
+        playButton.style.display = 'none';
+        pauseButton.style.display = 'inline-block';
+    }
+    isPlaying = !isPlaying;
+}, 300);
+
+document.querySelector('.play1').addEventListener('click', handlePlayPause);
+document.querySelector('.pause1').addEventListener('click', handlePlayPause);
+
 </script>
 
 </html>

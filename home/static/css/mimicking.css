@@ -160,9 +160,10 @@ body {
     flex-direction: column;
 }
 
+
 .upper_section {
-    height: 80%;
-    margin-bottom: 5px;
+    height: 78%;
+    /* margin-bottom: 5px; */
     display: flex;
 }
 
@@ -194,28 +195,6 @@ body {
 
 
 .editing_section_1 {
-    display: flex;
-    flex-direction: row;
-}
-
-.lower_section {
-    height: 20%;
-    display: flex;
-    flex-direction: column;
-}
-
-.player {
-    height: 100%;
-    margin-bottom: 5px;
-    padding: 5px;
-}
-
-.player_1 {
-    background-image: linear-gradient(black, black);
-    height: 100%;
-    width: 100%;
-    box-shadow: 1px 1px 5px rgb(10, 8, 8);
-    border-radius: 10px;
     display: flex;
     flex-direction: row;
 }
@@ -436,20 +415,20 @@ body {
 .music-player {
     width: 320px;
     margin-left: 50px;
-    margin-bottom: 35px;
+    /* margin-bottom: 35px; */
     border-radius: 15px;
     background: transparent;
     text-align: center;
 }
 
-.controls {
+.controls1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.controls .title {
+.controls1 .title {
     flex: 1;
     margin: 0 10px;
     font-size: 18px;
@@ -457,7 +436,7 @@ body {
     color: #333;
 }
 
-.controls button {
+.controls1 button {
     font-size: 24px;
     border: none;
     background: none;
@@ -468,7 +447,7 @@ body {
     transition: color 0.3s, transform 0.3s;
 }
 
-.controls button:hover {
+.controls1 button:hover {
     color: #000;
     transform: scale(1.2);
 }
@@ -494,18 +473,18 @@ body {
     padding: 20px;
 }
 
-.controls .title {
+.controls1 .title {
     font-family: 'Verdana', sans-serif;
     color: #333;
 }
 
-.controls button {
+.controls1 button {
     background: linear-gradient(145deg, #e6e6e6, #ffffff);
     border-radius: 50%;
     box-shadow: 4px 4px 8px #d1d1d1c8, -4px -4px 8px #ffffffb2;
 }
 
-.controls button:active {
+.controls1 button:active {
     box-shadow: inset 4px 4px 8px #d1d1d1, inset -4px -4px 8px #ffffff;
 }
 
@@ -520,7 +499,7 @@ body {
 .player_and_download {
     display: flex;
     flex-direction: row;
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
 .modal {
@@ -558,6 +537,30 @@ body {
     cursor: pointer;
 }
 
+
+
+
+.lower_section {
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+.player {
+    height: 100%;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.player_1 {
+    background-image: linear-gradient(black, black);
+    height: 100%;
+    width: 100%;
+    box-shadow: 1px 1px 5px rgb(10, 8, 8);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+}
 .song_info{
     width: 90%;
     height: 100%;

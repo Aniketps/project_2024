@@ -11,17 +11,34 @@
     <div class="container">
         <div class="signin-form">
             <h2>Sign Up</h2>
-            <form action="/signin" method="POST">
+            <form action="{% url 'register' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="first_name">Firs name:</label>
+                    <input type="first_name" id="first_name" name="first_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Last name:</label>
+                    <input type="last_name" id="last_name" name="last_name" required>
+                </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                    {{form.email}}
                 </div>
                 <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
+                    <label for="username">Username:</label>
+                    {{form.username}}
+                </div>
+                <div class="form-group">
+                    <label for="paswword1">Password:</label>
+                    {{form.password1}}
+                </div>
+                <div class="form-group">
+                    <label for="password2">Confirm password:</label>
+                    {{ form.password2}}
                 </div>
                 <button type="submit" class="btn">Sign In</button>
-                <p class="signup-link">Don't have an account? <a href="#">Sign up</a></p>
+                <p class="signup-link">Already have an account? <a href="#">Login</a></p>
             </form>
         </div>
     </div>

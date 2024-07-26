@@ -7,16 +7,15 @@
     <title>Rose</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/mainfrontend.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
     <div class="container">
         <div class="navbar">
-            <div class="logo">ECHOTUNES</div>
+            <div class="logo">Rose</div>
             <div class="nav-links">
-                <div class="nav-link-token">
-                    <a href="#">Log in</a>
-                </div>
                 <div class="nav-link-token-profile">
                     <a href="#">PL</a>
                 </div>
@@ -24,7 +23,6 @@
         </div>
 
         <div class="main_div">
-
             <div class="search_bar">
                 <div class="search_bar_1">
                     <div class="search_bar_2">
@@ -32,41 +30,179 @@
                         <input type="text" id="search" name="search" placeholder="Search">
                         <button type="submit">Search</button>
                     </div>
+                    <div class="libraries_history">
+                        <div class="libraries">
+                            <div>
+                                <a href="#">Library Name</a>
+                                <h1>15</h1>
+                            </div>
+                        </div>
+                        <div class="libraries">
+                            <div>
+                                <a href="#">Library Name</a>
+                                <h1>Song count 15</h1>
+                            </div>
+                        </div>
+                        <div class="history">
+                            <div>
+                                <a href="#">History</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
             <div class="main_screen">
+
+                <div class="upper_section1" style="display: none;">
+                    <div class="editing_section1">
+                        <div class="collaborative_player_container1">
+                            <button class="back_trending" id="back1" type="button" >Back</button>
+                            <div class="collaborative_player_container_search_header1">
+                                <h2>Play list</h2>
+                                <div class="search_bar_for_playlist1">
+                                    <input type="text" id="collaboration_search_bar1" placeholder="Search" name="collaboration_search_bar1">
+                                    <button type="button" id="search_query1">Search</button>
+                                </div>
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Title</th>
+                                        <th>Album</th>
+                                        <th>Data Added</th>
+                                        <th>Duration</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in songs %}
+                                    <tr>
+                                        <td>
+                                            <button class="play1" data-id="{{ forloop.counter0 }}">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                            <button class="pause1" data-id="{{ forloop.counter0 }}" style="display: none;">
+                                                <i class="fas fa-pause"></i>
+                                            </button>
+                                        </td>
+                                        <td><a href="#">{{ i.title }}</a></td>
+                                        <td><a href="#">{{ i.artist.title }}</a></td>
+                                        <td>{{ i.date_added }}</td>
+                                        <td>{{ i.duration }}</td>
+                                        <audio id="audio-{{ forloop.counter0 }}" src="{{ i.preview }}"></audio>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="upper_section2" style="display: none;">
+                    <div class="editing_section2">
+                        <div class="collaborative_player_container2">
+                            <button class="back_s1990" id="back2" type="button">Back</button>
+                            <div class="collaborative_player_container_search_header2">
+                                <h2>Play list</h2>
+                                <div class="search_bar_for_playlist2">
+                                    <input type="text" id="collaboration_search_bar2" placeholder="Search" name="collaboration_search_bar2">
+                                    <button type="button" id="search_query2">Search</button>
+                                </div>
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Title</th>
+                                        <th>Album</th>
+                                        <th>Data Added</th>
+                                        <th>Duration</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in songs %}
+                                    <tr>
+                                        <td>
+                                            <button class="play2" data-id="{{ forloop.counter0 }}">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                            <button class="pause2" data-id="{{ forloop.counter0 }}" style="display: none;">
+                                                <i class="fas fa-pause"></i>
+                                            </button>
+                                        </td>
+                                        <td><a href="#">{{ i.title }}</a></td>
+                                        <td><a href="#">{{ i.artist.title }}</a></td>
+                                        <td>{{ i.date_added }}</td>
+                                        <td>{{ i.duration }}</td>
+                                        <audio id="audio-{{ forloop.counter0 }}" src="{{ i.preview }}"></audio>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="upper_section3" style="display: none;">
+                    <div class="editing_section3">
+                        <div class="collaborative_player_container3">
+                            <button class="back_reco" id="back3" type="button">Back</button>
+                            <div class="collaborative_player_container_search_header3">
+                                <h2>Play list</h2>
+                                <div class="search_bar_for_playlist3">
+                                    <input type="text" id="collaboration_search_bar3" placeholder="Search" name="collaboration_search_bar3">
+                                    <button type="button" id="search_query3">Search</button>
+                                </div>
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Title</th>
+                                        <th>Album</th>
+                                        <th>Data Added</th>
+                                        <th>Duration</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in songs %}
+                                    <tr>
+                                        <td>
+                                            <button class="play3" data-id="{{ forloop.counter0 }}">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                            <button class="pause3" data-id="{{ forloop.counter0 }}" style="display: none;">
+                                                <i class="fas fa-pause"></i>
+                                            </button>
+                                        </td>
+                                        <td><a href="#">{{ i.title }}</a></td>
+                                        <td><a href="#">{{ i.artist.title }}</a></td>
+                                        <td>{{ i.date_added }}</td>
+                                        <td>{{ i.duration }}</td>
+                                        <audio id="audio-{{ forloop.counter0 }}" src="{{ i.preview }}"></audio>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="upper_section">
                     <div class="trending">
                         <div class="trending_1">
-                            <div>
-                                <div>
-                                    <div>
-                                        
-                                    
-                                        <div class="centered" style="position: absolute;top:25%; left:538px;transform:translate(-50%,-50%);color:black;font-size:33px; font-weight:bold;font-family: 'Roboto';font-style:italic;" >
-                                            TRENDING
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="centered">
+                                <button class="button_for_trending" id="trending_section" type="button">Trending</button>
                             </div>
-
                         </div>
                     </div>
 
                     <div class="old_songs">
                         <div class="old_songs_1">
-                            <div>
-                                <div>
-                                    <div>
-                                       
-
-                                        <div class="centered"> 1990's  <br>Songs</div>
-                                       
-                                    </div>
-                                </div>
+                            <div class="centered">
+                                <button class="button_for_s1990" id="s1990_section" type="button">1990</button>
                             </div>
-
                         </div>
                     </div>
 
@@ -95,47 +231,422 @@
                         </div>
                     </div>
                 </div>
-                <div class="lower_section">
-                    <div class="recommendation">
-                        <div class="recommendation_1">
-                            <div>
-                                <div class="recommendation_txt">
-                                    <a href="{% url "recommendation" %}" style="text-align: center; text-decoration:none; top:0;color:black;margin-left:400px;font-style:italic;font-weight:bold;font-size:24px;">Recommendation For You</a>
-                                </div>
-                                <div class="image_edite">
-                                    <img src="https://i.ytimg.com/vi/XLqmL9cPN1E/hq720.jpg?sqp=-oaymwEXCK4FEIIDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBAiZxBIAOILOASQImmogQxx2vHZA"
-                                        alt="Tenu Kharbar Nahi">
-                                    <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202407/tauba-tauba-songs--vicky-kaushal-102434635-16x9_0.jpg?VersionId=hj6xpu1pMjz3a8oeWII_72u_Xm31Yy.i"
-                                        alt="Tenu Kharbar Nahi">
-                                    <img src="https://i.ytimg.com/vi/WcWMipXV6UA/maxresdefault.jpg"
-                                        alt="Tenu Kharbar Nahi">
-                                    <img src="https://i.ytimg.com/vi/55eSaHhLSN8/maxresdefault.jpg"
-                                        alt="Tenu Kharbar Nahi">
-                                    <img src="https://i.pinimg.com/736x/b9/26/ed/b926ed64a2ad708774c1458a8d8c944e.jpg"
-                                        alt="Tenu Kharbar Nahi">
-                                </div>
-                                
+                <div class="recommendation">
+                    <div class="recommendation_1">
+                        <div>
+                            <div class="recommendation_txt">
+                                <button class="button_for_reco" id="reccomention_section" type="button">Reccomendations</button>
                             </div>
-
-
-
-
-
-
+                            <div class="image_edite">
+                                <div class="reco_song">
+                                    <div class="reco_song1">
+                                        <a href="#">first title</a>
+                                        <a href="#">Artist</a>
+                                        <a href="#">Album</a>
+                                    </div>
+                                    <button type="button">P</button>
+                                </div>
+                                <div class="reco_song">
+                                    <div class="reco_song1">
+                                        <a href="#">Song title</a>
+                                        <a href="#">Artist</a>
+                                        <a href="#">Album</a>
+                                    </div>
+                                    <button type="button">P</button>
+                                </div>
+                                <div class="reco_song">
+                                    <div class="reco_song1">
+                                        <a href="#">Song title</a>
+                                        <a href="#">Artist</a>
+                                        <a href="#">Album</a>
+                                    </div>
+                                    <button type="button">P</button>
+                                </div>
+                                <div class="reco_song">
+                                    <div class="reco_song1">
+                                        <a href="#">Song title</a>
+                                        <a href="#">Artist</a>
+                                        <a href="#">Album</a>
+                                    </div>
+                                    <button type="button">P</button>
+                                </div>
+                                <div class="reco_song">
+                                    <div class="reco_song1">
+                                        <a href="#">Song title</a>
+                                        <a href="#">Artist</a>
+                                        <a href="#">Album</a>
+                                    </div>
+                                    <button type="button">P</button>
+                                </div>
+                                <div class="reco_song">
+                                    <div class="reco_song1">
+                                        <a href="#">Song title</a>
+                                        <a href="#">Artist</a>
+                                        <a href="#">Album</a>
+                                    </div>
+                                    <button type="button">P</button>
+                                </div>
+                                <div class="reco_song">
+                                    <div class="reco_song1">
+                                        <a href="#">Song title</a>
+                                        <a href="#">Artist</a>
+                                        <a href="#">Album</a>
+                                    </div>
+                                    <button type="button">P</button>
+                                </div>
+                                <div class="reco_song">
+                                    <div class="reco_song1">
+                                        <a href="#">Song title</a>
+                                        <a href="#">Artist</a>
+                                        <a href="#">Album</a>
+                                    </div>
+                                    <button type="button">P</button>
+                                </div>
+                                <div class="reco_song">
+                                    <div class="reco_song1">
+                                        <a href="#">Song title</a>
+                                        <a href="#">Artist</a>
+                                        <a href="#">Album</a>
+                                    </div>
+                                    <button type="button">P</button>
+                                </div>
+                                <div class="reco_song">
+                                    <div class="reco_song1">
+                                        <a href="#">Song title</a>
+                                        <a href="#">Artist</a>
+                                        <a href="#">Album</a>
+                                    </div>
+                                    <button type="button">P</button>
+                                </div>
+                                <div class="reco_song">
+                                    <div class="reco_song1">
+                                        <a href="#">Song title</a>
+                                        <a href="#">Artist</a>
+                                        <a href="#">Album</a>
+                                    </div>
+                                    <button type="button">P</button>
+                                </div>
+                                <div class="reco_song">
+                                    <div class="reco_song1">
+                                        <a href="#">Song title</a>
+                                        <a href="#">Artist</a>
+                                        <a href="#">Album</a>
+                                    </div>
+                                    <button type="button">P</button>
+                                </div>
+                                <div class="reco_song">
+                                    <div class="reco_song1">
+                                        <a href="#">Song title</a>
+                                        <a href="#">Artist</a>
+                                        <a href="#">Album</a>
+                                    </div>
+                                    <button type="button">P</button>
+                                </div>
+                                <div class="reco_song">
+                                    <div class="reco_song1">
+                                        <a href="#">Song title</a>
+                                        <a href="#">Artist</a>
+                                        <a href="#">Album</a>
+                                    </div>
+                                    <button type="button">P</button>
+                                </div>
+                                <div class="reco_song">
+                                    <div class="reco_song1">
+                                        <a href="#">Song title</a>
+                                        <a href="#">Artist</a>
+                                        <a href="#">Album</a>
+                                    </div>
+                                    <button type="button">P</button>
+                                </div>
+                                <div class="reco_song">
+                                    <div class="reco_song1">
+                                        <a href="#">Song title</a>
+                                        <a href="#">Artist</a>
+                                        <a href="#">Album</a>
+                                    </div>
+                                    <button type="button">P</button>
+                                </div>
+                            </div>
                             
-
-
                         </div>
                     </div>
+                </div>
+                <div class="lower_section">
                     <div class="player">
                         <div class="player_1">
-
+                            <div class="song_info">
+                                <div class="title_artist">
+                                    <h1>Tum Hi Ho</h1>
+                                    <h2>Artist name</h2>
+                                </div>
+                                <div class="progress-container1">
+                                    <div class="progress-bar1"></div>
+                                </div>
+                                <div class="controls">
+                                    <button type="button" class="shuffle"></button>
+                                    <button type="button" class="backward"></button>
+                                    <button type="button" class="play1"></button>
+                                    <button type="button" class="pause1" style="display: none;"></button>
+                                    <button type="button" class="forward"></button>
+                                    <button type="button" class="repeat"></button>
+                                </div>
+                                <audio id="audio1" src="{% static 'Perfect.mp3' %}"></audio>
+                            </div>
+                            <div class="aditional_options">
+                                <button type="button" class="like"></button>
+                                <button type="button" class="share"></button>
+                                <button type="button" class="lyrics"></button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</body>
+    <div id="popupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <p id="popupMessage"></p>
+        </div>
+    </div>
+    
+    </body>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+            
+            window.addEventListener('popstate', function (event) {
+                if (event.state && event.state.url) {
+                    loadPage(event.state.url);
+                }
+            });
+        });
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            let currentAudio = null;
+        const audio = document.getElementById('audio1');
+        const playButton = document.querySelector('.play1');
+        const pauseButton = document.querySelector('.pause1');
+        const progressBar = document.querySelector('.progress-bar');
+        const progressContainer = document.querySelector('.progress-container');
+    
+        playButton.addEventListener('click', () => {
+            audio.play();
+            playButton.style.display = 'none';
+            pauseButton.style.display = 'inline-block';
+        });
+    
+        pauseButton.addEventListener('click', () => {
+            audio.pause();
+            pauseButton.style.display = 'none';
+            playButton.style.display = 'inline-block';
+        });
+    
+        audio.addEventListener('timeupdate', () => {
+            const progressPercent = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+        });
+    
+        progressContainer.addEventListener('click', (e) => {
+            const width = progressContainer.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audio.duration;
+    
+            audio.currentTime = (clickX / width) * duration;
+        });
+    });
+    
+    function debounce(func, delay) {
+        return function (...args) {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => func.apply(this, args), delay);
+        };
+    }
+    
+    const handlePlayPause = debounce(function () {
+        const playButton = document.querySelector('.play1');
+        const pauseButton = document.querySelector('.pause1');
+        const audio = document.getElementById('audio1');
+    
+        if (isPlaying) {
+            audio.pause();
+            playButton.style.display = 'inline-block';
+            pauseButton.style.display = 'none';
+        } else {
+            audio.play();
+            playButton.style.display = 'none';
+            pauseButton.style.display = 'inline-block';
+        }
+        isPlaying = !isPlaying;
+    }, 300);
+    
+    document.querySelector('.play1').addEventListener('click', handlePlayPause);
+    document.querySelector('.pause1').addEventListener('click', handlePlayPause);
+    
+    document.addEventListener('DOMContentLoaded', function () {
+        const trendingButton = document.getElementById('trending_section');
+        const s1990Button = document.getElementById('s1990_section');
+        const reccomenctionButton = document.getElementById('reccomention_section');
 
-</html>
+        const upperSection1 = document.getElementsByClassName('upper_section1');
+        const upperSection2 = document.getElementsByClassName('upper_section2');
+        const upperSection3 = document.getElementsByClassName('upper_section3');
+
+        const oldSongsSections = document.getElementsByClassName('old_songs');
+        const featuresSections = document.getElementsByClassName('features');
+        const recommendationSections = document.getElementsByClassName('recommendation');
+
+        const back1 = document.getElementById('back1')
+        
+        const upper_section = document.getElementsByClassName('upper_section');
+    
+        if (trendingButton) {
+            trendingButton.addEventListener('click', function() {
+                // Hide all sections
+                for (const section of oldSongsSections) {
+                    section.style.display = 'none';
+                }
+                for (const section of featuresSections) {
+                    section.style.display = 'none';
+                }
+                for (const section of recommendationSections) {
+                    section.style.display = 'none';
+                }
+                for (const section of upper_section) {
+                    section.style.display = 'none';
+                }
+
+                // Show the upper_section1
+                for (const section of upperSection1) {
+                    section.style.display = 'flex';
+                }
+            });
+        }
+
+        if (s1990Button) {
+            s1990Button.addEventListener('click', function() {
+                // Hide all sections
+                for (const section of oldSongsSections) {
+                    section.style.display = 'none';
+                }
+                for (const section of featuresSections) {
+                    section.style.display = 'none';
+                }
+                for (const section of recommendationSections) {
+                    section.style.display = 'none';
+                }
+                for (const section of upper_section) {
+                    section.style.display = 'none';
+                }
+
+                // Show the upper_section1
+                for (const section of upperSection2) {
+                    section.style.display = 'flex';
+                }
+            });
+        }
+
+        if (reccomenctionButton) {
+            reccomenctionButton.addEventListener('click', function() {
+                // Hide all sections
+                for (const section of oldSongsSections) {
+                    section.style.display = 'none';
+                }
+                for (const section of featuresSections) {
+                    section.style.display = 'none';
+                }
+                for (const section of recommendationSections) {
+                    section.style.display = 'none';
+                }
+                for (const section of upper_section) {
+                    section.style.display = 'none';
+                }
+
+                // Show the upper_section1
+                for (const section of upperSection3) {
+                    section.style.display = 'flex';
+                }
+            });
+        }
+
+        if (back1) {
+            back1.addEventListener('click', function() {
+                // Hide all sections
+                for (const section of oldSongsSections) {
+                    section.style.display = 'block';
+                }
+                for (const section of featuresSections) {
+                    section.style.display = 'flex';
+                }
+                for (const section of recommendationSections) {
+                    section.style.display = 'flex';
+                }
+                for (const section of upper_section) {
+                    section.style.display = 'flex';
+                }
+
+                // Show the upper_section1
+                for (const section of upperSection1) {
+                    section.style.display = 'none';
+                }
+            });
+        }
+
+
+        if (back2) {
+            back2.addEventListener('click', function() {
+                // Hide all sections
+                for (const section of oldSongsSections) {
+                    section.style.display = 'flex';
+                }
+                for (const section of featuresSections) {
+                    section.style.display = 'flex';
+                }
+                for (const section of recommendationSections) {
+                    section.style.display = 'flex';
+                }
+                for (const section of upper_section) {
+                    section.style.display = 'flex';
+                }
+
+                // Show the upper_section1
+                for (const section of upperSection2) {
+                    section.style.display = 'none';
+                }
+            });
+        }
+
+
+        if (back3) {
+            back3.addEventListener('click', function() {
+                // Hide all sections
+                for (const section of oldSongsSections) {
+                    section.style.display = 'flex';
+                }
+                for (const section of featuresSections) {
+                    section.style.display = 'flex';
+                }
+                for (const section of recommendationSections) {
+                    section.style.display = 'block';
+                }
+                for (const section of upper_section) {
+                    section.style.display = 'flex';
+                }
+
+                // Show the upper_section1
+                for (const section of upperSection3) {
+                    section.style.display = 'none';
+                }
+            });
+        }
+    });
+    
+
+
+
+
+
+    </script>
+    
+    </html>
+    
