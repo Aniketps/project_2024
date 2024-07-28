@@ -11,6 +11,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
+
+
+
 <body>
     <div class="container">
         <div class="navbar">
@@ -25,10 +28,33 @@
         <div class="main_div">
             <div class="search_bar">
                 <div class="search_bar_1">
-                    <div class="search_bar_2">
+                    <form class="search_bar_2" method="post">
+                        {% csrf_token %}
                         <label for="search">🔎︎</label>
                         <input type="text" id="search" name="search" placeholder="Search">
-                        <button type="submit">Search</button>
+                        <button type="button" id="search_main">Search</button>
+                    </form>
+                    <div class="search_data" style="display: none;">
+                        <table>
+                            <tbody>
+                                {% for i in seatch_result %}
+                                <tr>
+                                    <td>
+                                        <button class="play9" data-url="{{ i.url }}" data-title="{{ i.name }}"
+                                            data-artist="{{ i.artist }}">
+
+                                        </button>
+                                        <button class="pause9" data-url="{{ i.url }}" style="display: none;">
+
+                                        </button>
+                                    </td>
+                                    <td><a href="#">{{ i.name }}</a></td>
+                                    <td>{{ i.artist }}</td>
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
                     </div>
                     <div class="libraries_history">
                         <div class="libraries">
@@ -79,11 +105,12 @@
                                     {% for i in trending_song_list %}
                                     <tr>
                                         <td>
-                                            <button class="play5" data-url="{{ i.url }}" data-title="{{ i.name }}" data-artist="{{ i.artist }}">
-                                                 
+                                            <button class="play5" data-url="{{ i.url }}" data-title="{{ i.name }}"
+                                                data-artist="{{ i.artist }}">
+
                                             </button>
                                             <button class="pause5" data-url="{{ i.url }}" style="display: none;">
-                                                 
+
                                             </button>
                                         </td>
                                         <td><a href="#">{{ i.name }}</a></td>
@@ -125,11 +152,12 @@
                                     {% for i in s1990_song_list %}
                                     <tr>
                                         <td>
-                                            <button class="play6" data-url="{{ i.url }}" data-title="{{ i.name }}" data-artist="{{ i.artist }}">
-                                                 
+                                            <button class="play6" data-url="{{ i.url }}" data-title="{{ i.name }}"
+                                                data-artist="{{ i.artist }}">
+
                                             </button>
                                             <button class="pause6" data-url="{{ i.url }}" style="display: none;">
-                                                 
+
                                             </button>
                                         </td>
                                         <td><a href="#">{{ i.name }}</a></td>
@@ -170,11 +198,12 @@
                                     {% for i in special_song_list %}
                                     <tr>
                                         <td>
-                                            <button class="play7" data-url="{{ i.url }}" data-title="{{ i.name }}" data-artist="{{ i.artist }}">
+                                            <button class="play7" data-url="{{ i.url }}" data-title="{{ i.name }}"
+                                                data-artist="{{ i.artist }}"">
                                                  
                                             </button>
-                                            <button class="pause7" data-url="{{ i.url }}" style="display: none;">
-                                                 
+                                            <button class=" pause7" data-url="{{ i.url }}" style="display: none;">
+
                                             </button>
                                         </td>
                                         <td><a href="#">{{ i.name }}</a></td>
@@ -248,8 +277,10 @@
                                         <dt><a href="#">{{ i.album }}</a></dt>
                                         <dt><a href="#">{{ i.artist }}</a></dt>
                                     </div>
-                                    <button class="play8" type="button" data-url="{{ i.url }}" data-title="{{ i.name }}" data-artist="{{ i.artist }}"></button>
-                                    <button class="pause8" type="button" data-url="{{ i.url }}" style="display: none;"></button>
+                                    <button class="play8" type="button" data-url="{{ i.url }}" data-title="{{ i.name }}"
+                                        data-artist="{{ i.artist }}""></button>
+                                    <button class=" pause8" type="button" data-url="{{ i.url }}"
+                                        style="display: none;"></button>
                                 </div>
                                 {% endfor %}
                             </div>
@@ -294,46 +325,102 @@
             <p id="popupMessage"></p>
         </div>
     </div>
-
 </body>
 
 <script>
-    
+    {/* document.addEventListener('DOMContentLoaded', function () {
+        const searchButton = document.getElementById('search_main');
+        const searchForm = document.getElementById('searchForm');
+        const searchSection = document.querySelector('.search_data');
+        const searchResultsBody = document.getElementById('searchResultsBody');
+
+        searchForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(searchForm);
+
+            fetch(searchForm.action, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                },
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Clear previous results
+                searchResultsBody.innerHTML = '';
+
+                // Insert new results
+                searchResultsBody.innerHTML = data;
+
+                // Show the search data section
+                searchSection.style.display = 'flex';
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!searchSection.contains(event.target) && event.target !== searchButton) {
+                searchSection.style.display = 'none';
+            } 
+        });
+    }); */}
+
+
 
     document.addEventListener('DOMContentLoaded', function () {
         const audio = document.getElementById('audio');
         const playButton = document.querySelector('.play');
         const pauseButton = document.querySelector('.pause');
+        const nextButton = document.querySelector('.forward');  // Corrected to match your previous message
+        const prevButton = document.querySelector('.backward'); // Corrected to match your previous message
         const progressBar = document.querySelector('.progress-bar1');
         const progressContainer = document.querySelector('.progress-container1');
         const title = document.querySelector('.title');
         const artist = document.querySelector('.artist');
 
         let isPlaying = false;
+        let currentSongIndex = 0;
+        let songList = [];
 
-        function handleButtonClick(event) {
-            const url = event.target.getAttribute('data-url');
-            const Title = event.target.getAttribute('data-title');
-            const Artist = event.target.getAttribute('data-artist');
-            audio.src = url;
-            title.textContent = Title;
-            artist.textContent = Artist;
-            audio.play();
-            playButton.style.display = 'none';
-            pauseButton.style.display = 'inline-block';
-            isPlaying = true;
+        function handleButtonClick(song) {
+            if (song.url && song.title && song.artist) {
+                audio.src = song.url;
+                title.textContent = song.title;
+                artist.textContent = song.artist;
+                audio.play();
+                playButton.style.display = 'none';
+                pauseButton.style.display = 'inline-block';
+                isPlaying = true;
+
+                // Update the current song index
+                currentSongIndex = songList.findIndex(s => s.url === song.url);
+            } else {
+                console.error('Invalid song data:', song);
+            }
         }
 
-        
-        document.querySelectorAll('.play5, .play6, .play7, .play8').forEach(button => {
-            button.addEventListener('click', handleButtonClick);
-            
+        document.querySelectorAll('.play5, .play6, .play7, .play8').forEach((button, index) => {
+            const song = {
+                url: button.getAttribute('data-url'),
+                title: button.getAttribute('data-title'),
+                artist: button.getAttribute('data-artist')
+            };
+            songList.push(song);
+
+            button.addEventListener('click', () => {
+                handleButtonClick(song);
+            });
         });
+
         playButton.addEventListener('click', () => {
-            audio.play();
-            playButton.style.display = 'none';
-            pauseButton.style.display = 'inline-block';
-            isPlaying = true;
+            if (audio.src) {
+                audio.play();
+                playButton.style.display = 'none';
+                pauseButton.style.display = 'inline-block';
+                isPlaying = true;
+            }
         });
 
         pauseButton.addEventListener('click', () => {
@@ -343,20 +430,39 @@
             isPlaying = false;
         });
 
-        // Update progress bar as audio plays
         audio.addEventListener('timeupdate', () => {
             const progressPercent = (audio.currentTime / audio.duration) * 100;
             progressBar.style.width = `${progressPercent}%`;
         });
 
-        // Seek through audio when clicking on the progress container
         progressContainer.addEventListener('click', (e) => {
             const width = progressContainer.clientWidth;
             const clickX = e.offsetX;
             const duration = audio.duration;
             audio.currentTime = (clickX / width) * duration;
         });
+
+        nextButton.addEventListener('click', () => {
+            if (songList.length > 0) {
+                currentSongIndex = (currentSongIndex + 1) % songList.length;
+                const nextSong = songList[currentSongIndex];
+                handleButtonClick(nextSong);
+            }
+        });
+
+        prevButton.addEventListener('click', () => {
+            if (songList.length > 0) {
+                currentSongIndex = (currentSongIndex - 1 + songList.length) % songList.length;
+                const prevSong = songList[currentSongIndex];
+                handleButtonClick(prevSong);
+            }
+        });
+
+        audio.addEventListener('error', () => {
+            console.error('Failed to load audio source:', audio.src);
+        });
     });
+
     function debounce(func, delay) {
         return function (...args) {
             clearTimeout(debounceTimer);
@@ -403,7 +509,7 @@
 
         if (trendingButton) {
             trendingButton.addEventListener('click', function () {
-                // Hide all sections
+
                 for (const section of oldSongsSections) {
                     section.style.display = 'none';
                 }
@@ -417,7 +523,7 @@
                     section.style.display = 'none';
                 }
 
-                // Show the upper_section1
+
                 for (const section of upperSection1) {
                     section.style.display = 'flex';
                 }
@@ -426,7 +532,7 @@
 
         if (s1990Button) {
             s1990Button.addEventListener('click', function () {
-                // Hide all sections
+
                 for (const section of oldSongsSections) {
                     section.style.display = 'none';
                 }
@@ -440,7 +546,7 @@
                     section.style.display = 'none';
                 }
 
-                // Show the upper_section1
+
                 for (const section of upperSection2) {
                     section.style.display = 'flex';
                 }
@@ -449,7 +555,7 @@
 
         if (reccomenctionButton) {
             reccomenctionButton.addEventListener('click', function () {
-                // Hide all sections
+
                 for (const section of oldSongsSections) {
                     section.style.display = 'none';
                 }
@@ -463,7 +569,7 @@
                     section.style.display = 'none';
                 }
 
-                // Show the upper_section1
+
                 for (const section of upperSection3) {
                     section.style.display = 'flex';
                 }
@@ -472,7 +578,7 @@
 
         if (back1) {
             back1.addEventListener('click', function () {
-                // Hide all sections
+
                 for (const section of oldSongsSections) {
                     section.style.display = 'block';
                 }
@@ -486,7 +592,7 @@
                     section.style.display = 'flex';
                 }
 
-                // Show the upper_section1
+
                 for (const section of upperSection1) {
                     section.style.display = 'none';
                 }

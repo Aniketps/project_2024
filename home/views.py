@@ -130,14 +130,18 @@ def fetch_songs(query, limit=50):
 
 def frontend(request):
 
+    if request.method == 'POST':
+        search_query = request.POST.get('search')
+        search_results = fetch_songs(search_query, limit=30)
+          
+        return render(request, 'frontend.html', {'seatch_result': search_results})
+    
     trending_songs = fetch_songs("marathi", limit=50) 
-    nineties_songs = fetch_songs("1990s hindi", limit=50) 
-    for song in trending_songs:
-        print(song) 
+    nineties_songs = fetch_songs("1990s hindi", limit=50)  
     todays_special_songs = fetch_songs("arijit singh", limit=50)  
-    return render(request, 'frontend.html', {"trending_song_list": trending_songs,
+    return render(request, 'frontend.html', {'trending_song_list': trending_songs,
                                              "s1990_song_list": nineties_songs,
-                                             "special_song_list": todays_special_songs})
+                                             'special_song_list': todays_special_songs})
  
 
 def recommendation(request): 
