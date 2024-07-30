@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from home.views import home, register, mimicking_page, tune_page, frontend, recommendation, listen2gether, piano, guitar, violien, trending, s1990, login_page
+from home.views import home, register, mimicking_page, tune_page, frontend, recommendation, listen2gether, piano, guitar, violien, login_page 
 from django.conf.urls.static import static
 from django.conf import settings 
 
@@ -33,9 +33,6 @@ urlpatterns = [
     path('listen2gether/', listen2gether, name='listen2gether'),
     path('piano/', piano, name='piano'),
     path('guitar/', guitar, name='guitar'),
-    path('violen/', violien, name='violien'),
-    path('trending/', trending, name='trending'),
-    path('s1990/', s1990, name='s1990'),
-    
+    path('violen/', violien, name='violien'),  
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

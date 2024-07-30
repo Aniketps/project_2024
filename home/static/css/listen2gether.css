@@ -8,7 +8,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #C0C0C0;
+    background-color: #000;
 }
 
 .container {
@@ -22,12 +22,12 @@ body {
 .navbar {
     height: 10%;
     width: 100%;
-    box-shadow: 1px 2px 4px 2px rgb(254, 254, 254);
+    box-shadow: 1px 1px 5px #333;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 10px;
-    background-color: rgba(235, 54, 235, 0.909)
+    background-image: linear-gradient(to right, black, rgba(255, 0, 0, 0.715));
 }
 
 .navbar .logo {
@@ -43,7 +43,7 @@ body {
 }
 
 .navbar .nav-links a {
-    color: #010000;
+    color: aqua;
     text-decoration: none;
     margin-left: 10px;
     font-size: 15px;
@@ -99,10 +99,10 @@ body {
 }
 
 .search_bar_1 {
-    background-image: linear-gradient(violet, silver);
+    background-image: linear-gradient(to right, black, rgba(255, 0, 0, 0.715));
     height: 100%;
     width: 100%;
-    box-shadow: 1px 1px 5px rgb(10, 8, 8);
+    box-shadow: 1px 1px 5px #333;
     border-radius: 10px;
     padding: 25px;
     box-sizing: border-box;
@@ -131,7 +131,7 @@ body {
 }
 
 .search_bar_2 input[type="text"]::placeholder {
-    color: #666;
+    color: aqua;
 }
 
 .search_bar_2 button {
@@ -149,6 +149,88 @@ body {
 
 .search_bar_2 button:hover {
     background-color: #45a049;
+}
+
+.search_data {
+    background-image: linear-gradient(to right, black, rgba(255, 0, 0, 0.715));
+    padding: 25px;
+    position: relative;
+    position: fixed;
+    width: 30%;
+    border-radius: 20px;
+    height: 40%;
+    z-index: 1;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    padding: 0 10px 10px 10px; 
+}
+
+
+.play9{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/4340/4340106.png");
+    background-position: center;
+    background-size: cover;
+}
+.search_data table {
+    width: 100%;
+    border-collapse: collapse;
+    background: transparent;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.search_data tbody {
+    display: block;
+    overflow-x: auto;
+    max-height: 280px; 
+}
+
+.search_data tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    
+}
+
+.search_data tbody tr:nth-child(even) {
+    background: transparent;
+}
+
+.search_data tbody td {
+    padding: 15px;
+    text-align: left;
+    color: aqua;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search_data tbody button{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%
+}
+
+.search_data a {
+    text-decoration: none;
+    color: aqua;
+    display: inline-block;
+    max-width: 100%;    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+}
+
+
+.search_data tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.63);
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px #333;
+}
+
+.search_data tbody::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
 }
 
 .main_screen {
@@ -213,10 +295,10 @@ body {
 }
 
 .player_1 {
-    background-image: linear-gradient(black, black);
+    background-image: linear-gradient(to right, black, rgba(255, 0, 0, 0.715));
     height: 100%;
     width: 100%;
-    box-shadow: 1px 1px 5px rgb(10, 8, 8);
+    box-shadow: 0 4px 8px #333;
     border-radius: 10px;
     display: flex;
     flex-direction: row;
@@ -270,7 +352,7 @@ body {
 }
 
 .progress-bar1 {
-    background-color: #4caf50;
+    background-color: #000000;
     width: 0;
     transition: width 0.2s;
 }
@@ -280,7 +362,7 @@ body {
 }
 
 .controls button{
-    box-shadow: 0 0 10px red;
+    box-shadow: 1px 1px 5px #333;
     border: none;
     border-radius: 50%;
     height: 35px;
@@ -291,7 +373,7 @@ body {
 
 .controls button:hover{
     transform: scale(1.1);
-    box-shadow: 0 0 10px white;
+    box-shadow: 1px 1px 5px #333;
 }
 
 .controls .shuffle{
@@ -312,13 +394,13 @@ body {
     background-size: cover;
 }
 
-.controls .pause1{
+.controls .pause{
     background-image: url("https://cdn-icons-png.flaticon.com/128/4340/4340118.png");
     background-position: center;
     background-size: cover;
 }
 
-.controls .play1{
+.controls .play{
     background-image: url("https://cdn-icons-png.flaticon.com/512/4340/4340106.png");
     background-position: center;
     background-size: cover;
@@ -332,7 +414,7 @@ body {
 
 
 .aditional_options button{
-    box-shadow: 0 0 10px red;
+    box-shadow: 1px 1px 5px #333;
     background: transparent;
     border: none;
     border-radius: 50%;
@@ -343,7 +425,7 @@ body {
 
 .aditional_options button:hover{
     transform: scale(1.1);
-    box-shadow: 0 0 10px white;
+    box-shadow: 1px 1px 5px #333;
 }
 
 .aditional_options .share{
@@ -373,18 +455,87 @@ body {
     display: flex;
     flex-direction:column;
 }
+.centered{
+    position: absolute;
+    transform:translate(-50%,-50%);
+    
+    margin-top: 5%;
+    margin-left: 17%;
+}
+
+.centered a{
+    text-decoration: none;
+    font-size: 35px;
+    font-family: Georgia;
+    color:rgb(255, 255, 255);
+}
+
+.libraries_history{
+    height: 90%;
+    /* border: 1px solid #000000; */
+    margin-top: 20px;
+}
+
+.libraries{
+    box-shadow: 1px 1px 5px #333;
+    width: 100%;
+    border-radius: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.libraries a{
+    text-decoration: none;
+    font-family: georiga;
+    font-size: 22px;
+    font-weight: bold;
+    color: aqua;
+    
+}
+
+.libraries h1{
+    margin-top: 0;
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+.history{
+    box-shadow: 1px 1px 5px #333;
+    width: 100%;
+    border-radius: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.history a{
+    text-decoration: none;
+    font-family: georiga;
+    font-size: 22px;
+    font-weight: bold;
+    color: aqua;
+}
 
 
+.controls .pause{
+    background-image: url("https://cdn-icons-png.flaticon.com/128/4340/4340118.png");
+    background-position: center;
+    background-size: cover;
+}
 
-
-
-
-
+.controls .play{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/4340/4340106.png");
+    background-position: center;
+    background-size: cover;
+}
 
 
 
 .collaborative_player_container {
-    background-image: linear-gradient(violet, silver);
+    background-image: linear-gradient(to right, black, rgba(255, 0, 0, 0.715));
     width: 60%;
     border: 1px solid #010000;
     margin: 20px 10px 10px 20px;
@@ -432,7 +583,6 @@ body {
     display: block;
     overflow-x: auto;
     max-height: 310px;
-    
 }
 
 .collaborative_player_container tbody tr {
@@ -450,6 +600,10 @@ body {
     padding: 15px;
     text-align: left;
     font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: aqua;
 }
 
 .collaborative_player_container tbody tr:hover {
@@ -463,13 +617,39 @@ body {
     display: none; /* For Chrome, Safari, and Opera */
 }
 
+.collaborative_player_container .play1{
+    background-image: url('https://cdn-icons-png.flaticon.com/512/4340/4340106.png');
+    background-position: center;
+    background-size: cover;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+
+}
+.collaborative_player_container a {
+    text-decoration: none;
+    color: aqua;
+    display: inline-block;
+    max-width: 100%;    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+}
+
+.collaborative_player_container_search_header h2{
+    font-size: 25px;
+    font-family: Georgia, serif;
+    color: aqua;
+    white-space: nowrap;
+    margin-right: 10px;
+}
 .collaborative_member_container {
-    background-image: linear-gradient(violet, silver);
+    background-image: linear-gradient(to right, black, rgba(255, 0, 0, 0.715));
     width: 40%;
     border: 1px solid #010000;
-    margin: 20px 10px 10px 20px;
+    margin: 20px 20px 10px 10px;
     border-radius: 10px;
-    box-shadow: 5px 1px 2px 3px #004d1aaf;
+    box-shadow: 5px 2px 3px aqua;
     max-height: 100%;
     padding: 25px;
     position: relative;
@@ -511,7 +691,7 @@ body {
 .collaborative_member_container tbody {
     display: block;
     overflow-x: auto;
-    max-height: 365px;
+    max-height: 310px;
 }
 
 .collaborative_member_container tbody tr {
@@ -527,6 +707,10 @@ body {
 
 .collaborative_member_container tbody td {
     padding: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: aqua;
     text-align: left;
     font-size: 14px;
 }
@@ -542,6 +726,23 @@ body {
     display: none; /* For Chrome, Safari, and Opera */
 }
 
+.collaborative_member_container a {
+    text-decoration: none;
+    color: aqua;
+    display: inline-block;
+    max-width: 100%;    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+}
+
+.collaborative_member_container_search_header h2{
+    font-size: 25px;
+    font-family: Georgia, serif;
+    color: aqua;
+    white-space: nowrap;
+    margin-right: 10px;
+}
 
 .collaborative_player_container_search_header{
     display: flex;
@@ -600,6 +801,7 @@ body {
 
 .member_options h2{
     font-size: 25px;
+    color: aqua;
     font-family: Georgia, serif;
     white-space: nowrap;
     margin-right: 10px;
@@ -654,7 +856,6 @@ body {
     background: none;
     cursor: pointer;
     outline: none;
-    padding: 10px;
     color: #555;
     box-shadow: 1px 2px 2px 1px #070707;
     border-radius: 60%;
@@ -670,7 +871,6 @@ body {
     background: none;
     cursor: pointer;
     outline: none;
-    padding: 10px;
     color: #555;
     box-shadow: 1px 2px 2px 1px #070707;
     border-radius: 60%;
@@ -678,4 +878,174 @@ body {
 .pause:hover{
     transition: color 0.3s;
     transform: scale(1.05);
+}
+
+/* Add new member */
+
+.add_new_member{
+    height: 70%;
+    width: 70%;
+    position: relative;
+    position: fixed;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner_add_new_member{
+    height: 50%;
+    width: 50%;
+    border-radius: 20px;
+    align-items: center;
+    display: flex;
+    background-image: linear-gradient(to right, black, rgb(255, 0, 0));
+    flex-direction: column;
+    justify-items: center;
+    box-shadow: 1px 2px 2px white;
+}
+
+.add_new_member h1{
+    margin-top: 10%;
+    height: 20%;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.add_new_member input{
+    height: 15%;
+    border: none;
+    border-radius: 30px;
+    width: 50%;
+}
+
+.add_new_member button{
+    height: 20%;
+    margin-top: 2%;
+    border: none;
+    background-color: greenyellow;
+    border-radius: 40px;
+    font-weight: bold;
+}
+
+.add_new_member button:hover{
+    background-color: rgb(103, 167, 8);
+    transform: scale(1.01);
+}
+
+
+/* Share Environment */
+
+.share_environment{
+    height: 70%;
+    width: 70%;
+    position: relative;
+    position: fixed;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner_share_environment{
+    height: 50%;
+    width: 50%;
+    border-radius: 20px;
+    align-items: center;
+    display: flex;
+    background-image: linear-gradient(to right, black, rgb(255, 0, 0));
+    flex-direction: column;
+    justify-items: center;
+    box-shadow: 1px 2px 2px white;
+}
+
+.share_environment h1{
+    margin-top: 10%;
+    height: 20%;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.share_environment input{
+    height: 15%;
+    border: none;
+    border-radius: 30px;
+    width: 50%;
+}
+
+.share_environment button{
+    height: 17%;
+    width: 15%;
+    margin-top: 2%;
+    border: none;
+    background-color: greenyellow;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.share_environment button:hover{
+    background-color: rgb(103, 167, 8);
+    transform: scale(1.01);
+}
+
+
+/* Leaving Environment */
+
+.exit_enviroment{
+    height: 70%;
+    width: 70%;
+    position: relative;
+    position: fixed;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner_exit_enviroment{
+    height: 50%;
+    width: 50%;
+    border-radius: 20px;
+    align-items: center;
+    display: flex;
+    background-image: linear-gradient(to right, black, rgb(255, 0, 0));
+    flex-direction: column;
+    justify-items: center;
+    box-shadow: 1px 2px 2px white;
+}
+
+.exit_enviroment h1{
+    margin-top: 10%;
+    height: 20%;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.exit_enviroment h2{
+    height: 10%;
+    margin-top: 0;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
+.inner_inner_exit_enviroment{
+    height: 17%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+.exit_enviroment button{
+    width: 15%;
+    height: 80%;
+    margin: 0 20px 0 20px;
+    border: none;
+    background-color: greenyellow;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.exit_enviroment button:hover{
+    background-color: rgb(103, 167, 8);
+    transform: scale(1.01);
 }

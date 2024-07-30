@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.http import JsonResponse
 import os # temp
 from django.conf import settings # temp
@@ -9,6 +9,7 @@ import soundfile as sf
 from .mimiking import mimiking
 from .tune import tune
 import requests
+from django.views.decorators.csrf import csrf_exempt
 
 
 # mimiking imports
@@ -130,15 +131,32 @@ def fetch_songs(query, limit=50):
 
 def frontend(request):
 
-    if request.method == 'POST':
-        search_query = request.POST.get('search')
-        search_results = fetch_songs(search_query, limit=30)
+    # if 'term' in request.GET:
+    #     # search_query = request.POST.get('search')
+    #     search_results = fetch_songs('mahi', limit=30)
+        
+    #     names = []
+        
+    #     for name in search_results:
+    #         names.append(name['name'])
+            
+    #     print(names)
+    #     print(type(names))
+        
+    #     return JsonResponse(name, safe = false)
+        
+    # if request.method == 'POST':
+    #     search_query = request.POST.get('search')
+    #     search_results = fetch_songs(search_query, limit=30)
           
-        return render(request, 'frontend.html', {'seatch_result': search_results})
+    #     return render(request, 'frontend.html', {'seatch_result': search_results})
+    
     
     trending_songs = fetch_songs("marathi", limit=50) 
     nineties_songs = fetch_songs("1990s hindi", limit=50)  
     todays_special_songs = fetch_songs("arijit singh", limit=50)  
+
+    
     return render(request, 'frontend.html', {'trending_song_list': trending_songs,
                                              "s1990_song_list": nineties_songs,
                                              'special_song_list': todays_special_songs})
@@ -146,12 +164,6 @@ def frontend(request):
 
 def recommendation(request): 
     return render(request, 'recommendation.html')
- 
-def trending(request):  
-    return render(request, 'trending.html') 
-
-def s1990(request):  
-    return render(request, 's1990.html') 
 
 def piano(request):  
     return render(request, 'piano.html') 
@@ -163,72 +175,49 @@ def violien(request):
     return render(request, 'violien.html') 
 
 def listen2gether(request):
-    # query = 'tuh hi ho'
-
-    # url = f"https://spotify23.p.rapidapi.com/search/?q={query}&type=track"
-    # response = requests.get(url, headers=headers) 
-
     
-    contents = {
-    'songs': [
-        {'title': 'Song Title 1', 'artist': 'Artist 1'},
-        {'title': 'Song Title 2', 'artist': 'Artist 2'},
-        {'title': 'Song Title 3', 'artist': 'Artist 3'},
-        {'title': 'Song Title 2', 'artist': 'Artist 2'},
-        {'title': 'Song Title 1', 'artist': 'Artist 1'},
-        {'title': 'Song Title 2', 'artist': 'Artist 2'},
-        {'title': 'Song Title 1', 'artist': 'Artist 1'},
-        {'title': 'Song Title 2', 'artist': 'Artist 2'},
-        {'title': 'Song Title 1', 'artist': 'Artist 1'},
-        {'title': 'Song Title 2', 'artist': 'Artist 2'},
-        {'title': 'Song Title 1', 'artist': 'Artist 1'},
-        {'title': 'Song Title 2', 'artist': 'Artist 2'}, 
-    ]
-}
+    contents = fetch_songs('Arjit Singh', limit=50) 
             
-     
-    return render(request, "listen2gether.html", contents)  
+    return render(request, "listen2gether.html", {'contents': contents})  
  
     
-
+@csrf_exempt
 def mimicking_page(request):
     if request.method == 'POST':
-        form = AudioUploadForm(request.POST, request.FILES)
-        if form.is_valid():
-            audio_file = request.FILES['audio_file']
-            conversion_type = form.cleaned_data.get('conversion_type', None)
-
-            y, sr = librosa.load(audio_file.temporary_file_path() if hasattr(audio_file, 'temporary_file_path') else audio_file)
-            output_file = os.path.join(settings.BASE_DIR, 'home', 'static', 'uploads', 'mikicking', f'{audio_file.name.split(".")[0]}.wav')
-            sf.write(output_file, y, sr)
-
-            
-            # ready = mimiking(output_file, 0, 1)
-              
-            if conversion_type == 'male_to_female':
-                ready = mimiking(output_file, 1, 0)
-            elif conversion_type == 'male_to_child':
-                ready = mimiking(output_file, 1, 2)
-            elif conversion_type == 'female_to_male':
-                ready = mimiking(output_file, 0, 1)
-            elif conversion_type == 'female_to_child':
-                ready = mimiking(output_file, 0, 2)  
-            else:
-                 
-                return JsonResponse({'message': 'Invalid conversion type'}, status=400)
- 
-            mimicked_output_file = os.path.join(settings.BASE_DIR, 'home', 'static', 'uploads', 'mikicking', f'{output_file.split(".")[0]}_mimicked.wav')
-            sf.write(mimicked_output_file, ready, sr)
-                        
-            download_url = f'/static/uploads/mimicking/{os.path.basename(mimicked_output_file)}'
-            
-            return JsonResponse({'download_url': download_url})
+        convert_to = request.POST.getlist('convert_to');
+        
+        input_voice = 0
+        output_voice = 0
+        
+        if 'male_to_female' in convert_to:
+            input_voice = 1
+            output_voice = 0
+        elif 'male_to_child' in convert_to:
+            input_voice = 1
+            output_voice = 2
+        elif 'female_to_male' in convert_to:
+            input_voice = 0
+            output_voice = 1
         else:
-            return JsonResponse({'message': 'Form is not valid', 'error': f'{form.errors}'}, status=400)
-    else:
-        form = AudioUploadForm()
+            input_voice = 0
+            output_voice = 2
+            
+        audio_file = request.FILES.get('audio_file') 
+        if not audio_file:
+            return HttpResponse("No audio file uploaded", status=400)
 
-    return render(request, 'mimicking.html', {'form': form})
+        try:
+            y, sr = librosa.load(audio_file, sr=None) 
+            output_file = mimiking(y,sr, input_voice, output_voice)
+            save_path = os.path.join(settings.BASE_DIR,'home', 'static', 'uploads', 'mimicking', f'{audio_file.name.split(".")[0]}.wav')
+            os.makedirs(os.path.dirname(save_path), exist_ok=True)
+            sf.write(save_path, output_file, sr)
+            download_file = f'/static/uploads/mimicking/{audio_file.name.split(".")[0]}.wav'
+            return JsonResponse({'download_url': download_file, 'title': audio_file.name.split(".")[0]})  
+        except Exception as e:
+            return HttpResponse(f"Error processing audio file: {e}", status=500) 
+    else:
+        return render(request, 'mimicking.html')
 
 def tune_page(request):
     if request.method == 'POST':

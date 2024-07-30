@@ -8,7 +8,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #C0C0C0;
+    background-color: #000;
 }
 
 .container {
@@ -22,12 +22,12 @@ body {
 .navbar {
     height: 10%;
     width: 100%;
-    box-shadow: 1px 2px 4px 2px rgb(254, 254, 254);
+    box-shadow: 1px 1px 5px #333;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 10px;
-    background-color: rgba(235, 54, 235, 0.909)
+    background-image: linear-gradient(to right, black, rgba(255, 0, 0, 0.715));
 }
 
 .navbar .logo {
@@ -43,7 +43,7 @@ body {
 }
 
 .navbar .nav-links a {
-    color: #010000;
+    color: aqua;
     text-decoration: none;
     margin-left: 10px;
     font-size: 15px;
@@ -99,16 +99,14 @@ body {
 }
 
 .search_bar_1 {
-    background-image: linear-gradient(violet, silver);
+    background-image: linear-gradient(to right, black, rgba(255, 0, 0, 0.715));
     height: 100%;
     width: 100%;
-    box-shadow: 1px 1px 5px rgb(10, 8, 8);
+    box-shadow: 1px 1px 5px #333;
     border-radius: 10px;
     padding: 25px;
     box-sizing: border-box;
 }
-
-
 .search_bar_2 {
     background-color: #f5eded;
     padding: 5px;
@@ -133,7 +131,7 @@ body {
 }
 
 .search_bar_2 input[type="text"]::placeholder {
-    color: #666;
+    color: aqua;
 }
 
 .search_bar_2 button {
@@ -153,6 +151,88 @@ body {
     background-color: #45a049;
 }
 
+.search_data {
+    background-image: linear-gradient(to right, black, rgba(255, 0, 0, 0.715));
+    padding: 25px;
+    position: relative;
+    position: fixed;
+    width: 30%;
+    border-radius: 20px;
+    height: 40%;
+    z-index: 1;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    padding: 0 10px 10px 10px; 
+}
+
+
+.play9{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/4340/4340106.png");
+    background-position: center;
+    background-size: cover;
+}
+.search_data table {
+    width: 100%;
+    border-collapse: collapse;
+    background: transparent;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.search_data tbody {
+    display: block;
+    overflow-x: auto;
+    max-height: 280px; 
+}
+
+.search_data tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    
+}
+
+.search_data tbody tr:nth-child(even) {
+    background: transparent;
+}
+
+.search_data tbody td {
+    padding: 15px;
+    text-align: left;
+    color: aqua;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search_data tbody button{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%
+}
+
+.search_data a {
+    text-decoration: none;
+    color: aqua;
+    display: inline-block;
+    max-width: 100%;    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+}
+
+
+.search_data tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.63);
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px #333;
+}
+
+.search_data tbody::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+}
+
 .main_screen {
     width: 80%;
     height: 100%;
@@ -162,8 +242,7 @@ body {
 
 
 .upper_section {
-    height: 78%;
-    /* margin-bottom: 5px; */
+    height: 100%;
     display: flex;
 }
 
@@ -334,24 +413,51 @@ body {
     background-color: rgb(249, 195, 249);
 }
 
-.conversion-options button {
+#conversion-options{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 5px 5px 10px;
+}
+
+#conversion-options button {
     border: none;
-    background-color: #15ad01;
+    background-color: orange;
     height: 40px;
     border-radius: 10px;
-    width: 80px;
-    margin-top: 20px;
-    margin-left: 50px;
+    margin: 5% 20% 0 20%;
 }
 
-.conversion-options button:hover {
-    background-color: #45a049;
+#conversion-options button:hover{
+    background-color: navajowhite;
 }
 
+.for_download_and_submit{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
 .conversion-options_1 {
     display: flex;
     flex-direction: row;
     align-items: end;
+}
+
+.conversion-options_1 input{
+    width: 40px; 
+    height: 40px;
+    border: 1px solid #000;
+    border-radius: 50%;
+    transition: box-shadow .3s;
+    background: rgb(255, 255, 255);
+    cursor: pointer;
+    appearance: none; -webkit-appearance: none; 
+}
+
+.conversion-options_1 input:checked{ 
+    box-shadow: inset 0 0 0 20px orange;
 }
 
 .player_for_converted {
@@ -553,10 +659,10 @@ body {
 }
 
 .player_1 {
-    background-image: linear-gradient(black, black);
+    background-image: linear-gradient(to right, black, rgba(255, 0, 0, 0.715));
     height: 100%;
     width: 100%;
-    box-shadow: 1px 1px 5px rgb(10, 8, 8);
+    box-shadow: 0 4px 8px #333;
     border-radius: 10px;
     display: flex;
     flex-direction: row;
@@ -610,7 +716,7 @@ body {
 }
 
 .progress-bar1 {
-    background-color: #4caf50;
+    background-color: #000000;
     width: 0;
     transition: width 0.2s;
 }
@@ -620,7 +726,7 @@ body {
 }
 
 .controls button{
-    box-shadow: 0 0 10px red;
+    box-shadow: 1px 1px 5px #333;
     border: none;
     border-radius: 50%;
     height: 35px;
@@ -631,7 +737,7 @@ body {
 
 .controls button:hover{
     transform: scale(1.1);
-    box-shadow: 0 0 10px white;
+    box-shadow: 1px 1px 5px #333;
 }
 
 .controls .shuffle{
@@ -652,13 +758,13 @@ body {
     background-size: cover;
 }
 
-.controls .pause1{
+.controls .pause{
     background-image: url("https://cdn-icons-png.flaticon.com/128/4340/4340118.png");
     background-position: center;
     background-size: cover;
 }
 
-.controls .play1{
+.controls .play{
     background-image: url("https://cdn-icons-png.flaticon.com/512/4340/4340106.png");
     background-position: center;
     background-size: cover;
@@ -672,7 +778,7 @@ body {
 
 
 .aditional_options button{
-    box-shadow: 0 0 10px red;
+    box-shadow: 1px 1px 5px #333;
     background: transparent;
     border: none;
     border-radius: 50%;
@@ -683,7 +789,7 @@ body {
 
 .aditional_options button:hover{
     transform: scale(1.1);
-    box-shadow: 0 0 10px white;
+    box-shadow: 1px 1px 5px #333;
 }
 
 .aditional_options .share{
@@ -712,4 +818,80 @@ body {
     flex-direction: column;
     display: flex;
     flex-direction:column;
+}
+.centered{
+    position: absolute;
+    transform:translate(-50%,-50%);
+    
+    margin-top: 5%;
+    margin-left: 17%;
+}
+
+.centered a{
+    text-decoration: none;
+    font-size: 35px;
+    font-family: Georgia;
+    color:rgb(255, 255, 255);
+}
+
+.libraries_history{
+    height: 90%;
+    /* border: 1px solid #000000; */
+    margin-top: 20px;
+}
+
+.libraries{
+    box-shadow: 1px 1px 5px #333;
+    width: 100%;
+    border-radius: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.libraries a{
+    text-decoration: none;
+    font-family: georiga;
+    font-size: 22px;
+    font-weight: bold;
+    color: aqua;
+    
+}
+
+.libraries h1{
+    margin-top: 0;
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+.history{
+    box-shadow: 1px 1px 5px #333;
+    width: 100%;
+    border-radius: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.history a{
+    text-decoration: none;
+    font-family: georiga;
+    font-size: 22px;
+    font-weight: bold;
+    color: aqua;
+}
+
+
+.controls .pause{
+    background-image: url("https://cdn-icons-png.flaticon.com/128/4340/4340118.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.controls .play{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/4340/4340106.png");
+    background-position: center;
+    background-size: cover;
 }

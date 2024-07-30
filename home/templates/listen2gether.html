@@ -1,14 +1,80 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block extra_css %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rose</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{% static 'css/listen2gether.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">Rose</div>
+            <div class="nav-links">
+                <div class="nav-link-token-profile">
+                    <a href="#">PL</a>
+                </div>
+            </div>
+        </div>
 
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/listen2gether.css' %}">
+        <div class="main_div">
+            <div class="search_bar">
+                <div class="search_bar_1">
+                    <form class="search_bar_2" method="post">
+                        {% csrf_token %}
+                        <label for="search">🔎︎</label>
+                        <input type="text" id="search" name="search" placeholder="Search">
+                        <button type="button" id="search_main">Search</button>
+                    </form>
+                    <div class="search_data" style="display: none;">
+                        <table>
+                            <tbody>
+                                {% for i in seatch_result %}
+                                <tr>
+                                    <td>
+                                        <button class="play9" data-url="{{ i.url }}" data-title="{{ i.name }}"
+                                            data-artist="{{ i.artist }}">
 
-{% endblock %}
+                                        </button>
+                                        <button class="pause9" data-url="{{ i.url }}" style="display: none;">
 
+                                        </button>
+                                    </td>
+                                    <td><a href="#">{{ i.name }}</a></td>
+                                    <td>{{ i.artist }}</td>
+                                </tr>
+                                {% endfor %}
 
-{% block content%}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="libraries_history">
+                        <div class="libraries">
+                            <div>
+                                <a href="#">Library Name</a>
+                                <h1>15</h1>
+                            </div>
+                        </div>
+                        <div class="libraries">
+                            <div>
+                                <a href="#">Library Name</a>
+                                <h1>Song count 15</h1>
+                            </div>
+                        </div>
+                        <div class="history">
+                            <div>
+                                <a href="#">History</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="main_screen">
                 <div class="upper_section">
                     <div class="editing_section">
@@ -25,27 +91,23 @@
                                     <tr>
                                         <th></th>
                                         <th>Title</th>
+                                        <th>Artist</th>
                                         <th>Album</th>
-                                        <th>Data Added</th>
                                         <th>Duration</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for i in songs %}
+                                    {% for i in contents %}
                                     <tr>
                                         <td>
-                                            <button class="play" data-id="{{ forloop.counter0 }}">
-                                                <i class="fas fa-play"></i>
-                                            </button>
-                                            <button class="pause" data-id="{{ forloop.counter0 }}" style="display: none;">
-                                                <i class="fas fa-pause"></i>
+                                            <button class="play1"  data-url="{{ i.url }}" data-title="{{ i.name }}"
+                                            data-artist="{{ i.artist }}">
                                             </button>
                                         </td>
-                                        <td><a href="#">{{ i.title }}</a></td>
-                                        <td><a href="#">{{ i.artist.title }}</a></td>
-                                        <td>{{ i.date_added }}</td>
+                                        <td><a href="#">{{ i.name }}</a></td>
+                                        <td><a href="#">{{ i.artist }}</a></td>
+                                        <td>{{ i.album }}</td>
                                         <td>{{ i.duration }}</td>
-                                        <audio id="audio-{{ forloop.counter0 }}" src="{{ i.preview }}"></audio>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
@@ -69,11 +131,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for i in listeners %}
+                                    {% for i in contents %}
                                     <tr>
                                         <td></td>
-                                        <td><a href="#">{{ i.name }}</a></td>
-                                        <td>{{ i.username }}</td>
+                                        <td><a href="#">{{ i.artist }}</a></td>
+                                        <td>{{ i.album }}</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
@@ -81,4 +143,250 @@
                         </div>
                     </div>
                 </div>
-                {% endblock %}
+
+                <div class="add_new_member" style="display: none;">
+                    <div class="inner_add_new_member">
+                        <h1>Invite Listener</h1>
+                        <input type="text" placeholder="Username" required>
+                        <button>Send Request</button>
+                    </div>
+                </div>
+                <div class="share_environment" style="display: none;">
+                    <div class="inner_share_environment">
+                        <h1>Copy and Share</h1>
+                        <input type="text" placeholder="Username" disabled>
+                        <button>Copy</button>
+                    </div>
+                </div>
+                <div class="exit_enviroment" style="display: none;">
+                    <div class="inner_exit_enviroment">
+                        <h1>Leaving the Envirnment</h1>
+                        <h2>Are you sure?</h2>
+                        <div class="inner_inner_exit_enviroment">
+                            <button>Calcel</button>
+                            <button>Leave</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="lower_section">
+                    <div class="player">
+                        <div class="player_1">
+                            <div class="song_info">
+                                <div class="title_artist">
+                                    <h1 class="title"></h1>
+                                    <h2 class="artist"></h2>
+                                </div>
+                                <div class="progress-container1">
+                                    <div class="progress-bar1"></div>
+                                </div>
+                                <div class="controls">
+                                    <button type="button" class="shuffle"></button>
+                                    <button type="button" class="backward"></button>
+                                    <button type="button" class="play"></button>
+                                    <button type="button" class="pause" style="display: none;"></button>
+                                    <button type="button" class="forward"></button>
+                                    <button type="button" class="repeat"></button>
+                                </div>
+                                <audio id="audio" src=""></audio>
+                            </div>
+                            <div class="aditional_options">
+                                <button type="button" class="like"></button>
+                                <button type="button" class="share"></button>
+                                <button type="button" class="lyrics"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="popupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <p id="popupMessage"></p>
+        </div>
+    </div>
+</body>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const add = document.querySelector('.add');
+        const share = document.querySelector('.share');
+        const exit = document.querySelector('.exit');
+    
+        add.addEventListener('click', () => {
+            const open_add = document.querySelector('.add_new_member');
+            if (open_add) {
+                open_add.style.display = 'flex';
+                console.log('Opened add_new_member');
+            }
+        });
+    
+        share.addEventListener('click', () => {
+            const open_share = document.querySelector('.share_environment');
+            if (open_share) {
+                open_share.style.display = 'flex';
+                console.log('Opened share_environment');
+            }
+        });
+    
+        exit.addEventListener('click', () => {
+            const open_exit = document.querySelector('.exit_enviroment');
+            if (open_exit) {
+                open_exit.style.display = 'flex';
+                console.log('Opened exit_environment');
+            }
+        });
+    });
+    
+    function handleClickOutside(event) {
+        const addNewMember = document.querySelector('.add_new_member');
+        const shareEnvironment = document.querySelector('.share_environment');
+        const exitEnvironment = document.querySelector('.exit_enviroment');
+    
+        const inner_addNewMember = document.querySelector('.inner_add_new_member');
+        const inner_shareEnvironment = document.querySelector('.inner_share_environment');
+        const inner_exitEnvironment = document.querySelector('.inner_exit_enviroment');
+
+        const addButton = document.querySelector('.add');
+        const shareButton = document.querySelector('.share');
+        const exitButton = document.querySelector('.exit');
+    
+        console.log('Clicked element:', event.target);
+    
+        if (inner_addNewMember && !inner_addNewMember.contains(event.target) && !addButton.contains(event.target)) {
+            addNewMember.style.display = 'none';
+        }
+    
+        if (inner_shareEnvironment && !inner_shareEnvironment.contains(event.target) && !shareButton.contains(event.target)) {
+            shareEnvironment.style.display = 'none';
+        }
+    
+        if (inner_exitEnvironment && !inner_exitEnvironment.contains(event.target) && !exitButton.contains(event.target)) {
+            exitEnvironment.style.display = 'none';
+        }
+    }
+    
+    document.addEventListener('click', handleClickOutside);
+    
+    document.addEventListener('DOMContentLoaded', function () {
+        const audio = document.getElementById('audio');
+        const playButton = document.querySelector('.play');
+        const pauseButton = document.querySelector('.pause');
+        const nextButton = document.querySelector('.forward');
+        const prevButton = document.querySelector('.backward');
+        const progressBar = document.querySelector('.progress-bar1');
+        const progressContainer = document.querySelector('.progress-container1');
+        const title = document.querySelector('.title');
+        const artist = document.querySelector('.artist');
+
+        let isPlaying = false;
+        let currentSongIndex = 0;
+        let songList = [];
+
+        function handleButtonClick(song) {
+            if (song.url && song.title && song.artist) {
+                audio.src = song.url;
+                title.textContent = song.title;
+                artist.textContent = song.artist;
+                audio.play();
+                playButton.style.display = 'none';
+                pauseButton.style.display = 'inline-block';
+                isPlaying = true;
+
+                currentSongIndex = songList.findIndex(s => s.url === song.url);
+            } else {
+                console.error('Invalid song data:', song);
+            }
+        }
+
+        document.querySelectorAll('.play1').forEach((button, index) => {
+            const song = {
+                url: button.getAttribute('data-url'),
+                title: button.getAttribute('data-title'),
+                artist: button.getAttribute('data-artist')
+            };
+            songList.push(song);
+
+            button.addEventListener('click', () => {
+                handleButtonClick(song);
+            });
+        });
+
+        playButton.addEventListener('click', () => {
+            if (audio.src) {
+                audio.play();
+                playButton.style.display = 'none';
+                pauseButton.style.display = 'inline-block';
+                isPlaying = true;
+            }
+        });
+
+        pauseButton.addEventListener('click', () => {
+            audio.pause();
+            pauseButton.style.display = 'none';
+            playButton.style.display = 'inline-block';
+            isPlaying = false;
+        });
+
+        audio.addEventListener('timeupdate', () => {
+            const progressPercent = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+        });
+
+        progressContainer.addEventListener('click', (e) => {
+            const width = progressContainer.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audio.duration;
+            audio.currentTime = (clickX / width) * duration;
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (songList.length > 0) {
+                currentSongIndex = (currentSongIndex + 1) % songList.length;
+                const nextSong = songList[currentSongIndex];
+                handleButtonClick(nextSong);
+            }
+        });
+
+        prevButton.addEventListener('click', () => {
+            if (songList.length > 0) {
+                currentSongIndex = (currentSongIndex - 1 + songList.length) % songList.length;
+                const prevSong = songList[currentSongIndex];
+                handleButtonClick(prevSong);
+            }
+        });
+
+        audio.addEventListener('error', () => {
+            console.error('Failed to load audio source:', audio.src);
+        });
+    });
+
+    function debounce(func, delay) {
+        return function (...args) {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => func.apply(this, args), delay);
+        };
+    }
+
+    const handlePlayPause = debounce(function () {
+        const playButton = document.querySelector('.play');
+        const pauseButton = document.querySelector('.pause');
+        const audio = document.getElementById('audio1');
+
+        if (isPlaying) {
+            audio.pause();
+            playButton.style.display = 'inline-block';
+            pauseButton.style.display = 'none';
+        } else {
+            audio.play();
+            playButton.style.display = 'none';
+            pauseButton.style.display = 'inline-block';
+        }
+        isPlaying = !isPlaying;
+    }, 300);
+
+</script>
+
+</html>

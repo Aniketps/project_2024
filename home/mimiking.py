@@ -20,8 +20,8 @@ from glob import glob
 import IPython.display as ipd
 from IPython.display import Audio
 
-def mimiking(voice, gender, convert_to):
-    y, sr = librosa.load(voice)
+def mimiking(y,sr, gender, convert_to):
+    
     if gender==1:
         # man_pitch = man_voice(y, sr)
         if convert_to==0: # 0 for woman

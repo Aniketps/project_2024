@@ -1,27 +1,91 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block extra_css %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rose</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{% static 'css/mimicking.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">Rose</div>
+            <div class="nav-links">
+                <div class="nav-link-token-profile">
+                    <a href="#">PL</a>
+                </div>
+            </div>
+        </div>
 
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/mimicking.css' %}">
+        <div class="main_div">
+            <div class="search_bar">
+                <div class="search_bar_1">
+                    <form class="search_bar_2" method="post">
+                        {% csrf_token %}
+                        <label for="search">🔎︎</label>
+                        <input type="text" id="search" name="search" placeholder="Search">
+                        <button type="button" id="search_main">Search</button>
+                    </form>
+                    <div class="search_data" style="display: none;">
+                        <table>
+                            <tbody>
+                                {% for i in seatch_result %}
+                                <tr>
+                                    <td>
+                                        <button class="play9" data-url="{{ i.url }}" data-title="{{ i.name }}"
+                                            data-artist="{{ i.artist }}">
 
-{% endblock %}
+                                        </button>
+                                        <button class="pause9" data-url="{{ i.url }}" style="display: none;">
 
-{% block content %}
+                                        </button>
+                                    </td>
+                                    <td><a href="#">{{ i.name }}</a></td>
+                                    <td>{{ i.artist }}</td>
+                                </tr>
+                                {% endfor %}
 
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="libraries_history">
+                        <div class="libraries">
+                            <div>
+                                <a href="#">Library Name</a>
+                                <h1>15</h1>
+                            </div>
+                        </div>
+                        <div class="libraries">
+                            <div>
+                                <a href="#">Library Name</a>
+                                <h1>Song count 15</h1>
+                            </div>
+                        </div>
+                        <div class="history">
+                            <div>
+                                <a href="#">History</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="main_screen">
                 <div class="upper_section">
                     <div class="editing_section">
                         <h1 class="heading_first">Mimicking Voice</h1>
-                        <form class="editing_section_1" id="upload-form" method="post" action="{% url 'mimicking_page' %}" enctype="multipart/form-data">
+                        <form class="editing_section_1" id="upload-form" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
-                            <!-- {{ form.as_p }} -->
                             <div class="upload_convert_container">
                                 <div class="upload_bar">
                                     <div class="upload_bar_1">
                                         <h1 class="heading_second">Which voice do you want to convert</h1>
-                                        <input type="file" name="audio_file" id="uploadfile" accept=".mp3,.m4a,.wav"
-                                            onchange="showFileName(event)" required>
+                                        <input type="file" name="audio_file" id="uploadfile" accept=".mp3,.m4a,.wav"required>
                                         <br><br>
                                     </div>
                                     <div>
@@ -36,50 +100,248 @@
                                 <div id="maleOptions" class="conversion-options">
                                     <div class="conversion-options_1">
                                         <h1 class="heading_second" style="color: black;">Male to Female</h1>
-                                        <button type="button" id="male_to_female">Convert</button>
+                                        <input type="checkbox" id="male_to_female" name="convert_to" value="male_to_female">
+                                        <label for="male_to_female"></label>
                                     </div>
                                     <div class="conversion-options_1">
                                         <h1 class="heading_second" style="color: black;">Male to Child</h1>
-                                        <button type="button" id="male_to_child">Convert</button>
+                                        <input type="checkbox" id="male_to_child" name="convert_to" value="male_to_child">
+                                        <label for="male_to_child"></label>
                                     </div>
                                 </div>
                                 <div id="femaleOptions" class="conversion-options">
                                     <div class="conversion-options_1">
                                         <h1 class="heading_second" style="color: black;">Female to Male</h1>
-                                        <button type="button" female_to_male>Convert</button>
+                                        <input type="checkbox" id="female_to_male" name="convert_to" value="female_to_male">
+                                        <label for="female_to_male"></label>
                                     </div>
                                     <div class="conversion-options_1">
                                         <h1 class="heading_second" style="color: black;">Female to Child</h1>
-                                        <button type="button" id="female_to_child">Convert</button>
+                                        <input type="checkbox" id="female_to_child" name="convert_to" value="female_to_child">
+                                        <label for="female_to_child"></label>
                                     </div>
+                                </div>
+                                <div class="for_download_and_submit">
+                                    <button type="submit" id="send_audio">Submit</button>
+                                    <button type="button" id="download" style="display: none;">Download</button>
                                 </div>
                             </div>
-                            {% comment %} <button type="submit" id="all_done">Uplaod</button> {% endcomment %}
+                            <a id="download_url" style="display: none;">Click to download</a>
                         </form>
-                        <div class="player_for_converted">
-                            <div class="player_for_converted_1">
-                                <h1 style="color: white;">Test your voice</h1>
-                                <div class="player_and_download">
-                                    <div class="music-player">
-                                        <div class="controls1">
-                                            <h2 class="title" style="color: white">Song Title</h2>
-                                            <button class="prev"><i class="fas fa-backward"></i></button>
-                                            <button class="play"><i class="fas fa-play"></i></button>
-                                            <button class="pause" style="display: none;"><i
-                                                    class="fas fa-pause"></i></button>
-                                            <button class="next"><i class="fas fa-forward"></i></button>
-                                        </div>
-                                        <div class="progress-container">
-                                            <div class="progress-bar"></div>
-                                        </div>
-                                        <audio id="audio" src="#"></audio>
-                                    </div>
-                                    <div class="download_button">
-                                        <a id="download-btn" href="#" style="display: none;" download="converted_audio.wav">Download</a>
-                                    </div>
+                    </div>
+                </div>
+                <div class="lower_section">
+                    <div class="player">
+                        <div class="player_1">
+                            <div class="song_info">
+                                <div class="title_artist">
+                                    <h1 class="title"></h1>
+                                    <h2 class="artist"></h2>
                                 </div>
+                                <div class="progress-container1">
+                                    <div class="progress-bar1"></div>
+                                </div>
+                                <div class="controls">
+                                    <button type="button" class="shuffle"></button>
+                                    <button type="button" class="backward"></button>
+                                    <button type="button" class="play"></button>
+                                    <button type="button" class="pause" style="display: none;"></button>
+                                    <button type="button" class="forward"></button>
+                                    <button type="button" class="repeat"></button>
+                                </div>
+                                <audio id="audio" src=""></audio>
+                            </div>
+                            <div class="aditional_options">
+                                <button type="button" class="like"></button>
+                                <button type="button" class="share"></button>
+                                <button type="button" class="lyrics"></button>
                             </div>
                         </div>
                     </div>
                 </div>
-{% endblock %}
+            </div>
+        </div>
+    </div>
+    <div id="popupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <p id="popupMessage"></p>
+        </div>
+    </div>
+</body>
+
+
+<script>
+    
+    $(document).ready(function() {
+        $('#upload-form').on('submit', function(event) {
+            event.preventDefault();
+
+            var formData = new FormData(this);
+            $.ajax({
+                url: '/mimicking_page/',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    if (data.download_url) {
+                        var downloadLink = document.getElementById('download_url');
+                        const download = document.getElementById('download');
+                        downloadLink.download = data.download_url.split('/').pop();
+                        downloadLink.href = data.download_url
+                        var audio = document.getElementById('audio');
+                        var title = document.querySelector('.title');
+                        var artist = document.querySelector('.artist');
+
+                        audio.src = data.download_url;
+                        title.textContent = data.title;
+                        artist.textContent = 'Player';
+                        download.style.display = 'inline-block';
+
+                        download.onclick = function(){
+                            downloadLink.click();
+                        }
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+        });
+    });
+
+    document.getElementById('maleBtn').addEventListener('click', function () {
+        document.getElementById('maleOptions').style.display = 'block';
+        document.getElementById('femaleOptions').style.display = 'none';
+    });
+    
+    document.getElementById('femaleBtn').addEventListener('click', function () {
+        document.getElementById('femaleOptions').style.display = 'block';
+        document.getElementById('maleOptions').style.display = 'none';
+    });
+    
+    document.addEventListener('DOMContentLoaded', function () {
+        const audio = document.getElementById('audio');
+        const playButton = document.querySelector('.play');
+        const pauseButton = document.querySelector('.pause');
+        const nextButton = document.querySelector('.forward');
+        const prevButton = document.querySelector('.backward');
+        const progressBar = document.querySelector('.progress-bar1');
+        const progressContainer = document.querySelector('.progress-container1');
+        const title = document.querySelector('.title');
+        const artist = document.querySelector('.artist');
+
+        let isPlaying = false;
+        let currentSongIndex = 0;
+        let songList = [];
+
+        function handleButtonClick(song) {
+            if (song.url && song.title && song.artist) {
+                audio.src = song.url;
+                title.textContent = song.title;
+                artist.textContent = song.artist;
+                audio.play();
+                playButton.style.display = 'none';
+                pauseButton.style.display = 'inline-block';
+                isPlaying = true;
+
+                // Update the current song index
+                currentSongIndex = songList.findIndex(s => s.url === song.url);
+            } else {
+                console.error('Invalid song data:', song);
+            }
+        }
+
+        document.querySelectorAll('.play5, .play6, .play7, .play8').forEach((button, index) => {
+            const song = {
+                url: button.getAttribute('data-url'),
+                title: button.getAttribute('data-title'),
+                artist: button.getAttribute('data-artist')
+            };
+            songList.push(song);
+
+            button.addEventListener('click', () => {
+                handleButtonClick(song);
+            });
+        });
+
+        playButton.addEventListener('click', () => {
+            if (audio.src) {
+                audio.play();
+                playButton.style.display = 'none';
+                pauseButton.style.display = 'inline-block';
+                isPlaying = true;
+            }
+        });
+
+        pauseButton.addEventListener('click', () => {
+            audio.pause();
+            pauseButton.style.display = 'none';
+            playButton.style.display = 'inline-block';
+            isPlaying = false;
+        });
+
+        audio.addEventListener('timeupdate', () => {
+            const progressPercent = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+        });
+
+        progressContainer.addEventListener('click', (e) => {
+            const width = progressContainer.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audio.duration;
+            audio.currentTime = (clickX / width) * duration;
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (songList.length > 0) {
+                currentSongIndex = (currentSongIndex + 1) % songList.length;
+                const nextSong = songList[currentSongIndex];
+                handleButtonClick(nextSong);
+            }
+        });
+
+        prevButton.addEventListener('click', () => {
+            if (songList.length > 0) {
+                currentSongIndex = (currentSongIndex - 1 + songList.length) % songList.length;
+                const prevSong = songList[currentSongIndex];
+                handleButtonClick(prevSong);
+            }
+        });
+
+        audio.addEventListener('error', () => {
+            console.error('Failed to load audio source:', audio.src);
+        });
+    });
+
+    function debounce(func, delay) {
+        return function (...args) {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => func.apply(this, args), delay);
+        };
+    }
+
+    const handlePlayPause = debounce(function () {
+        const playButton = document.querySelector('.play');
+        const pauseButton = document.querySelector('.pause');
+        const audio = document.getElementById('audio1');
+
+        if (isPlaying) {
+            audio.pause();
+            playButton.style.display = 'inline-block';
+            pauseButton.style.display = 'none';
+        } else {
+            audio.play();
+            playButton.style.display = 'none';
+            pauseButton.style.display = 'inline-block';
+        }
+        isPlaying = !isPlaying;
+    }, 300);
+
+    document.querySelector('.play').addEventListener('click', handlePlayPause);
+    document.querySelector('.pause').addEventListener('click', handlePlayPause);
+
+</script>
+
+</html>
