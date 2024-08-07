@@ -9,37 +9,55 @@
 </head>
 <body>
     <div class="container">
-        <div class="signin-form">
-            <h2>Sign Up</h2>
+        <div class="page_info">
+            <span class="main_head">Welcome to Sign Up</span>
+            <span class="sub_head">Create your Rose account</span>
+        </div>
+        <div class="signup-form">
             <form action="{% url 'register' %}" method="POST">
                 {% csrf_token %}
-                <div class="form-group">
-                    <label for="first_name">Firs name:</label>
-                    <input type="first_name" id="first_name" name="first_name" required>
+                <div class="first_last">
+                    <div class="first">
+                        <label for="first_name">First name:</label>
+                        {{form.first_name}}
+                    </div>
+                    <div class="last">
+                        <label for="last_name">Last name:</label>
+                        {{form.last_name}}
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="last_name">Last name:</label>
-                    <input type="last_name" id="last_name" name="last_name" required>
-                </div>
-                <div class="form-group">
+                <div class="form-group1">
                     <label for="email">Email:</label>
                     {{form.email}}
                 </div>
-                <div class="form-group">
+                <div class="form-group1">
                     <label for="username">Username:</label>
                     {{form.username}}
                 </div>
-                <div class="form-group">
+                <div class="form-group1">
                     <label for="paswword1">Password:</label>
                     {{form.password1}}
                 </div>
-                <div class="form-group">
+                <div class="form-group1">
                     <label for="password2">Confirm password:</label>
                     {{ form.password2}}
                 </div>
-                <button type="submit" class="btn">Sign In</button>
-                <p class="signup-link">Already have an account? <a href="#">Login</a></p>
+                <div class="button_link1">
+                    <button type="submit" class="btn1">Sign Up</button>
+                    <a href="{% url 'login_page' %}">Login</a>
+                </div>
             </form>
+            {% if form.errors %}
+                <div class="errors">
+                    <ul>
+                        {% for field in form %}
+                            {% if field.errors %}
+                                <li>{{ field.label }}: {{ field.errors }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
         </div>
     </div>
 </body>

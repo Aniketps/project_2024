@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.contrib.auth import views as auth_views
 from home.views import home, register, mimicking_page, tune_page, frontend, recommendation, listen2gether, piano, guitar, violien, login_page 
 from django.conf.urls.static import static
 from django.conf import settings 
@@ -27,6 +28,7 @@ urlpatterns = [
     path('register/', register, name='register'), 
     path('login/', login_page, name='login_page'), 
     path('frontend/', frontend),
+    path('logout/', auth_views.LogoutView.as_view(next_page='login_page'), name='logout'),
     path('recommendation/', recommendation, name='recommendation'),
     path('mimicking_page/', mimicking_page, name='mimicking_page'),
     path('tune_page/', tune_page, name='tune_page'),

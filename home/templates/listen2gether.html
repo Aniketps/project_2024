@@ -131,11 +131,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for i in contents %}
+                                    {% for i in listeners %}
                                     <tr>
-                                        <td></td>
-                                        <td><a href="#">{{ i.artist }}</a></td>
-                                        <td>{{ i.album }}</td>
+                                        <td>{{i}}</td>
+                                        <td><a href="#">{{ i.first_name }}</a></td>
+                                        <td>{{ i.username }}</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
@@ -144,30 +144,31 @@
                     </div>
                 </div>
 
-                <div class="add_new_member" style="display: none;">
+                <form method="post" class="add_new_member" style="display: none;">
+                    {% csrf_token %}
                     <div class="inner_add_new_member">
                         <h1>Invite Listener</h1>
-                        <input type="text" placeholder="Username" required>
-                        <button>Send Request</button>
+                        <input name="username" type="text" placeholder="Username" required>
+                        <button id="add_submit" type="submit">Send Request</button>
                     </div>
-                </div>
-                <div class="share_environment" style="display: none;">
+                </form>
+                <form class="share_environment" style="display: none;">
                     <div class="inner_share_environment">
                         <h1>Copy and Share</h1>
                         <input type="text" placeholder="Username" disabled>
-                        <button>Copy</button>
+                        <button type="submit">Copy</button>
                     </div>
-                </div>
-                <div class="exit_enviroment" style="display: none;">
+                </form>
+                <form class="exit_enviroment" style="display: none;">
                     <div class="inner_exit_enviroment">
                         <h1>Leaving the Envirnment</h1>
                         <h2>Are you sure?</h2>
                         <div class="inner_inner_exit_enviroment">
                             <button>Calcel</button>
-                            <button>Leave</button>
+                            <button type="submit">Leave</button>
                         </div>
                     </div>
-                </div>
+                </form>
                 <div class="lower_section">
                     <div class="player">
                         <div class="player_1">
@@ -210,11 +211,46 @@
 
 
 <script>
+
+    $(document).ready(function() {
+        $('#add_new_member').on('submit', function(event) {
+            event.preventDefault();
+
+            var formData = new FormData(this);
+            $.ajax({
+                url: '/mimicking_page/',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    if (data.listeners) {
+                        var add_submit = document.getElementById('add_submit');
+                        var add_new_member = document.querySelector('.add_new_member');
+                        add_new_member.style.display = 'none';
+
+                        var tbody = $('tbody');
+                        tbody.empty();
+                        $.each(data.listeners, function(index, listener) {
+                            tbody.append('<tr><td>' + (index + 1) + '</td><td><a href="#">' + index + '</a></td><td>' + listener.name + '</td></tr>');
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+        });
+    });
+
     document.addEventListener('DOMContentLoaded', function () {
         const add = document.querySelector('.add');
         const share = document.querySelector('.share');
         const exit = document.querySelector('.exit');
     
+        add_submit.addEventListener('submit', ()=>{
+
+        })
         add.addEventListener('click', () => {
             const open_add = document.querySelector('.add_new_member');
             if (open_add) {

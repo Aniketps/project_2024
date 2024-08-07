@@ -364,6 +364,14 @@ body {
     background-color: #45a049;
 }
 
+.upload_bar h5{
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 20px;
+    color: white;
+    text-shadow: 1px 1px 1px #000;
+}
+
 .heading_first {
     font-size: 25px;
     font-weight: bold;

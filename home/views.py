@@ -3,14 +3,18 @@ from django.http import JsonResponse
 import os # temp
 from django.conf import settings # temp
 from django.core.files.storage import FileSystemStorage # temp
-from .forms import AudioUploadForm, user_login, user_login1
-from .models import user_table
+from .forms import AudioUploadForm
+from .forms import UserRegisterForm, UserLoginForm
 import soundfile as sf
+from django.contrib.auth import login, authenticate,logout
+from django.contrib.auth.forms import AuthenticationForm 
 from .mimiking import mimiking
 from .tune import tune
 import requests
-from django.views.decorators.csrf import csrf_exempt
-
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from home.models import VirtualEnvironment, Song, CurrentSong
+from django.contrib.auth.models import User
+ 
 
 # mimiking imports
 import numpy as np
@@ -54,29 +58,39 @@ access_token = get_access_token(CLIENT_ID, CLIENT_SECRET)
 def home(request):
     return render(request, 'home.html')
 
+@csrf_protect  
 def register(request):
-    form = user_login1()
     if request.method == 'POST':
-        form = user_login1(request.POST)
-        if form.is_valid:
-
-            # cleaned_data = super().clean()
-            
-            # first_name = request.POST.get('first_name')
-            # last_name = request.POST.get('last_name')
-            # email = request.POST.get('email')
-            # username = cleaned_data.get('username')
-            # password1 = cleaned_data.get('password1')
-            # password2 = cleaned_data.get('password2')
-            
-            # user1 = user_table(first_name=first_name, last_name=last_name, email=email, username=username, password=password2, song_id=0, song_album='None', song_time=0)
-            
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
             form.save()
-            return redirect('login')
-    return render(request, 'register.html', {'form':form})
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            # login(request, user)
+            return redirect('login_page') 
+        else:
+            print(form.errors)  # Print form errors for debugging
+    else:
+        form = UserRegisterForm()
+    return render(request, 'register.html', {'form': form})
 
+@csrf_protect
 def login_page(request):
-    return render(request, 'login_page.html')
+    if request.method == 'POST':
+        form = UserLoginForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('frontend')
+    else:
+        form = UserLoginForm()
+    
+    
+    return render(request, 'Sign_in.html', {'form': form})
 
 def fetch_songs(query, limit=50):
     url = "https://api.spotify.com/v1/search"
@@ -150,7 +164,8 @@ def frontend(request):
     #     search_results = fetch_songs(search_query, limit=30)
           
     #     return render(request, 'frontend.html', {'seatch_result': search_results})
-    
+    if request.method == "POST" and 'logout' in request.POST:
+        login_page(request)
     
     trending_songs = fetch_songs("marathi", limit=50) 
     nineties_songs = fetch_songs("1990s hindi", limit=50)  
@@ -175,10 +190,33 @@ def violien(request):
     return render(request, 'violien.html') 
 
 def listen2gether(request):
-    
-    contents = fetch_songs('Arjit Singh', limit=50) 
+    logged_username = request.user
+    data = User.objects.get(username=logged_username)
+    current_user_room, created = VirtualEnvironment.objects.get_or_create(owner=data)
+    listeners = []
+    for i in current_user_room.listeners.all():
+            listeners.append(i)
+    try:      
+        if request.method == 'POST':
+            username1 = request.POST.get('username')     
             
-    return render(request, "listen2gether.html", {'contents': contents})  
+            data1 = User.objects.get(username=username1)
+            
+            if data1 not in current_user_room.listeners.all():
+                current_user_room.listeners.add(data1)
+            else:
+                print('User already in room') 
+            
+            listeners = []
+            for i in current_user_room.listeners.all():
+                    listeners.append(i)
+                        
+            return JsonResponse({'listeners':listeners})
+    except Exception as e:
+         print(e)
+    contents = fetch_songs('Arjit Singh', limit=50)
+            
+    return render(request, "listen2gether.html", {'contents': contents,'listeners': listeners})  
  
     
 @csrf_exempt

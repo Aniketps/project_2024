@@ -1,20 +1,11 @@
-/* Reset some default styles */
-* {
+html, body {
+    height: 100%;
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 }
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.container {
+    background-color: whitesmoke;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,33 +13,50 @@ body {
     width: 100%;
 }
 
-.signin-form {
-    background: #fff;
-    padding: 2em;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+    width: 75%;
+    margin-bottom: 4%;
+    background: white;
+    border-radius: 40px;
+    flex-direction: row;
 }
 
-.signin-form h2 {
-    font-size: 1.5em;
-    color: #333;
+.signin-form {
+    width: 50%;
+}
+
+.page_info{
+    width: 50%;
+    font-family: "PT Sans";
+    margin-bottom: 10%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 4%;
+}
+
+.main_head{
+    font-size: 35px;
+}
+.signin-form label{
+    font-size: 16px;
+    font-family: "PT Sans";
+    margin-left: 10px;
+    margin-bottom: 5px;
 }
 
 .form-group {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 1.5em;
 }
 
-.form-group label {
-    display: block;
-    color: #333;
-    font-weight: bold;
-}
-
 .form-group input {
-    width: 100%;
-    padding: 0.75em;
+    width: 80%;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1em;
@@ -61,35 +69,133 @@ body {
 }
 
 .btn {
-    width: 100%;
     padding: 0.75em;
     border: none;
-    border-radius: 4px;
     background-color: #007bff;
     color: #fff;
     font-size: 1em;
     cursor: pointer;
+    height: auto;
+    border-radius: 15px;
+    width: auto;
     transition: background-color 0.3s ease;
 }
 
 .btn:hover {
     background-color: #0056b3;
 }
-
-.signup-link {
-    text-align: center;
-    margin-top: 1em;
-    font-size: 0.9em;
+.button_link{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
-
-.signup-link a {
+.button_link a {
     color: #007bff;
+    margin-left: 20px;
     text-decoration: none;
 }
 
-.signup-link a:hover {
+.button_link a:hover {
     text-decoration: underline;
 }
-img{
-    border-radius: 20px;
+
+/* Sign Up */
+
+.signup-form {
+    width: 50%;
+}
+
+.form-group1 {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+
+.form-group1 input {
+    width: 80%;
+    padding: 7px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.form-group1 input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.btn1 {
+    padding: 0.75em;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    height: auto;
+    border-radius: 15px;
+    width: auto;
+    transition: background-color 0.3s ease;
+}
+
+.btn1:hover {
+    background-color: #0056b3;
+}
+
+.button_link1{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.button_link1 a {
+    color: #007bff;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+.button_link1 a:hover {
+    text-decoration: underline;
+}
+
+.first_last{
+    display: flex;
+    width: 80%;
+    flex-direction: row;
+    margin-bottom: 5px;
+
+}
+
+.first{
+    margin-right: 8.5%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.last{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.first input{
+    padding: 7px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.last input{
+    padding: 7px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+@media (max-width: 768px) and (min-width: 481px){
+    .signin-form{
+        height: 10px; 
+    }
 }

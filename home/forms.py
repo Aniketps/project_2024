@@ -1,19 +1,20 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from .models import user_table
 
 class AudioUploadForm(forms.Form):
     audio_file = forms.FileField()
     conversion_type = forms.CharField(widget=forms.HiddenInput(), required=False)
 
-class user_login1(UserCreationForm):
+class UserRegisterForm(UserCreationForm): 
+    email = forms.EmailField(required=True)
+    first_name = forms.CharField(max_length=30, required=True)
+    last_name = forms.CharField(max_length=30, required=True)
+
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
 
-
-class user_login(UserCreationForm):
-    class Meta:
-        model = user_table
-        fields = ['first_name', 'last_name','email','username', 'password1', 'password2']
+class UserLoginForm(AuthenticationForm):
+    username = forms.CharField(max_length=254)
+    password = forms.CharField(widget=forms.PasswordInput)

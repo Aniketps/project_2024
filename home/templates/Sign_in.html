@@ -6,23 +6,43 @@
     <title>Sign In</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
+        <div class="page_info">
+            <span class="main_head">Welcome to Login</span>
+            <span class="sub_head">Use your Rose account</span>
+        </div>
         <div class="signin-form">
-            <h2>Sign In</h2>
-            <form action="/signin" method="POST">
+            <form method="POST">
+                {% csrf_token %}
                 <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                    <label for="username">Username:</label>
+                    {{form.username}}
                 </div>
                 <div class="form-group">
                     <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
+                    {{form.password}}
                 </div>
-                <button type="submit" class="btn">Sign In</button>
-                <p class="signup-link">Don't have an account? <a href="#">Sign up</a></p>
+                <div class="button_link">
+                    <button type="submit" class="btn">Sign In</button>
+                    <a href="{% url 'register' %}">Create account</a>
+                </div>
             </form>
+            {% if form.errors %}
+                <div class="errors">
+                    <ul>
+                        {% for field in form %}
+                            {% if field.errors %}
+                                <li>{{ field.label }}: {{ field.errors }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
         </div>
     </div>
 </body>

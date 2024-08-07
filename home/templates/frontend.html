@@ -18,7 +18,13 @@
             <div class="logo">Rose</div>
             <div class="nav-links">
                 <div class="nav-link-token-profile">
-                    <a href="#">PL</a>
+                    <div class="profile">
+                        <span>Hey {{ user.first_name }}, What you like to listen today</span>
+                    </div>
+                    <form method="POST" action="{% url 'logout'%}">
+                        {% csrf_token %}
+                        <button class="logout" type="submit">Logout</a>
+                    </form>
                 </div>
             </div>
         </div>
